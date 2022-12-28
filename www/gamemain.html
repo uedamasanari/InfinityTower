@@ -1,0 +1,3937 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <title>Infinitytower</title>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+      var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+      var ncmb = new NCMB(applicationKey,clientKey);
+      var now = 44;
+      var nowpng="PNG/100.png";
+      var nowSpng=["PNG/S100.png","PNG/S100.png","PNG/S100.png"];
+      let Ssyurui=[];
+      var nowDpng=["PNG/D100.png","PNG/D100.png","PNG/D100.png"];
+      let Dsyurui=[];
+      var nowDrapng="PNG/Dra100.png";
+      let Drasyurui="";
+      var i=0;
+      var Start=0;
+      var free =0;
+      var slime= new Array();
+      var demon = new Array();
+      var Cslime= new Array();
+      var Cdemon = new Array();
+      var dragon = 0;
+      var box = 0;
+      var next = 91;
+      var KAI = 1;
+      var takara=11;
+      slime[0] = 0;
+      slime[1] = 0;
+      slime[2] = 0;
+      demon[0] = 0;
+      demon[1] = 0;
+      demon[2] = 0;
+      dragon=0;
+      Cslime[0] = 0;
+      Cslime[1] = 0;
+      Cslime[2] = 0;
+      Cdemon[0] = 0;
+      Cdemon[1] = 0;
+      Cdemon[2] = 0;
+      Cdragon=0;
+      var HP = 30;
+      var ATK = 10;
+      var MP = 20;
+      var count=0;
+      var hozon=0;
+      var tarn=0;
+      var Mwaza=0;
+      var clone=0;
+      var clone2=0;
+      var move=0;
+      var skil1=1;
+      var skil2=2;
+      var slimeHP = new Array();
+      var MslimeHP = new Array();
+      var demonHP = new Array();
+      var MdemonHP = new Array();
+      var dragonHP=0;
+      var MdragonHP=0;
+      var LV=1;
+      var nextLV=2;
+      var keikenti=0;
+      var MAXHP=30;
+      var MAXMP=20;
+      slimeHP[0] = 20;
+      var Rtakara=0;
+      var Thyouji=0;
+      var Bhyouji=0;
+      var Bhantei=0;
+      var kuuhaku="PNG/1.png";
+      var Dratakara=0;
+      var GETskil=0;
+      var GETmode=0;
+      var tokusyu=0;
+      var comeKAI=1;
+      var shophantei;
+      var coin=0;
+      slime[0] = 0;
+        slime[1] = 0;
+        slime[2] = 0;
+        demon[0] = 0;
+        demon[1] = 0;
+        demon[2] = 0;
+        dragon=0;
+        Cslime[0] = 0;
+        Cslime[1] = 0;
+        Cslime[2] = 0;
+        Cdemon[0] = 0;
+        Cdemon[1] = 0;
+        Cdemon[2] = 0;
+        Cdragon=0;
+        slimeHP[0] = 20;
+        slimeHP[1] = 0;
+        slimeHP[2] = 0;
+        MslimeHP[0] = 20;
+        MslimeHP[1] = 0;
+        MslimeHP[2] = 0;
+        demonHP[0] = 0;
+        demonHP[1] = 0;
+        demonHP[2] = 0;
+        MdemonHP[0] = 0;
+        MdemonHP[1] = 0;
+        MdemonHP[2] = 0;
+        dragonHP=0;
+        window.Lname;
+        var SW=0;
+        var SKAI;
+        let kyaraLV;
+        let nouryoku1;
+        let nouryoku1LV;
+        let nouryoku2;
+        let sumcoin=0;
+        let bukiup=[5,10,30,100,10,20,50,200];
+        let bukiHP=0;
+        let bukiATK=0;
+        let MAXKAI;
+        let mode=0;
+        let have;
+        let nouryoku2LV;
+        let buki;
+        let takaracoin=0;
+        let takaradiamond=0;
+        window.SampleData = ncmb.DataStore("playerdata");
+        /* ピッチインピッチアウトによる拡大縮小を禁止 */
+        document.documentElement.addEventListener('touchstart', function (e) {
+        if (e.touches.length >= 2) {e.preventDefault();}
+        }, {passive: false});
+        /* ダブルタップによる拡大を禁止 */
+        var t = 0;
+        document.documentElement.addEventListener('touchend', function (e) {
+        var now = new Date().getTime();
+        if ((now - t) < 350){
+          e.preventDefault();
+        }
+        t = now;
+        }, false);
+      window.onload = function(){
+        document.body.style.backgroundImage = 'url(PNG/tower.png)';
+        document.getElementById('s1').style.display = "none";
+        document.getElementById('s2').style.display = "none";
+        document.getElementById('getskil').style.display = "none";
+        document.getElementById('no').style.display = "none";
+        document.getElementById('ura').style.display = "none";
+        document.getElementById('shop').style.display = "none";
+        document.getElementById('node').style.display = "none";
+        document.getElementById('ritaia').style.display = "none";
+        document.getElementById('tojiru').style.display = "none";
+        document.getElementById('menu').style.display = "none";
+        document.getElementById('kekka').style.display = "none";
+        var ncmb = new NCMB(applicationKey,clientKey);
+        Lname=localStorage.getItem("name");
+        try{
+            SampleData.equalTo("username",Lname).fetchAll()
+            .then(function(results){
+                SKAI=results[0].KAI;
+                kyara=results[0].kyara;
+                kyaraLV=results[0].kyaraLV;
+                shophantei=results[0].shophantei;
+                nouryoku1=results[0].nouryoku1;
+                nouryoku1LV=results[0].nouryoku1LV;
+                kyarabuki=results[0].kyarabuki;
+                bukiLV=results[0].bukiLV;
+                MAXKAI=results[0].wKAI;
+                mode=results[0].mode;
+
+                have=results[0].item;
+                nouryoku1LV=results[0].nouryoku1LV;
+                nouryoku2LV=results[0].nouryoku2LV;
+                kyaraLV=results[0].kyaraLV;
+                buki=results[0].buki;
+                if(shophantei==1){
+                    loadfunk();
+                    SampleData.equalTo("username",Lname).fetch()
+                    .then(function(SampleData){
+                        console.log("成功"+JSON.stringify(SampleData));
+                        SampleData.set('shophantei',0);
+                        return SampleData.update();
+                    })
+                }
+                if(KAI==1){
+                  if(kyarabuki<=3){
+                      bukiATK=bukiup[kyarabuki];
+                  }else{
+                      bukiHP=bukiup[kyarabuki];
+                  }
+                if(kyara==0){
+                    HP=40+((kyaraLV-1)*3)+300*Math.floor(kyaraLV/100)+bukiHP;
+                    MAXHP=40+((kyaraLV-1)*3)+300*Math.floor(kyaraLV/100)+bukiHP;
+                    ATK=10+((kyaraLV-1)*2)+200*Math.floor(kyaraLV/100)+bukiATK;
+                    MP=20+((kyaraLV-1)*3)+500*Math.floor(kyaraLV/100);
+                    MAXMP=20+((kyaraLV-1)*3)+500*Math.floor(kyaraLV/100);
+                    nowpng='PNG/100.png';
+                }else if(kyara==1){
+                    HP=20+((kyaraLV-1))+300*Math.floor(kyaraLV/100)+bukiHP;
+                    MAXHP=20+((kyaraLV-1))+300*Math.floor(kyaraLV/100)+bukiHP;
+                    ATK=15+((kyaraLV-1)*3)+200*Math.floor(kyaraLV/100)+bukiATK;
+                    MP=40+((kyaraLV-1)*5)+500*Math.floor(kyaraLV/100);
+                    MAXMP=40+((kyaraLV-1)*5)+500*Math.floor(kyaraLV/100);
+                    nowpng='PNG/200.png';
+                }
+                if(nouryoku1==1){
+                    HP=HP+(nouryoku1LV*30);
+                    MAXHP=MAXHP+(nouryoku1LV*30);
+                }else if(nouryoku1==2){
+                    ATK=ATK+(nouryoku1LV*20);
+                }else if(nouryoku1==3){
+                    MP=MP+(nouryoku1LV*50);
+                    MAXMP=MAXMP+(nouryoku1LV*50);
+                }
+                if(mode==1){
+                  if(MAXKAI>=13){
+                    KAI=MAXKAI-11;
+                    if(KAI<10){
+                      keikenti+=(KAI-2)*(1*(Math.floor(KAI/10)+1));
+                      coin+=(KAI-2)*(2*(Math.floor(KAI/30)+1));
+                    }else if(KAI<20){
+                      keikenti+=8*(1*(Math.floor(KAI/10)+1));
+                      coin+=8*(2*(Math.floor(KAI/30)+1));
+                      keikenti+=2*((KAI-10)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*((KAI-10)*(2*(Math.floor(KAI/30)+1)));
+                    }else if(KAI<30){
+                      keikenti+=8*(1*(Math.floor(KAI/10)+1));
+                      coin+=8*(2*(Math.floor(KAI/30)+1));
+                      keikenti+=2*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=3*((KAI-20)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=3*((KAI-20)*(2*(Math.floor(KAI/30)+1)));
+                    }else if(KAI<40){
+                      keikenti+=8*(1*(Math.floor(KAI/10)+1));
+                      coin+=8*(2*(Math.floor(KAI/30)+1));
+                      keikenti+=2*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=3*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=3*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=((KAI-30)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=((KAI-30)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=5*((KAI-30)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=5*((KAI-30)*(2*(Math.floor(KAI/30)+1)));
+                    }else if(KAI<50){
+                      keikenti+=8*(1*(Math.floor(KAI/10)+1));
+                      coin+=8*(2*(Math.floor(KAI/30)+1));
+                      keikenti+=2*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=3*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=3*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=((KAI-30)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=((KAI-30)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=5*((KAI-30)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=5*((KAI-30)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=2*((KAI-40)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*((KAI-40)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=10*((KAI-40)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=10*((KAI-40)*(2*(Math.floor(KAI/30)+1)));
+                    }else{
+                      keikenti+=8*(1*(Math.floor(KAI/10)+1));
+                      coin+=8*(2*(Math.floor(KAI/30)+1));
+                      keikenti+=2*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=3*(10*(1*(Math.floor(KAI/10)+1)));
+                      coin+=3*(10*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=((KAI-30)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=((KAI-30)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=5*((KAI-30)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=5*((KAI-30)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=2*((KAI-40)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=2*((KAI-40)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=10*((KAI-40)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=10*((KAI-40)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=3*((KAI-50)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=3*((KAI-50)*(2*(Math.floor(KAI/30)+1)));
+                      keikenti+=15*((KAI-50)*(1*(Math.floor(KAI/10)+1)));
+                      coin+=15*((KAI-50)*(2*(Math.floor(KAI/30)+1)));
+                    }
+                    for(let zzzz=0;zzzz<Math.floor(KAI/30);zzzz++){
+                      keikenti+=(1*(Math.floor(KAI/10)+1));
+                      coin+=2*(Math.floor(KAI/30)+1);
+                      keikenti+=5*(1*(Math.floor(KAI/10)+1));
+                      coin+=10*(Math.floor(KAI/30)+1);
+                      keikenti+=50*(1*(Math.floor(KAI/10)+1));
+                      coin+=100*(Math.floor(KAI/30)+1);
+                    }
+                    while(keikenti>=nextLV){
+                        LVUPfunk();
+                    }
+                  }
+                }
+                mode=KAI;
+                MP=MAXMP;
+                Start = document.getElementById(now);
+                Start.src=nowpng;
+                Kai = document.getElementById("hp");
+                Kai.innerHTML="HP"+HP;
+                Kai = document.getElementById("maxhp");
+                Kai.innerHTML="/"+MAXHP;
+                Kai = document.getElementById("atk");
+                Kai.innerHTML="ATK　"+ATK;
+                Kai = document.getElementById("mp");
+                Kai.innerHTML=" MP　"+MP;
+                Kai = document.getElementById("maxmp");
+                Kai.innerHTML="/"+MAXMP;
+                Kai = document.getElementById("coin");
+                Kai.innerHTML=coin;
+                console.log(keikenti);
+                }
+            })
+          
+        }catch (error){
+        }
+        
+      }
+      function loadfunk(){
+        SampleData.equalTo("username",Lname).fetchAll()
+        .then(function(results){
+            if(results[0].KAI!=1){
+            Start = document.getElementById("91");
+            Start.src="PNG/1.png";
+            clearfunk();
+            now=results[0].now;
+            nowpng=results[0].nowpng;
+            kyara=results[0].savekyara;
+            i=results[0].i;
+            free=results[0].free;
+            slimeHP[0]=results[0].slimeHP0;
+            slimeHP[1]=results[0].slimeHP1;
+            slimeHP[2]=results[0].slimeHP2;
+            MslimeHP=results[0].MslimeHP;
+            MdemonHP=results[0].MdemonHP;
+            MdragonHP=results[0].MdragonHP;
+            nowSpng=results[0].nowSpng;
+            nowDpng=results[0].nowDpng;
+            nowDrapng=results[0].nowDrapng;
+            demonHP[0]=results[0].demonHP0;
+            demonHP[1]=results[0].demonHP1;
+            demonHP[2]=results[0].demonHP;
+            dragonHP=results[0].dragonHP;
+            box=results[0].box;
+            next=results[0].next;
+            KAI=results[0].KAI;
+            takara=results[0].takara;
+            slime[0]=results[0].slime0;
+            slime[1]=results[0].slime1;
+            slime[2]=results[0].slime2;
+            demon[0]=results[0].demon0;
+            demon[1]=results[0].demon1;
+            demon[2]=results[0].demon2;
+            dragon=results[0].dragon;
+            Cslime[0]=results[0].Cslime0;
+            Cslime[1]=results[0].Cslime1;
+            Cslime[2]=results[0].Cslime2;
+            Cdemon[0]=results[0].Cdemon0;
+            Cdemon[1]=results[0].Cdemon1;
+            Cdemon[2]=results[0].Cdemon2;
+            Cdragon=results[0].Cdragon;
+            HP=results[0].HP;
+            ATK=results[0].ATK;
+            MP=results[0].MP;
+            count=results[0].count;
+            hozon=results[0].hozon;
+            tarn=results[0].tarn;
+            Mwaza=results[0].Mwaza;
+            clone=results[0].clone;
+            clone2=results[0].clone2;
+            move=results[0].move;
+            skil1=results[0].skil1;
+            skil2=results[0].skil2;
+            LV=results[0].LV;
+            nextLV=results[0].nextLV;
+            keikenti=results[0].keikenti;
+            MAXHP=results[0].MAXHP;
+            MAXMP=results[0].MAXMP;
+            Rtakara=results[0].Rtakara;
+            Bhyouji=results[0].Bhyouji;
+            Bhantei=results[0].Bhantei;
+            kuuhaku=results[0].kuuhaku;
+            Dratakara=results[0].Dratakara;
+            GETskil=results[0].GETskil;
+            GETmode=results[0].GETmode;
+            tokusyu=results[0].tokusyu;
+            coin=results[0].coin;
+            sumcoin=results[0].sumcoin;
+            Thyouji=results[0].Thyouji;
+            comeKAI=results[0].comeKAI;
+            shophantei=results[0].shophantei;
+            Kai = document.getElementById("hp");
+            Kai.innerHTML="　HP"+HP;
+            Kai = document.getElementById("maxhp");
+            Kai.innerHTML="/"+MAXHP;
+            Kai = document.getElementById("atk");
+            Kai.innerHTML="　ATK　"+ATK;
+            Kai = document.getElementById("mp");
+            Kai.innerHTML=" MP　"+MP;
+            Kai = document.getElementById("maxmp");
+            Kai.innerHTML="/"+MAXMP;
+            Kai = document.getElementById("lv");
+            Kai.innerHTML="　LV"+LV;
+            Kai = document.getElementById("kai");
+            Kai.innerHTML=KAI+"階";
+            Start = document.getElementById("coin");
+            Start.innerHTML=coin;
+        Start = document.getElementById("save");
+        Start.src="PNG/save.png";
+        Start = document.getElementById(now);
+        Start.src=nowpng;
+        if(KAI!=1){
+          hyoujifunk();
+        }
+        if(next >0){
+        Start = document.getElementById(next);
+        Start.src=nowpng;
+        }
+        if(skil1==1){
+          Start = document.getElementById("s1");
+          Start.src="skil/tate.png";
+        }else if(skil1==2){
+          Start = document.getElementById("s1");
+          Start.src="skil/yoko.png";
+        }else if(skil1==3){
+          Start = document.getElementById("s1");
+          Start.src="skil/hidarinaname.png";
+        }else if(skil1==4){
+          Start = document.getElementById("s1");
+          Start.src="skil/miginaname.png";
+        }else if(skil1==5){
+          Start = document.getElementById("s1");
+          Start.src="skil/juuji.png";
+        }else if(skil1==6){
+          Start = document.getElementById("s1");
+          Start.src="skil/nanamejuuji.png";
+        }else if(skil1==7){
+          Start = document.getElementById("s1");
+          Start.src="skil/mawari.png";
+        }else if(skil1==8){
+          Start = document.getElementById("s1");
+          Start.src="skil/zennhoui.png";
+        }
+        if(skil2==1){
+          Start = document.getElementById("s2");
+          Start.src="skil/tate.png";
+        }else if(skil2==2){
+          Start = document.getElementById("s2");
+          Start.src="skil/yoko.png";
+        }else if(skil2==3){
+          Start = document.getElementById("s2");
+          Start.src="skil/hidarinaname.png";
+        }else if(skil2==4){
+          Start = document.getElementById("s2");
+          Start.src="skil/miginaname.png";
+        }else if(skil1==5){
+          Start = document.getElementById("s1");
+          Start.src="skil/juuji.png";
+        }else if(skil1==6){
+          Start = document.getElementById("s1");
+          Start.src="skil/nanamejuuji.png";
+        }else if(skil1==7){
+          Start = document.getElementById("s1");
+          Start.src="skil/mawari.png";
+        }else if(skil1==8){
+          Start = document.getElementById("s1");
+          Start.src="skil/zennhoui.png";
+        }
+        if(now!=0){
+        Start = document.getElementById(now);
+        Start.src=nowpng;
+        }
+        if(next!=0){
+        Start = document.getElementById(next);
+        Start.src="PNG/6.png";
+        }
+        if(takara!=0){
+        Start = document.getElementById(takara);
+        Start.src="PNG/2.png";
+        }
+        if(slime[0]!=0){
+        Start = document.getElementById(slime[0]);
+        Start.src=nowSpng[0];
+        }
+        if(slime[1]!=0){
+          Start = document.getElementById(slime[1]);
+          Start.src=nowSpng[1];
+        }
+        if(slime[2]!=0){
+          Start = document.getElementById(slime[2]);
+          Start.src=nowSpng[2];
+        }
+        if(KAI>=15){
+          if(demon[0]!=0){
+            Start = document.getElementById(demon[0]);
+            Start.src=nowDpng[0];
+          }
+          if(demon[1]!=0){
+            Start = document.getElementById(demon[1]);
+            Start.src=nowDpng[1];
+          }
+          if(demon[2]!=0){
+            Start = document.getElementById(demon[2]);
+            Start.src=nowDpng[2];
+          }
+          if(dragon!=0){
+              Start = document.getElementById(dragon);
+              Start.src=nowDrapng;
+          }
+      }
+      while(keikenti>=nextLV){
+          LVUPfunk();
+      }
+            }else{
+                alert("セーブデータがありません。");
+            }
+        })
+      }
+      function clearfunk(){
+        Start = document.getElementById(now);
+        Start.src="PNG/1.png";
+        tarn++;
+      }
+      function setfunk(){
+        tarn=0;
+        if(KAI==1){
+        Start = document.getElementById(now);
+        Start.src="PNG/1.png";
+        Start = document.getElementById(next);
+        Start.src=nowpng;
+        Start = document.getElementById("s1");
+        Start.src="skil/tate.png";
+        Start = document.getElementById("s2");
+        Start.src="skil/yoko.png";
+        Start = document.getElementById("save");
+        Start.src="PNG/save.png";
+        document.getElementById('menu').style.display = "block";
+        }else{
+        Start = document.getElementById(now);
+        Start.src="PNG/1.png";
+        Start = document.getElementById(next);
+        Start.src=nowpng;
+        if(skil1==1){
+          Start = document.getElementById("s1");
+          Start.src="skil/tate.png";
+        }else if(skil1==2){
+          Start = document.getElementById("s1");
+          Start.src="skil/yoko.png";
+        }else if(skil1==3){
+          Start = document.getElementById("s1");
+          Start.src="skil/hidarinaname.png";
+        }else if(skil1==4){
+          Start = document.getElementById("s1");
+          Start.src="skil/miginaname.png";
+        }
+        if(skil2==1){
+          Start = document.getElementById("s2");
+          Start.src="skil/tate.png";
+        }else if(skil2==2){
+          Start = document.getElementById("s2");
+          Start.src="skil/yoko.png";
+        }else if(skil2==3){
+          Start = document.getElementById("s2");
+          Start.src="skil/hidarinaname.png";
+        }else if(skil2==4){
+          Start = document.getElementById("s2");
+          Start.src="skil/miginaname.png";
+        }
+        if(takara!=0){
+        Start = document.getElementById(takara);
+        Start.src="PNG/1.png";
+        }
+        if(slime[0]!=0){
+        Start = document.getElementById(slime[0]);
+        Start.src="PNG/1.png";
+        slime[0]=0;
+        }
+        if(slime[1]!=0){
+        Start = document.getElementById(slime[1]);
+        Start.src="PNG/1.png";
+        slime[1]=0;
+        }
+        if(slime[2]!=0){
+        Start = document.getElementById(slime[2]);
+        Start.src="PNG/1.png";
+        slime[2]=0;
+        }
+        if(demon[0]!=0){
+          Start = document.getElementById(demon[0]);
+          Start.src="PNG/1.png";
+          demon[0]=0;
+        }
+        if(demon[1]!=0){
+          Start = document.getElementById(demon[1]);
+          Start.src="PNG/1.png";
+          demon[1]=0;
+        }
+        if(demon[2]!=0){
+          Start = document.getElementById(demon[2]);
+          Start.src="PNG/1.png";
+          demon[2]=0;
+        }
+        if(dragon!=0){
+          Start = document.getElementById(dragon);
+          Start.src="PNG/1.png";
+          dragon=0;
+        }
+        }
+        now = next;
+        if(nouryoku1==7){
+            let KAIrondom=Math.floor(Math.random() * 100) + 1;
+            if(nouryoku1LV*1>=KAIrondom){
+                KAI+=2;
+                let kirisute=Math.floor(KAI/30)+1;
+                HP=HP+kirisute * 10;
+                MAXHP=MAXHP+kirisute * 10;
+                ATK=ATK+kirisute * 10;
+                MP=MP+kirisute * 10;
+                MAXMP=MAXMP+kirisute * 10;
+                Kai = document.getElementById("hp");
+                Kai.innerHTML="　HP"+HP;
+                Kai = document.getElementById("maxhp");
+                Kai.innerHTML="/"+MAXHP;
+                Kai = document.getElementById("atk");
+                Kai.innerHTML="　ATK　"+ATK;
+                Kai = document.getElementById("mp");
+                Kai.innerHTML=" MP　"+MP;
+                Kai = document.getElementById("maxmp");
+                Kai.innerHTML="/"+MAXMP;
+            }else{
+                KAI++;
+            }
+        }else{
+        KAI++;
+        }
+        do{
+          next = Math.floor( Math.random() * 88 ) + 11;
+          while(next%10==0){
+            next = Math.floor( Math.random() * 88 ) + 11;
+          }
+        }while(next%10<=now%10+3 && next%10>=now%10-3 && next<=now+30 && next>=now-30)
+        do{
+          do{
+              takara = Math.floor( Math.random() * 88 ) + 11;
+            while(takara%10==0){
+              takara = Math.floor( Math.random() * 88 ) + 11;
+            }
+          }while(takara%10<=now%10+3 && takara%10>=now%10-3 && takara<=now+30 && takara>=now-30)
+        }while(takara==next)
+        if(KAI%15==0){
+          do{
+        do{
+          do{
+              slime[0] = Math.floor( Math.random() * 88 ) + 11;
+            while(slime[0]%10==0){
+              slime[0] = Math.floor( Math.random() * 88 ) + 11;
+            }
+          }while(slime[0]%10<=now%10+3 && slime[0]>=now%10-3 && slime[0]<=now+30 && slime[0]>=now-30)
+        }while(slime[0]==next)
+        }while(slime[0]==takara)
+        do{
+          do{
+          do{
+          do{
+          do{
+            do{
+              demon[0] = Math.floor( Math.random() * 88 ) + 11;
+              while(demon[0]%10==0){
+                demon[0] = Math.floor( Math.random() * 88 ) + 11;
+              }
+            }while(demon[0]%10<=now%10+3 && demon[0]%10>=now%10-3 && demon[0]<=now+30 && demon[0]>=now-30)
+            }while(demon[0]==next)
+            }while(demon[0]==takara)
+          }while(demon[0]==slime[0]) 
+          }while(demon[0]==slime[1])
+          }while(demon[0]==slime[2])
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            do{
+              dragon = Math.floor( Math.random() * 88 ) + 11;
+              while(demon%10==0){
+                dragon = Math.floor( Math.random() * 88 ) + 11;
+              }
+            }while(dragon%10<=now%10+3 && dragon%10>=now%10-3 && dragon<=now+30 && dragon>=now-30)
+            }while(dragon==next)
+            }while(dragon==takara)
+          }while(dragon==slime[0]) 
+          }while(dragon==slime[1])
+          }while(dragon==slime[2])
+          }while(dragon==demon[0])
+          }while(dragon==demon[1])
+          }while(dragon==demon[2])
+          next=0;
+          takara=0;
+        }else{
+        if((KAI%15)>=1){
+        do{
+        do{
+          do{
+              slime[0] = Math.floor( Math.random() * 88 ) + 11;
+            while(slime[0]%10==0){
+              slime[0] = Math.floor( Math.random() * 88 ) + 11;
+            }
+          }while(slime[0]%10<=now%10+3 && slime[0]>=now%10-3 && slime[0]<=now+30 && slime[0]>=now-30)
+        }while(slime[0]==next)
+        }while(slime[0]==takara)
+        }
+        if((KAI%15)>=5){
+          do{
+          do{
+          do{
+          do{
+              slime[1] = Math.floor( Math.random() * 88 ) + 11;
+            while(slime[1]%10==0){
+              slime[1] = Math.floor( Math.random() * 88 ) + 11;
+            }
+          }while(slime[1]%10<=now%10+3 && slime[1]>=now%10-3 && slime[1]<=now+30 && slime[1]>=now-30)
+        }while(slime[1]==next)
+        }while(slime[1]==takara)
+        }while(slime[1]==slime[0])
+        }
+        if((KAI%15)>=10){
+          do{
+          do{
+          do{
+          do{
+          do{
+              slime[2] = Math.floor( Math.random() * 88 ) + 11;
+            while(slime[2]%10==0){
+              slime[2] = Math.floor( Math.random() * 88 ) + 11;
+            }
+          }while(slime[2]%10<=now%10+3 && slime[2]>=now%10-3 && slime[2]<=now+30 && slime[2]>=now-30)
+        }while(slime[2]==next)
+        }while(slime[2]==takara)
+        }while(slime[2]==slime[0])
+        }while(slime[2]==slime[1])
+        }
+        if(16<=KAI){
+          if((KAI%15)>=1){
+          do{
+          do{
+          do{
+          do{
+          do{
+            do{
+              demon[0] = Math.floor( Math.random() * 88 ) + 11;
+              while(demon[0]%10==0){
+                demon[0] = Math.floor( Math.random() * 88 ) + 11;
+              }
+            }while(demon[0]%10<=now%10+3 && demon[0]%10>=now%10-3 && demon[0]<=now+30 && demon[0]>=now-30)
+            }while(demon[0]==next)
+            }while(demon[0]==takara)
+          }while(demon[0]==slime[0]) 
+          }while(demon[0]==slime[1])
+          }while(demon[0]==slime[2])
+          }
+          if((KAI%15)>=5){
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            do{
+              demon[1] = Math.floor( Math.random() * 88 ) + 11;
+              while(demon[1]%10==0){
+                demon[1] = Math.floor( Math.random() * 88 ) + 11;
+              }
+            }while(demon[1]%10<=now%10+3 && demon[1]%10>=now%10-3 && demon[1]<=now+30 && demon[1]>=now-30)
+            }while(demon[1]==next)
+            }while(demon[1]==takara)
+          }while(demon[1]==slime[0]) 
+          }while(demon[1]==slime[1])
+          }while(demon[1]==slime[2])
+          }while(demon[1]==demon[0])
+          }
+          if((KAI%15)>=10){
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            do{
+              demon[2] = Math.floor( Math.random() * 88 ) + 11;
+              while(demon[2]%10==0){
+                demon[2] = Math.floor( Math.random() * 88 ) + 11;
+              }
+            }while(demon[2]%10<=now%10+3 && demon[2]%10>=now%10-3 && demon[2]<=now+30 && demon[2]>=now-30)
+            }while(demon[2]==next)
+            }while(demon[2]==takara)
+          }while(demon[2]==slime[0]) 
+          }while(demon[2]==slime[1])
+          }while(demon[2]==slime[2])
+          }while(demon[2]==demon[0])
+          }while(demon[2]==demon[1])
+          }
+        }
+        }
+        hyoujifunk();
+        if(next!=0){
+        Start = document.getElementById(next);
+        Start.src="PNG/6.png";
+        }
+        if(takara!=0){
+        Start = document.getElementById(takara);
+        Start.src="PNG/2.png";
+        }
+        //敵設定
+        if(slime[0]!=0){
+        let uketori=Ssyuruifunk();
+        nowSpng[0]=uketori[0];
+        Start = document.getElementById(slime[0]);
+        Start.src=nowSpng[0];
+        slimeHP[0]=uketori[1];
+        MslimeHP[0]=slimeHP[0];
+        Ssyurui[0]=uketori[2];
+        }
+        if(slime[1]!=0){
+        let uketori=Ssyuruifunk();
+        nowSpng[1]=uketori[0];
+        Start = document.getElementById(slime[1]);
+        Start.src=nowSpng[1];
+        slimeHP[1]=uketori[1];
+        MslimeHP[1]=slimeHP[1];
+        Ssyurui[1]=uketori[2];
+        }
+        if(slime[2]!=0){
+        let uketori=Ssyuruifunk();
+        nowSpng[2]=uketori[0];
+        Start = document.getElementById(slime[2]);
+        Start.src=nowSpng[2];
+        slimeHP[2]=uketori[1];
+        MslimeHP[2]=slimeHP[2];
+        Ssyurui[2]=uketori[2];
+        }
+        if(KAI>=15){
+          if(demon[0]!=0){
+            let uketori=Dsyuruifunk();
+            console.log(uketori);
+            nowDpng[0]=uketori[0];
+            Start = document.getElementById(demon[0]);
+            Start.src=nowDpng[0];
+            demonHP[0]=uketori[1];
+            MdemonHP[0]=demonHP[0];
+            Dsyurui[0]=uketori[2];
+          }
+          if(demon[1]!=0){
+            let uketori=Dsyuruifunk();
+            nowDpng[1]=uketori[0];
+            Start = document.getElementById(demon[1]);
+            Start.src=nowDpng[1];
+            demonHP[1]=uketori[1];
+            MdemonHP[1]=demonHP[1];
+            Dsyurui[1]=uketori[2];
+          }
+          if(demon[2]!=0){
+            let uketori=Dsyuruifunk();
+            nowDpng[2]=uketori[0];
+            Start = document.getElementById(demon[2]);
+            Start.src=nowDpng[2];
+            demonHP[2]=uketori[1];
+            MdemonHP[2]=demonHP[2];
+            Dsyurui[2]=uketori[2];
+          }
+        }
+        if(dragon!=0){
+            let uketori=Drasyuruifunk();
+            nowDrapng=uketori[0];
+            dragonHP=uketori[1];
+            MdragonHP=dragonHP;
+            Start = document.getElementById(dragon);
+            Start.src=nowDrapng;
+            Drasyurui=uketori[2];
+          }
+        Kai = document.getElementById("kai");
+        Kai.innerHTML=KAI+"階";
+      }
+      function Ssyuruifunk(){
+        let syurui=Math.floor(Math.random() * 100) + 1;
+        let returnsyurui;
+        let returnHP;
+        let returnpng;
+        if(syurui<=33){
+          returnpng="PNG/S100.png";
+          returnsyurui="";
+          returnHP=10+10*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1);
+        }else if(syurui<=66){
+          returnpng="PNG/SE100.png";
+          returnsyurui="E";
+          returnHP=Math.floor(1.5*(10+10*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+        }else if(syurui<=99){
+          returnpng="PNG/SR100.png";
+          returnsyurui="R";
+          returnHP=Math.floor(0.8*(10+10*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+        }else if(syurui==100){
+          syurui=Math.floor(Math.random() * 2) + 1;
+          if(syurui==1){
+            returnpng="PNG/SS100.png";
+            returnsyurui="S";
+            returnHP=1;
+          }else{
+            returnpng="PNG/SG100.png";
+            returnsyurui="G";
+            returnHP=Math.floor(3*(10+10*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+          }
+        }
+        console.log(returnpng);
+        return [returnpng,returnHP,returnsyurui];
+      }
+      function Dsyuruifunk(){
+        let syurui=Math.floor(Math.random() * 100) + 1;
+        let returnsyurui;
+        let returnHP;
+        let returnpng;
+        if(syurui<=33){
+          returnpng="PNG/D100.png";
+          returnsyurui="";
+          returnHP=10+20*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1);
+        }else if(syurui<=66){
+          returnpng="PNG/DE100.png";
+          returnsyurui="E";
+          returnHP=Math.floor(1.5*(10+20*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+        }else if(syurui<=99){
+          returnpng="PNG/DR100.png";
+          returnsyurui="R";
+          returnHP=Math.floor(0.8*(10+20*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+        }else if(syurui==100){
+          syurui=Math.floor(Math.random() * 2) + 1;
+          if(syurui==1){
+            returnpng="PNG/DS100.png";
+            returnsyurui="S";
+            returnHP=1;
+          }else{
+            returnpng="PNG/DG100.png";
+            returnsyurui="G";
+            returnHP=Math.floor(3*(10+15*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+          }
+        }
+        return [returnpng,returnHP,returnsyurui];
+      }
+      function Drasyuruifunk(){
+        let syurui=Math.floor(Math.random() * 100) + 1;
+        let returnsyurui;
+        let returnHP;
+        let returnpng;
+        if(syurui<=33){
+          returnpng="PNG/Dra100.png";
+          returnsyurui="";
+          returnHP=10+50*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1);
+        }else if(syurui<=66){
+          returnpng="PNG/DraE100.png";
+          returnsyurui="E";
+          returnHP=Math.floor(1.5*(10+50*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+        }else if(syurui<=99){
+          returnpng="PNG/DraR100.png";
+          returnsyurui="R";
+          returnHP=Math.floor(0.8*(10+50*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+        }else if(syurui==100){
+          syurui=Math.floor(Math.random() * 2) + 1;
+          if(syurui==1){
+            returnpng="PNG/DraS100.png";
+            returnsyurui="S";
+            returnHP=1;
+          }else{
+            returnpng="PNG/DraG100.png";
+            returnsyurui="G";
+            returnHP=Math.floor(3*(10+50*Math.floor((KAI+1)/2)*(Math.floor(KAI/30)+1)));
+          }
+        }
+        return [returnpng,returnHP,returnsyurui];
+      }
+      function nextfunk(){
+        Start = document.getElementById(now);
+        Start.src=nowpng;
+      }
+      function movefunk(time){
+        Cslime[0]=slime[0];
+        Cslime[1]=slime[1];
+        Cslime[2]=slime[2];
+        Cdemon[0]=demon[0];
+        Cdemon[1]=demon[1];
+        Cdemon[2]=demon[2];
+        Cdragon=dragon;
+        if(KAI!=1 && KAI!=mode){
+        if(slime[0]==0&&slime[1]==0&&slime[2]==0&&demon[0]==0&&demon[1]==0&&demon[2]==0&&dragon==0){
+          hyoujifunk();
+        }else{
+          if(slime[0]!=0){
+          count=0;
+          atackfunk(1,0,0);
+          if(tarn%3==0){
+            time=500;
+          }
+          if(slime[0]!=0){
+          if(slime[0]!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              slime[0]=slime[0]-1;
+              }else if(move==2){
+                slime[0]=slime[0]+1;
+              }else if(move==3){
+                slime[0]=slime[0]-10;
+              }else if(move==4){
+                slime[0]=slime[0]+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              slime[0]=slime[0]+1;
+            }else if(move==2){
+              slime[0]=slime[0]-1;
+            }else if(move==3){
+              slime[0]=slime[0]+10;
+            }else if(move==4){
+              slime[0]=slime[0]-10;
+            }
+            count++;
+            hozon=move;
+          }while(slime[0] <=10 || slime[0] >=100)
+          }while(slime[0]%10==0)
+          }while(now==slime[0])
+          }while(next==slime[0])
+          }while(takara==slime[0])
+          }while(slime[1]==slime[0])
+          }while(slime[2]==slime[0])
+          }while(demon[0]==slime[0])
+          }while(demon[1]==slime[0])
+          }while(demon[2]==slime[0])
+          window.setTimeout(function(){
+          Start = document.getElementById(Cslime[0]);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(slime[0]);
+          Start.src=nowSpng[0];
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          },time);
+          }else{
+          hyoujifunk();
+          }
+        }
+        if(slime[1]!=0){
+          count=0;
+          atackfunk(1,0,1);
+          if(tarn%3==0){
+            time=500;
+          }
+          if(slime[1]!=0){
+          if(slime[1]!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              slime[1]=slime[1]-1;
+              }else if(move==2){
+                slime[1]=slime[1]+1;
+              }else if(move==3){
+                slime[1]=slime[1]-10;
+              }else if(move==4){
+                slime[1]=slime[1]+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              slime[1]=slime[1]+1;
+            }else if(move==2){
+              slime[1]=slime[1]-1;
+            }else if(move==3){
+              slime[1]=slime[1]+10;
+            }else if(move==4){
+              slime[1]=slime[1]-10;
+            }
+            count++;
+            hozon=move;
+          }while(slime[1] <=10 || slime[1] >=100)
+          }while(slime[1]%10==0)
+          }while(now==slime[1])
+          }while(next==slime[1])
+          }while(takara==slime[1])
+          }while(slime[0]==slime[1])
+          }while(slime[2]==slime[1])
+          }while(demon[0]==slime[1])
+          }while(demon[1]==slime[1])
+          }while(demon[2]==slime[1])
+          window.setTimeout(function(){
+          Start = document.getElementById(Cslime[1]);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(slime[1]);
+          Start.src=nowSpng[1];
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          },time+5);
+          }else{
+          hyoujifunk();
+          }
+        }
+        if(slime[2]!=0){
+          count=0;
+          atackfunk(1,0,2);
+          if(tarn%3==0){
+            time=500;
+          }
+          if(slime[2]!=0){
+          if(slime[2]!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              slime[2]=slime[2]-1;
+              }else if(move==2){
+                slime[2]=slime[2]+1;
+              }else if(move==3){
+                slime[2]=slime[2]-10;
+              }else if(move==4){
+                slime[2]=slime[2]+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              slime[2]=slime[2]+1;
+            }else if(move==2){
+              slime[2]=slime[2]-1;
+            }else if(move==3){
+              slime[2]=slime[2]+10;
+            }else if(move==4){
+              slime[2]=slime[2]-10;
+            }
+            count++;
+            hozon=move;
+          }while(slime[2] <=10 || slime[2] >=100)
+          }while(slime[2]%10==0)
+          }while(now==slime[2])
+          }while(next==slime[2])
+          }while(takara==slime[2])
+          }while(slime[0]==slime[2])
+          }while(slime[1]==slime[2])
+          }while(demon[0]==slime[2])
+          }while(demon[1]==slime[2])
+          }while(demon[2]==slime[2])
+          window.setTimeout(function(){
+          Start = document.getElementById(Cslime[2]);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(slime[2]);
+          Start.src=nowSpng[2];
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          },time+10);
+          }else{
+          hyoujifunk();
+          }
+        }
+        if(KAI>=15){
+          if(demon[0]!=0){
+          count=0;
+          atackfunk(2,0,0);
+          if(tarn%3==0){
+            time=500;
+          }
+          if(demon[0]!=0){
+          if(demon[0]!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              demon[0]=demon[0]-1;
+              }else if(move==2){
+                demon[0]=demon[0]+1;
+              }else if(move==3){
+                demon[0]=demon[0]-10;
+              }else if(move==4){
+                demon[0]=demon[0]+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              demon[0]=demon[0]+1;
+            }else if(move==2){
+              demon[0]=demon[0]-1;
+            }else if(move==3){
+              demon[0]=demon[0]+10;
+            }else if(move==4){
+              demon[0]=demon[0]-10;
+            }
+            count++;
+            hozon=move;
+          }while(demon[0] <=10 || demon[0] >=100)
+          }while(demon[0]%10==0)
+          }while(now==demon[0])
+          }while(next==demon[0])
+          }while(takara==demon[0])
+          }while(demon[0]==slime[0])
+          }while(demon[0]==slime[1])
+          }while(demon[0]==slime[2])
+          }while(demon[0]==demon[1])
+          }while(demon[0]==demon[2])
+          window.setTimeout(function(){
+          Start = document.getElementById(Cdemon[0]);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(demon[0]);
+          Start.src=nowDpng[0];
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          },time+15);
+          }else{
+          hyoujifunk();
+          }
+        }
+        if(demon[1]!=0){
+          count=0;
+          atackfunk(2,0,1);
+          if(tarn%3==0){
+            time=500;
+          }
+          if(demon[1]!=0){
+          if(demon[1]!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              demon[1]=demon[1]-1;
+              }else if(move==2){
+                demon[1]=demon[1]+1;
+              }else if(move==3){
+                demon[1]=demon[1]-10;
+              }else if(move==4){
+                demon[1]=demon[1]+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              demon[1]=demon[1]+1;
+            }else if(move==2){
+              demon[1]=demon[1]-1;
+            }else if(move==3){
+              demon[1]=demon[1]+10;
+            }else if(move==4){
+              demon[1]=demon[1]-10;
+            }
+            count++;
+            hozon=move;
+          }while(demon[1] <=10 || demon[1] >=100)
+          }while(demon[1]%10==0)
+          }while(now==demon[1])
+          }while(next==demon[1])
+          }while(takara==demon[1])
+          }while(demon[1]==slime[0])
+          }while(demon[1]==slime[1])
+          }while(demon[1]==slime[2])
+          }while(demon[1]==demon[0])
+          }while(demon[1]==demon[2])
+          window.setTimeout(function(){
+          Start = document.getElementById(Cdemon[1]);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(demon[1]);
+          Start.src=nowDpng[1];
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          },time+20);
+          }else{
+          hyoujifunk();
+          }
+        }
+        if(demon[2]!=0){
+          count=0;
+          atackfunk(2,0,2);
+          if(tarn%3==0){
+            time=500;
+          }
+          window.setTimeout(function(){
+          if(demon[2]!=0){
+          if(demon[2]!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              demon[2]=demon[2]-1;
+              }else if(move==2){
+                demon[2]=demon[2]+1;
+              }else if(move==3){
+                demon[2]=demon[2]-10;
+              }else if(move==4){
+                demon[2]=demon[2]+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              demon[2]=demon[2]+1;
+            }else if(move==2){
+              demon[2]=demon[2]-1;
+            }else if(move==3){
+              demon[2]=demon[2]+10;
+            }else if(move==4){
+              demon[2]=demon[2]-10;
+            }
+            count++;
+            hozon=move;
+          }while(demon[2] <=10 || demon[2] >=100)
+          }while(demon[2]%10==0)
+          }while(now==demon[2])
+          }while(next==demon[2])
+          }while(takara==demon[2])
+          }while(slime[0]==demon[2])
+          }while(slime[1]==demon[2])
+          }while(slime[2]==demon[2])
+          }while(demon[0]==demon[2])
+          }while(demon[1]==demon[2])
+          Start = document.getElementById(Cdemon[2]);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(demon[2]);
+          Start.src=nowDpng[2];
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          }else{
+          hyoujifunk();
+          }
+          },time+25);
+        }
+        if(dragon!=0){
+          count=0;
+          atackfunk(3,0,0);
+          if(tarn%3==0){
+            time=500;
+          }
+          window.setTimeout(function(){
+          if(dragon!=0){
+          if(dragon!=now){
+          }
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+          do{
+            if(count>=1){
+              if(move==1){
+              dragon=dragon-1;
+              }else if(move==2){
+                dragon=dragon+1;
+              }else if(move==3){
+                dragon=dragon-10;
+              }else if(move==4){
+                dragon=dragon+10;
+              }
+            }
+            move = Math.floor( Math.random() * 4 ) + 1;
+            if(move==1){
+              dragon=dragon+1;
+            }else if(move==2){
+              dragon=dragon-1;
+            }else if(move==3){
+              dragon=dragon+10;
+            }else if(move==4){
+              dragon=dragon-10;
+            }
+            count++;
+            hozon=move;
+          }while(dragon <=10 || dragon >=100)
+          }while(dragon%10==0)
+          }while(now==dragon)
+          }while(slime[0]==dragon)
+          }while(slime[1]==dragon)
+          }while(slime[2]==dragon)
+          }while(demon[0]==dragon)
+          }while(demon[1]==dragon)
+          Start = document.getElementById(Cdragon);
+          Start.src="PNG/1.png";
+          Start = document.getElementById(dragon);
+          Start.src=nowDrapng;
+          hyoujifunk();
+          if(HP<=0){
+          gameoverfunk();
+          }
+          }else{
+          hyoujifunk();
+          }
+          },time+30);
+        }
+        }
+        window.setTimeout(function(){
+        if(slime[0]!=0){
+        Start = document.getElementById(slime[0]);
+        Start.src=nowSpng[0];
+        }
+        if(slime[1]!=0){
+        Start = document.getElementById(slime[1]);
+        Start.src=nowSpng[1];
+        }
+        if(slime[2]!=0){
+        Start = document.getElementById(slime[2]);
+        Start.src=nowSpng[2];
+        }
+        if(demon[0]!=0){
+        Start = document.getElementById(demon[0]);
+        Start.src=nowDpng[0];
+        }
+        if(demon[1]!=0){
+        Start = document.getElementById(demon[1]);
+        Start.src=nowDpng[1];
+        }
+        if(demon[2]!=0){
+        Start = document.getElementById(demon[2]);
+        Start.src=nowDpng[2];
+        }
+        if(dragon!=0){
+        Start = document.getElementById(dragon);
+        Start.src=nowDrapng;
+        }
+        },time+30);
+        }
+      }
+      }
+      let nowATK;
+      function atackfunk(hantei,skill,AI){
+        nowATK=AI;
+        if(hantei<100){
+        if(hantei==1){
+          if(tarn%3==0&&tarn!=0){
+            //1が縦2が横3が左斜め4右斜め
+            Mwaza = Math.floor( Math.random() * 4 ) + 1;
+            if(slime[AI]!=0){
+            if(Mwaza==1){
+              clone=slime[AI] - 10;
+              while(clone>=11){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone-10;
+              }
+              clone=slime[AI]+10;
+              while(clone>=11 && clone<=99){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone+10;
+              }
+            }
+            if(Mwaza==2){
+              clone=slime[AI] - 1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone-1;
+              }
+              clone=slime[AI]+1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone+1;
+              }
+            }
+            if(Mwaza==3){
+              clone=slime[AI] - 11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone-11;
+              }
+              clone=slime[AI]+11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone+11;
+              }
+            }
+            if(Mwaza==4){
+              clone=slime[AI] - 9;
+              while(clone>=11 && clone%10!=0 &&clone<=99){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone-9;
+              }
+              clone=slime[AI]+9;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,1,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Satack.png";
+                }
+                clone=clone+9;
+              }
+            }
+            }
+          }
+        }
+        if(hantei==2&&tarn!=0){
+          if(tarn%3==0){
+            //1が縦2が横3が左斜め4右斜め
+            Mwaza = Math.floor( Math.random() * 4 ) + 1;
+            if(demon[AI]!=0){
+            if(Mwaza==1){
+              clone=demon[AI] - 10;
+              while(clone>=11){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone-10;
+              }
+              clone=demon[AI]+10;
+              while(clone>=11 && clone<=99){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone+10;
+              }
+            }
+            if(Mwaza==2){
+              clone=demon[AI] - 1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone-1;
+              }
+              clone=demon[AI]+1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone+1;
+              }
+            }
+            if(Mwaza==3){
+              clone=demon[AI] - 11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone-11;
+              }
+              clone=demon[AI]+11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone+11;
+              }
+            }
+            if(Mwaza==4){
+              clone=demon[AI] - 9;
+              while(clone>=11 && clone%10!=0 &&clone<=99){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone-9;
+              }
+              clone=demon[AI]+9;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,2,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Datack.png";
+                }
+                clone=clone+9;
+              }
+            }
+            }
+          }
+        }
+        if(hantei==3){
+          if(tarn!=0){
+            if(tarn%2==0){
+            //1が縦2が横3が左斜め4右斜め
+            Mwaza = Math.floor( Math.random() * 2 ) + 1;
+            if(dragon!=0){
+            if(Mwaza==1){
+              clone=dragon - 10;
+              while(clone>=11){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone-10;
+              }
+              clone=dragon+10;
+              while(clone>=11 && clone<=99){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone+10;
+              }
+              clone=dragon - 1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone-1;
+              }
+              clone=dragon+1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone+1;
+              }
+            }else{
+              clone=dragon - 11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone-11;
+              }
+              clone=dragon+11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone+11;
+              }
+              clone=dragon - 9;
+              while(clone>=11 && clone%10!=0 &&clone<=99){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone-9;
+              }
+              clone=dragon+9;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,3,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Draatack.png";
+                }
+                clone=clone+9;
+              }
+            }
+            }
+            }
+            }
+          }
+        window.setTimeout(function(){
+        for(i=11;i<=99;i++){
+          if(i%10!=0){
+            Start = document.getElementById(i);
+            Start.src="PNG/1.png";
+          }
+        }
+        Start = document.getElementById(now);
+        Start.src=nowpng;
+        if(next!=0){
+        Start = document.getElementById(next);
+        Start.src="PNG/6.png";
+        }
+        if(takara!=0){
+          Start = document.getElementById(takara);
+          Start.src="PNG/2.png";
+        }
+        if(slime[0]!=0){
+        Start = document.getElementById(slime[0]);
+        Start.src=nowSpng[0];
+        }
+        if(slime[1]!=0){
+        Start = document.getElementById(slime[1]);
+        Start.src=nowSpng[1];
+        }
+        if(slime[2]!=0){
+        Start = document.getElementById(slime[2]);
+        Start.src=nowSpng[2];
+        }
+        if(demon[0]!=0){
+          Start = document.getElementById(demon[0]);
+          Start.src=nowDpng[0];
+        }
+        if(demon[1]!=0){
+          Start = document.getElementById(demon[1]);
+          Start.src=nowDpng[1];
+        }
+        if(demon[2]!=0){
+          Start = document.getElementById(demon[2]);
+          Start.src=nowDpng[2];
+        }
+        if(dragon!=0){
+          Start = document.getElementById(dragon);
+          Start.src=nowDrapng;
+        }
+        },500);
+        }
+        if(hantei>=100){
+        if(hantei==100){
+            //1が縦2が横3が左斜め4右斜め
+            if(skill==1){
+              MP=MP-10;
+              clone=now - 10;
+              while(clone>=11){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-10;
+              }
+              clone=now+10;
+              while(clone>=11 && clone<=99){
+                free=free+clone;
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+10;
+              }
+            }else if(skill==2){
+              MP=MP-10;
+              clone=now - 1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-1;
+              }
+              clone=now+1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+1;
+              }
+            }else if(skill==3){
+              MP=MP-10;
+              clone=now - 11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-11;
+              }
+              clone=now+11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+11;
+              }
+            }else if(skill==4){
+              MP=MP-10;
+              clone=now - 9;
+              while(clone>=11 && clone%10!=0 &&clone<=99){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-9;
+              }
+              clone=now+9;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+9;
+              }
+            }else if(skill==5){
+              MP=MP-15;
+              clone=now - 10;
+              while(clone>=11){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-10;
+              }
+              clone=now+10;
+              while(clone>=11 && clone<=99){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+10;
+              }
+              clone=now - 1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-1;
+              }
+              clone=now+1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+1;
+              }
+            }else if(skill==6){
+              MP=MP-15;
+              clone=now - 11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-11;
+              }
+              clone=now+11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+11;
+              }
+              clone=now - 9;
+              while(clone>=11 && clone%10!=0 &&clone<=99){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-9;
+              }
+              clone=now+9;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+9;
+              }
+            }else if(skill==7){
+              MP=MP-15;
+              if(now%10==1){
+                clone=now - 30;
+              }else if(now%10==2){
+                clone=now - 31;
+              }else if(now%10==3){
+                clone=now - 32;
+              }else{
+                clone=now - 33;
+              }
+              while(clone<=now-27&&clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11&&clone%10!=0){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                if(clone%10!=0){
+                  clone=clone+1;
+                }else{
+                  clone=-999;
+                }
+              }
+              clone=now-27;
+              if(clone%10<now%10){
+                clone=-999;
+              }
+              while(clone<=now+23&&clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11&&clone%10!=0){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+10;
+              }
+              if(now%10==9){
+                clone=now + 30;
+              }else if(now%10==8){
+                clone=now + 31;
+              }else if(now%10==7){
+                clone=now + 32;
+              }else{
+                clone=now + 33;
+              }
+              while(clone>=now+27&&clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11&&clone%10!=0){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-1;
+              }
+              clone=now+27;
+              if(clone%10>now%10){
+                clone=-999;
+              }
+              while(clone>=now-23&&clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11&&clone%10!=0){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-10;
+              }
+            }else if(skill==8){
+              MP=MP-20;
+              clone=now - 10;
+              while(clone>=11){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-10;
+              }
+              clone=now+10;
+              while(clone>=11 && clone<=99){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+10;
+              }
+              clone=now - 1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-1;
+              }
+              clone=now+1;
+              while(clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+1;
+              }
+              clone=now - 11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-11;
+              }
+              clone=now+11;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+11;
+              }
+              clone=now - 9;
+              while(clone>=11 && clone%10!=0 &&clone<=99){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone-9;
+              }
+              clone=now+9;
+              while(clone>=11 && clone<=99 && clone%10!=0){
+                if(syoutotufunk(clone,100,1)!=true &&clone>=11){
+                Start = document.getElementById(clone);
+                Start.src="PNG/Jatack.png";
+                }
+                clone=clone+9;
+              }
+            }
+        
+        window.setTimeout(function(){
+        for(i=11;i<=99;i++){
+          if(i%10!=0){
+            Start = document.getElementById(i);
+            Start.src="PNG/1.png";
+          }
+        }
+        Start = document.getElementById(now);
+        Start.src=nowpng;
+        if(next!=0){
+        Start = document.getElementById(next);
+        Start.src="PNG/6.png";
+        }
+        if(takara!=0){
+          Start = document.getElementById(takara);
+          Start.src="PNG/2.png";
+        }
+        if(slime[0]!=0){
+        Start = document.getElementById(slime[0]);
+        Start.src=nowSpng[0];
+        }
+        if(slime[1]!=0){
+        Start = document.getElementById(slime[1]);
+        Start.src=nowSpng[1];
+        }
+        if(slime[2]!=0){
+        Start = document.getElementById(slime[2]);
+        Start.src=nowSpng[2];
+        }
+        if(demon[0]!=0){
+          Start = document.getElementById(demon[0]);
+          Start.src=nowDpng[0];
+        }
+        if(demon[1]!=0){
+          Start = document.getElementById(demon[1]);
+          Start.src=nowDpng[1];
+        }
+        if(demon[2]!=0){
+          Start = document.getElementById(demon[2]);
+          Start.src=nowDpng[2];
+        }
+        if(dragon!=0){
+          Start = document.getElementById(dragon);
+          Start.src=nowDrapng;
+        }
+        if(Dratakara!=0){
+          Start = document.getElementById(Dratakara);
+          Start.src="PNG/Dratakara.png";
+        }
+        movefunk();
+        },500);
+        }
+        }
+      }
+      function syoutotufunk(C,S,H){
+          let gazou;
+          if(kyara==0){
+              gazou="J";
+          }else if(kyara==1){
+              gazou="M";
+          }
+        if(S==1){
+        if(now==C){
+          damagefunk(S);
+          if(Bhantei==0){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageS.png";
+            return true;
+          }else if(Bhantei==1){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageSS.png";
+            return true;
+          }else if(Bhantei==2){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageST.png";
+            return true;
+          }
+        }
+        if(C==Cslime[0]){
+          Start = document.getElementById(Cslime[0]);
+          Start.src="PNG/S"+Ssyurui[0]+"kaihukuS.png";
+          return true;
+        }
+        if(C==Cslime[1]){
+          Start = document.getElementById(Cslime[1]);
+          Start.src="PNG/S"+Ssyurui[1]+"kaihukuS.png";
+          return true;
+        }
+        if(C==Cslime[2]){
+          Start = document.getElementById(Cslime[2]);
+          Start.src="PNG/S"+Ssyurui[2]+"kaihukuS.png";
+          return true;
+        }
+        if(C==Cdemon[0]){
+          Start = document.getElementById(Cdemon[0]);
+          Start.src="PNG/D"+Dsyurui[0]+"kaihukuS.png";
+          return true;
+        }
+        if(C==Cdemon[1]){
+          Start = document.getElementById(Cdemon[1]);
+          Start.src="PNG/D"+Dsyurui[1]+"kaihukuS.png";
+          return true;
+        }
+        if(C==Cdemon[2]){
+          Start = document.getElementById(Cdemon[2]);
+          Start.src="PNG/D"+Dsyurui[2]+"kaihukuS.png";
+          return true;
+        }
+        if(C==dragon){
+          Start = document.getElementById(Cdragon);
+          Start.src="PNG/Dra"+Drasyurui+"kaihukuS.png";
+          return true;
+        }
+        if(C==takara){
+          clone=-999;
+        }
+        if(C==next){
+          clone=-999;
+        }
+        }else if(S==2){
+          if(now==C){
+          damagefunk(S);
+          if(Bhantei==0){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageD.png";
+            return true;
+          }else if(Bhantei==1){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageDS.png";
+            return true;
+          }else if(Bhantei==2){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageDT.png";
+            return true;
+          }
+        }
+        if(C==Cslime[0]){
+          Start = document.getElementById(Cslime[0]);
+          Start.src="PNG/S"+Ssyurui[0]+"kaihukuD.png";
+          return true;
+        }
+        if(C==Cslime[1]){
+          Start = document.getElementById(Cslime[1]);
+          Start.src="PNG/S"+Ssyurui[1]+"kaihukuD.png";
+          return true;
+        }
+        if(C==Cslime[2]){
+          Start = document.getElementById(Cslime[2]);
+          Start.src="PNG/S"+Ssyurui[2]+"kaihukuD.png";
+          return true;
+        }
+        if(C==Cdemon[0]){
+          Start = document.getElementById(Cdemon[0]);
+          Start.src="PNG/D"+Dsyurui[0]+"kaihukuD.png";
+          return true;
+        }
+        if(C==Cdemon[1]){
+          Start = document.getElementById(Cdemon[1]);
+          Start.src="PNG/D"+Dsyurui[1]+"kaihukuD.png";
+          return true;
+        }
+        if(C==Cdemon[2]){
+          Start = document.getElementById(Cdemon[2]);
+          Start.src="PNG/D"+Dsyurui[2]+"kaihukuD.png";
+          return true;
+        }
+        if(C==dragon){
+          Start = document.getElementById(Cdragon);
+          Start.src="PNG/Dra"+Drasyurui+"kaihukuD.png";
+          return true;
+        }
+        if(C==takara){
+          clone=-999;
+        }
+        if(C==next){
+          clone=-999;
+        }
+        }else if(S==3){
+          if(now==C){
+          damagefunk(S);
+          if(Bhantei==0){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageDra.png";
+            return true;
+          }else if(Bhantei==1){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageDraS.png";
+            return true;
+          }else if(Bhantei==2){
+            Start = document.getElementById(C);
+            Start.src="PNG/"+gazou+"damageDraT.png";
+            return true;
+          }
+        }
+        if(C==Cslime[0]){
+          Start = document.getElementById(Cslime[0]);
+          Start.src="PNG/S"+Ssyurui[0]+"kaihukuDra.png";
+          return true;
+        }
+        if(C==Cslime[1]){
+          Start = document.getElementById(Cslime[1]);
+          Start.src="PNG/S"+Ssyurui[1]+"kaihukuDra.png";
+          return true;
+        }
+        if(C==Cslime[2]){
+          Start = document.getElementById(Cslime[2]);
+          Start.src="PNG/S"+Ssyurui[2]+"kaihukuDra.png";
+          return true;
+        }
+        if(C==Cdemon[0]){
+          Start = document.getElementById(Cdemon[0]);
+          Start.src="PNG/D"+Dsyurui[0]+"kaihukuDra.png";
+          return true;
+        }
+        if(C==Cdemon[1]){
+          Start = document.getElementById(Cdemon[1]);
+          Start.src="PNG/D"+Dsyurui[1]+"kaihukuDra.png";
+          return true;
+        }
+        if(C==Cdemon[2]){
+          Start = document.getElementById(Cdemon[2]);
+          Start.src="PNG/D"+Dsyurui[2]+"kaihukuDra.png";
+          return true;
+        }
+        }else if(S==11){
+          if(now==C){
+            Start = document.getElementById(C);
+            Start.src=nowpng;
+          }else if(next==C){
+            if(H==1){
+              clone=-999;
+            }else if(H==2){
+              clone2=-999;
+            }
+          }
+        }else if(S==100){
+        for(i=0;i<=2;i++){
+        if(slime[i]==C){
+            Start = document.getElementById(C);
+            Start.src="PNG/S"+Ssyurui[i]+"damage.png";
+            damagefunk(101,i);
+          return true;
+        }
+        }
+        for(i=0;i<=2;i++){
+        if(C==demon[i]){
+          Start = document.getElementById(C);
+          Start.src="PNG/D"+Dsyurui[i]+"damage.png";
+          damagefunk(102,i);
+          return true;
+        }
+        }
+        if(C==dragon){
+          Start = document.getElementById(C);
+          Start.src="PNG/Dra"+Drasyurui+"damage.png";
+          damagefunk(103);
+          return true;
+        }else if(C==takara){
+          clone=-999;
+          return true;
+        }else if(C==next){
+          clone=-999;
+          return true;
+        }else if(C==Dratakara){
+          return true;
+        }
+        }
+      }
+      function damagefunk(D,I){
+        let damage;
+        if(D==1){
+          if(Ssyurui[nowATK]==""){
+            damage=(10+2*(KAI-2));
+          }else if(Ssyurui[nowATK]=="E"){
+            damage=Math.floor(0.8*(10+2*(KAI-2)));
+          }else if(Ssyurui[nowATK]=="R"){
+            damage=Math.floor(1.5*(10+2*(KAI-2)));
+          }else if(Ssyurui[nowATK]=="S"){
+            damage=0;
+          }else if(Ssyurui[nowATK]=="G"){
+            damage=Math.floor(3*(10+2*(KAI-2)));
+          }
+          console.log("damageだよ"+damage+nowATK);
+          if(Bhantei==2){
+            if(damage-Bhyouji>=0){
+              HP=HP-damage;
+              Thyouji=damage-Bhyouji;
+              Kai = document.getElementById("log");
+              Kai.innerHTML="スライムは"+Thyouji+"ダメージを与えた！";
+            }else{
+              Kai = document.getElementById("log");
+              Kai.innerHTML="スライムはダメージを与えられなかった";
+            }
+          }else{
+            HP=HP-damage;
+            Thyouji=damage;
+            Kai = document.getElementById("log");
+            Kai.innerHTML="スライムは"+Thyouji+"ダメージを与えた！";
+          }
+          Kai = document.getElementById("hp");
+          Kai.innerHTML="　HP　"+ HP;
+        }else if(D==2){
+          if(Dsyurui[nowATK]==""){
+            damage=(10+3*(KAI-2));
+          }else if(Dsyurui[nowATK]=="E"){
+            damage=Math.floor(0.8*(10+3*(KAI-2)));
+          }else if(Dsyurui[nowATK]=="R"){
+            damage=Math.floor(1.5*(10+3*(KAI-2)));
+          }else if(Dsyurui[nowATK]=="S"){
+            damage=0;
+          }else if(Dsyurui[nowATK]=="G"){
+            damage=Math.floor(3*(10+3*(KAI-2)));
+          }
+          if(Bhantei==2){
+            if(damage-Bhyouji>=0){
+              HP=HP-damage;
+              Thyouji=damage-Bhyouji;
+              Kai = document.getElementById("log");
+              Kai.innerHTML="デーモンは"+Thyouji+"ダメージを与えた！";
+            }else{
+              Kai = document.getElementById("log");
+              Kai.innerHTML="デーモンはダメージを与えられなかった";
+            }
+          }else{
+            HP=HP-damage;
+            Thyouji=damage;
+            Kai = document.getElementById("log");
+            Kai.innerHTML="デーモンは"+Thyouji+"ダメージを与えた！";
+          }
+          Kai = document.getElementById("hp");
+          Kai.innerHTML="　HP　"+ HP;
+        }else if(D==3){
+          if(Drasyurui==""){
+            damage=(10+3*(KAI-2));
+          }else if(Drasyurui=="E"){
+            damage=Math.floor(0.8*(10+3*(KAI-2)));
+          }else if(Drasyurui=="R"){
+            damage=Math.floor(1.5*(10+3*(KAI-2)));
+          }else if(Drasyurui=="S"){
+            damage=0;
+          }else if(Drasyurui=="G"){
+            damage=Math.floor(3*(10+3*(KAI-2)));
+          }
+          if(Bhantei==2){
+            if(damage-Bhyouji>=0){
+              HP=HP-damage;
+              Thyouji=damage-Bhyouji;
+              Kai = document.getElementById("log");
+              Kai.innerHTML="ドラゴンは"+Thyouji+"ダメージを与えた！";
+            }else{
+              Kai = document.getElementById("log");
+              Kai.innerHTML="ドラゴンはダメージを与えられなかった";
+            }
+          }else{
+            HP=HP-damage;
+            Thyouji=damage;
+            Kai = document.getElementById("log");
+            Kai.innerHTML="ドラゴンは"+Thyouji+"ダメージを与えた！";
+          }
+          Kai = document.getElementById("hp");
+          Kai.innerHTML="　HP　"+ HP;
+        }else if(D==4){
+        }else if(D==101){
+          slimeHP[I]=slimeHP[I]-ATK;
+          if(slimeHP[I]<=0){
+            slime[I]=0;
+            winfunk(1,I);
+          }else if(slimeHP[I]<=Math.round(MslimeHP[I]*0.25)){
+            nowSpng[I]="PNG/S"+Ssyurui[I]+"25.png";
+          }else if(slimeHP[I]<=Math.round(MslimeHP[I]*0.5)){
+            nowSpng[I]="PNG/S"+Ssyurui[I]+"50.png";
+          }else if(slimeHP[I]<=Math.round(MslimeHP[I]*0.75)){
+            nowSpng[I]="PNG/S"+Ssyurui[I]+"75.png";
+          }
+        }else if(D==102){
+          demonHP[I]=demonHP[I]-ATK;
+          if(demonHP[I]<=0){
+            demon[I]=0;
+            winfunk(2,I);
+          }else if(demonHP[I]<=Math.round(MdemonHP[I]*0.25)){
+            nowDpng[I]="PNG/D"+Dsyurui[I]+"25.png";
+          }else if(demonHP[I]<=Math.round(MdemonHP[I]*0.5)){
+            nowDpng[I]="PNG/D"+Dsyurui[I]+"50.png";
+          }else if(demonHP[I]<=Math.round(MdemonHP[I]*0.75)){
+            nowDpng[I]="PNG/D"+Dsyurui[I]+"75.png";
+          }
+        }else if(D==103){
+          dragonHP=dragonHP-ATK;
+          if(dragonHP<=0){
+            dragon=0;
+            winfunk(3,I);
+          }else if(dragonHP<=Math.round(MdragonHP*0.25)){
+            nowDrapng="PNG/Dra"+Drasyurui+"25.png";
+          }else if(dragonHP<=Math.round(MdragonHP*0.5)){
+            nowDrapng="PNG/Dra"+Drasyurui+"50.png";
+          }else if(dragonHP<=Math.round(MdragonHP*0.75)){
+            nowDrapng="PNG/Dra"+Drasyurui+"75.png";
+          }
+        }
+      }
+      function winfunk(W,free){
+        if(W==1){
+          if(Ssyurui[free]==""){
+            keikenti=keikenti+1*(Math.floor(KAI/10)+1);
+            coin+=2*(Math.floor(KAI/30)+1);
+            sumcoin+=2*(Math.floor(KAI/30)+1);
+          }else if(Ssyurui[free]="E"){
+            keikenti=keikenti+Math.floor(1.5*(Math.floor(KAI/10)+1));
+            coin+=2*(Math.floor(1.5*((KAI/30)+1)));
+            sumcoin+=2*(Math.floor(1.5*((KAI/30)+1)));
+          }else if(Ssyurui[free]="R"){
+            keikenti=keikenti+Math.floor(1.5*(Math.floor(KAI/10)+1));
+            coin+=2*(Math.floor(1.5*((KAI/30)+1)));
+            sumcoin+=2*(Math.floor(1.5*((KAI/30)+1)));
+          }else if(Ssyurui[free]="S"){
+            keikenti=keikenti+Math.floor(10*(Math.floor(KAI/10)+1));
+            coin+=2*(Math.floor(10*((KAI/30)+1)));
+            sumcoin+=2*(Math.floor(10*((KAI/30)+1)));
+          }else if(Ssyurui[free]="G"){
+            keikenti=keikenti+Math.floor(5*(Math.floor(KAI/10)+1));
+            coin+=2*(Math.floor(5*((KAI/30)+1)));
+            sumcoin+=2*(Math.floor(5*((KAI/30)+1)));
+          }
+          Kai = document.getElementById("coin");
+          Kai.innerHTML=coin;
+          while(keikenti>=nextLV){
+            LVUPfunk();
+          }
+        }else if(W==2){
+          if(Dsyurui[free]==""){
+            keikenti=keikenti+2*(Math.floor(KAI/10)+1);
+            coin+=5*(Math.floor(KAI/30)+1);
+            sumcoin+=5*(Math.floor(KAI/30)+1);
+          }else if(Dsyurui[free]="E"){
+            keikenti=keikenti+Math.floor(1.5*2*(Math.floor(KAI/10)+1));
+            coin+=5*(Math.floor(1.5*((KAI/30)+1)));
+            sumcoin+=5*(Math.floor(1.5*((KAI/30)+1)));
+          }else if(Dsyurui[free]="R"){
+            keikenti=keikenti+Math.floor(1.5*2*(Math.floor(KAI/10)+1));
+            coin+=5*(Math.floor(1.5*((KAI/30)+1)));
+            sumcoin+=5*(Math.floor(1.5*((KAI/30)+1)));
+          }else if(Dsyurui[free]="S"){
+            keikenti=keikenti+Math.floor(10*2*(Math.floor(KAI/10)+1));
+            coin+=5*(Math.floor(10*((KAI/30)+1)));
+            sumcoin+=5*(Math.floor(10*((KAI/30)+1)));
+          }else if(Dsyurui[free]="G"){
+            keikenti=keikenti+Math.floor(5*2*(Math.floor(KAI/10)+1));
+            coin+=5*(Math.floor(5*((KAI/30)+1)));
+            sumcoin+=5*(Math.floor(5*((KAI/30)+1)));
+          }
+          Kai = document.getElementById("coin");
+          Kai.innerHTML=coin;
+          while(keikenti>=nextLV){
+          LVUPfunk();
+          }
+        }else if(W==3){
+          if(Dsyurui[free]==""){
+            keikenti=keikenti+10*(Math.floor(KAI/10)+1);
+            coin+=50*(Math.floor(KAI/30)+1);
+            sumcoin+=50*(Math.floor(KAI/30)+1);
+          }else if(Dsyurui[free]="E"){
+            keikenti=keikenti+Math.floor(1.5*10*(Math.floor(KAI/10)+1));
+            coin+=50*(Math.floor(1.5*((KAI/30)+1)));
+            sumcoin+=50*(Math.floor(1.5*((KAI/30)+1)));
+          }else if(Dsyurui[free]="R"){
+            keikenti=keikenti+Math.floor(1.5*10*(Math.floor(KAI/10)+1));
+            coin+=50*(Math.floor(1.5*((KAI/30)+1)));
+            sumcoin+=50*(Math.floor(1.5*((KAI/30)+1)));
+          }else if(Dsyurui[free]="S"){
+            keikenti=keikenti+Math.floor(10*10*(Math.floor(KAI/10)+1));
+            coin+=50*(Math.floor(10*((KAI/30)+1)));
+            sumcoin+=50*(Math.floor(10*((KAI/30)+1)));
+          }else if(Dsyurui[free]="G"){
+            keikenti=keikenti+Math.floor(5*10*(Math.floor(KAI/10)+1));
+            coin+=50*(Math.floor(5*((KAI/30)+1)));
+            sumcoin+=50*(Math.floor(5*((KAI/30)+1)));
+          }
+          Kai = document.getElementById("coin");
+          Kai.innerHTML=coin;
+          while(keikenti>=nextLV){
+          LVUPfunk();
+          }
+          if(slime[0]!=0){
+          slime[0]=0;
+          }
+          if(demon[0]!=0){
+          demon[0]=0;
+          }
+          if(now!=55){
+            Dratakara=55;
+            if(now!=25){
+              next=25;
+              Kai = document.getElementById(next);
+              Kai.src="PNG/6.png";
+            }else{
+              next=15;
+              Kai = document.getElementById(next);
+              Kai.src="PNG/6.png";
+            }
+          }else{
+            Dratakara=45;
+            next=25;
+            Kai = document.getElementById(next);
+            Kai.src="PNG/6.png";
+          }
+        }
+        Kai = document.getElementById("nextlv");
+        Kai.innerHTML=nextLV-keikenti;
+      }
+      function LVUPfunk(){
+        keikenti=keikenti-nextLV;
+            Math.floor(nextLV*1.5);
+            LV++;
+            nextLV=Math.floor(nextLV*1.5);
+            if(kyara==0){
+              MAXHP=MAXHP+(Math.floor(KAI/30)+1)*20;
+              HP=HP+(Math.floor(KAI/30)+1)*20;
+              ATK=ATK+(Math.floor(KAI/30)+1)*2;
+              MAXMP=MAXMP+(Math.floor(KAI/30)+1)*10;
+              MP=MP+(Math.floor(KAI/30)+1)*2;
+            }else if(kyara==1){
+              MAXHP=MAXHP+(Math.floor(KAI/30)+1)*7;
+              HP=HP+(Math.floor(KAI/30)+1)*7;
+              ATK=ATK+(Math.floor(KAI/30)+1)*7;
+              MAXMP=MAXMP+(Math.floor(KAI/30)+1)*10;
+              MP=MP+(Math.floor(KAI/30)+1)*2;
+            }
+            Kai = document.getElementById("hp");
+            Kai.innerHTML="　HP"+HP;
+            Kai = document.getElementById("maxhp");
+            Kai.innerHTML="/"+MAXHP;
+            Kai = document.getElementById("atk");
+            Kai.innerHTML="　ATK　"+ATK;
+            Kai = document.getElementById("mp");
+            Kai.innerHTML=" MP　"+MP;
+            Kai = document.getElementById("maxmp");
+            Kai.innerHTML="/"+MAXMP;
+            Kai = document.getElementById("lv");
+            Kai.innerHTML="　LV"+LV;
+            Kai = document.getElementById("log");
+            Kai.innerHTML="LVが上がりました！";
+            if(LV%5==0){
+              reatokutenfunk();
+            }else{
+              tokutenfunk();
+            }
+      }
+      var sum;
+      var PLV;
+      var pcount=0;
+      var MX;
+      var AX;
+      function gameoverfunk(){
+          SampleData.equalTo("username",Lname).fetchAll()
+          .then(function(results){
+          sum=results[0].Pkeikenti;
+          PLV=results[0].PLV;
+          if(nouryoku1==6){
+              sum+=Math.round(LV*(1+(nouryoku1LV*0.05)));
+          }else{
+            sum+=LV;
+          }
+          while(sum>=PLV){
+              sum-=PLV;
+              PLV++;
+          }
+        SampleData.equalTo("username",Lname).fetch()
+          .then(function(SampleData){
+          SampleData.set("now",1)
+          SampleData.set("itemnokori",[1,1,1,1,1,1,1,1,1])
+          SampleData.set("nowpng","1")
+          SampleData.set("i",1)
+          SampleData.set("free",1)
+          SampleData.set("slimeHP0",1)
+          SampleData.set("slimeHP1",1)
+          SampleData.set("slimeHP2",1)
+          SampleData.set("demonHP0",1)
+          SampleData.set("demonHP1",1)
+          SampleData.set("demonHP2",1)
+          SampleData.set("dragonHP",1)
+          SampleData.set("box",1)
+          SampleData.set("next",1)
+          SampleData.set("takara",1)
+          SampleData.set("slime0",1)
+          SampleData.set("slime1",1)
+          SampleData.set("slime2",1)
+          SampleData.set("demon0",1)
+          SampleData.set("demon1",1)
+          SampleData.set("demon2",1)
+          SampleData.set("dragon",1)
+          SampleData.set("Cslime0",1)
+          SampleData.set("Cslime1",1)
+          SampleData.set("Cslime2",1)
+          SampleData.set("Cdemon0",1)
+          SampleData.set("Cdemon1",1)
+          SampleData.set("Cdemon2",1)
+          SampleData.set("Cdragon",1)
+          SampleData.set("HP",1)
+          SampleData.set("MP",1)
+          SampleData.set("count",1)
+          SampleData.set("hozon",1)
+          SampleData.set("tarn",1)
+          SampleData.set("Mwaza",1)
+          SampleData.set("clone",1)
+          SampleData.set("clone2",1)
+          SampleData.set("move",1)
+          SampleData.set("nextLV",1)
+          SampleData.set("keikenti",1)
+          SampleData.set("Rtakara",1)
+          SampleData.set("Thyouji",1)
+          SampleData.set("Bhyouji",1)
+          SampleData.set("kuuhaku","1")
+          SampleData.set("Dratakara",1)
+          SampleData.set("GETskil",1)
+          SampleData.set("GETmode",1)
+          SampleData.set("tokusyu",1)
+          SampleData.set("coin",1)
+          SampleData.set("sumcoin",0)
+          SampleData.set("comeKAI",1)
+          SampleData.set("shophantei",0)
+          SampleData.set('KAI',KAI);
+          SampleData.set('MAXHP',MAXHP);
+          SampleData.set('ATK',ATK);
+          SampleData.set('MAXMP',MAXMP);
+          SampleData.set('LV',LV);
+          SampleData.set('Bhantei',Bhantei);
+          SampleData.set('skil1',skil1);
+          SampleData.set('skil2',skil2);
+          SampleData.setIncrement('wtyousen',1);
+          if(KAI>30){
+          SampleData.setIncrement('wkuria',1);
+          }
+          MX=sumcoin+takaracoin;
+          if(nouryoku1==5){
+              MX=Math.round(MX*(1+(nouryoku1LV*0.05)));
+          }
+          SampleData.setIncrement('Pcoin',MX);
+          SampleData.set('Zcoin',MX);
+          AX=Math.floor((KAI-1)/30)+takaradiamond;
+          console.log(AX+" Math.floor(KAI/30) "+Math.floor(KAI/30));
+          SampleData.set('Zdiamond',AX);
+          if(AX!=0){
+          SampleData.setIncrement('Pdiamond',AX);
+          }
+          SampleData.set('PLV',PLV);
+          SampleData.set('Pkeikenti',sum);
+          return SampleData.update();
+               
+          })
+          })
+        hihyoujifunk();
+        document.getElementById("up").style.display="none";
+        document.getElementById("down").style.display="none";
+        document.getElementById("right").style.display="none";
+        document.getElementById("left").style.display="none";
+        document.getElementById("save").style.display="none";
+        document.getElementById("menu").style.display="none";
+        document.getElementById("s1").style.display="none";
+        document.getElementById("s2").style.display="none";
+        document.getElementById('ura').style.display = "none";
+        document.getElementById('shop').style.display = "none";
+        document.getElementById('node').style.display = "none";
+        document.getElementById('ritaia').style.display = "none";
+        document.getElementById('home').style.display = "none";
+        document.getElementById('tojiru').style.display = "none";
+        document.getElementById("kekka").style.display="block";
+      }
+      function skilfunk(){
+        tarn++;
+        logfunk();
+        if(KAI!=1 && KAI!=mode){
+        if(GETmode==0){
+        if(MP>=10){
+        hihyoujifunk();
+        atackfunk(100,skil1);
+        Kai = document.getElementById("mp");
+        Kai.innerHTML=" MP　"+MP;
+        }else{
+          Kai = document.getElementById("mp");
+          Kai.innerHTML=" MP　"+MP;
+          Kai = document.getElementById("log");
+          Kai.innerHTML="MPが足りません";
+        }
+        }else{
+          skil1=Rtakara;
+          GETmode=0;
+          Kai = document.getElementById("log");
+          Kai.innerHTML="スキルを入れ替えました";
+          document.getElementById('getskil').style.display = "none";
+          document.getElementById('no').style.display = "none";
+          document.getElementById("sentaku").style.display="none";
+          hyoujifunk();
+          if(skil1==1){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/tate.png";
+          }else if(skil1==2){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/yoko.png";
+          }else if(skil1==3){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/hidarinaname.png";
+          }else if(skil1==4){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/miginaname.png";
+          }else if(skil1==5){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/juuji.png";
+          }else if(skil1==6){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/nanamejuuji.png";
+          }else if(skil1==7){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/mawari.png";
+          }else if(skil1==8){
+            Kai = document.getElementById("s1");
+            Kai.src="skil/zennhoui.png";
+          }
+        }
+        }
+      }
+      function skilfunk2(){
+        tarn++;
+        logfunk();
+        if(KAI!=1 && KAI!=mode){
+        if(GETmode==0){
+        if(MP>=10){
+        hihyoujifunk();
+        atackfunk(100,skil2);
+        Kai = document.getElementById("mp");
+        Kai.innerHTML=" MP　"+MP;
+        }else{
+          Kai = document.getElementById("mp");
+          Kai.innerHTML=" MP　"+MP;
+          Kai = document.getElementById("log");
+          Kai.innerHTML="MPが足りません";
+        }
+        }else{
+          skil2=Rtakara;
+          GETmode=0;
+          Kai = document.getElementById("log");
+          Kai.innerHTML="スキルを入れ替えました";
+          document.getElementById('getskil').style.display = "none";
+          document.getElementById('no').style.display = "none";
+          document.getElementById("sentaku").style.display="none";
+          hyoujifunk();
+          if(skil2==1){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/tate.png";
+          }else if(skil2==2){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/yoko.png";
+          }else if(skil2==3){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/hidarinaname.png";
+          }else if(skil2==4){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/miginaname.png";
+          }else if(skil2==5){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/juuji.png";
+          }else if(skil2==6){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/nanamejuuji.png";
+          }else if(skil2==7){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/mawari.png";
+          }else if(skil2==8){
+            Kai = document.getElementById("s2");
+            Kai.src="skil/zennhoui.png";
+          }
+        }
+        }
+      }
+      function nofunk(){
+        GETmode=0;
+        Kai = document.getElementById("log");
+        Kai.innerHTML="スキルはそのままです";
+        document.getElementById('getskil').style.display = "none";
+        document.getElementById('no').style.display = "none";
+        document.getElementById("sentaku").style.display="none";
+        hyoujifunk();
+      }
+      function tokutenfunk(){
+        Rtakara=Math.floor( Math.random() * 99 ) + 1;
+        if(Rtakara>=1&&Rtakara<=29){
+          HP=HP+(Math.floor(KAI/10)+1)*10;
+          if(MAXHP<HP){
+            HP=MAXHP;
+          }
+          Thyouji=(Math.floor(KAI/10)+1)*10;
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加でHPが"+Thyouji+"回復しました！");
+          Kai = document.getElementById("hp");
+          Kai.innerHTML="　HP"+HP;
+        }
+        if(Rtakara>=30&&Rtakara<=49){
+          HP=HP+(KAI-1);
+          MAXHP=MAXHP+(KAI-1);
+          Thyouji=(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で最大HPが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("hp");
+            Kai.innerHTML="　HP"+HP;
+            Kai = document.getElementById("maxhp");
+            Kai.innerHTML="/"+MAXHP;
+        }else if(Rtakara>=50&&Rtakara<=69){
+          ATK=ATK+Math.floor(KAI/2);
+          Thyouji=Math.floor(KAI/2);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加でATKが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("atk");
+          Kai.innerHTML="　ATK"+ATK;
+        }else if(Rtakara>=70&&Rtakara<=89){
+          MP=MP+KAI;
+          MAXMP=MAXMP+KAI;
+          Thyouji=KAI;
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加でMPが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("atk");
+          Kai = document.getElementById("mp");
+          Kai.innerHTML="　MP"+MP;
+          Kai = document.getElementById("maxmp");
+          Kai.innerHTML="/"+MAXMP;
+        }else if(Rtakara==98){
+          HP=HP+3*(KAI-1);
+          MAXHP=MAXHP+3*(KAI-1);
+          Thyouji=3*(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】最大HPが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("hp");
+          Kai.innerHTML="　HP"+HP;
+          Kai = document.getElementById("maxhp");
+          Kai.innerHTML="/"+MAXHP;
+        }else if(Rtakara==99){
+          ATK=ATK+(KAI-1);
+          Thyouji=(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】ATKが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("atk");
+          Kai.innerHTML="　ATK"+ATK;
+        }else if(Rtakara==100){
+          MP=MP+5*(KAI-1);
+          MAXMP=MAXMP+5*(KAI-1);
+          Thyouji=5*(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】MPが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("mp");
+          Kai.innerHTML="　MP"+MP;
+          Kai = document.getElementById("maxmp");
+          Kai.innerHTML="/"+MAXMP;
+        }else if(Rtakara==97){
+          if(kyara==0){
+          Start = document.getElementById(now);
+              Start.src="PNG/sword.png";
+              nowpng="PNG/sword.png";
+          }else if(kyara==1){
+              Start = document.getElementById(now);
+              Start.src="PNG/Msword.png";
+              nowpng="PNG/Msword.png";
+          }
+          ATK=ATK+3*KAI;
+          Bhyouji=3*KAI;
+          Bhantei=1;
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】剣を装備しました:攻撃力"+Bhyouji);
+        }else if(Rtakara==96){
+            if(kyara==0){
+          Start = document.getElementById(now);
+              Start.src="PNG/shield.png";
+              nowpng="PNG/shield.png";
+          }else if(kyara==1){
+              Start = document.getElementById(now);
+              Start.src="PNG/Mshield.png";
+              nowpng="PNG/Mshield.png";
+          }
+          Bhyouji=5*(KAI-1);
+          Bhantei=2;
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】盾を装備しました:防御力"+Bhyouji);
+        }else if(Rtakara>=90&&Rtakara<=95){
+          Rtakara=Math.floor( Math.random() * 6 ) + 1;
+          if(Rtakara==1){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/tate.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=1;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【縦】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==2){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/yoko.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=2;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【横】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==3){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/hidarinaname.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=3;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【左斜め】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==4){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/miginaname.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=4;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【右斜め】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==5){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/juuji.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=5;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】新スキル【十字】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==6){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/nanamejuuji.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=6;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】新スキル【斜め十字】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==7){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/mawari.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=7;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】新スキル【周り】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==8){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/zennhoui.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=8;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【超激レア】新スキル【全方位】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }
+        }
+      }
+      function reatokutenfunk(){
+        Rtakara=Math.floor( Math.random() * 5 ) + 1;
+        if(Rtakara==1){
+          HP=HP+3*(KAI-1);
+          MAXHP=MAXHP+3*(KAI-1);
+          Thyouji=3*(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】最大HPが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("hp");
+          Kai.innerHTML="　HP"+HP;
+          Kai = document.getElementById("maxhp");
+          Kai.innerHTML="/"+MAXHP;
+        }else if(Rtakara==2){
+          ATK=ATK+2*(KAI-1);
+          Thyouji=2*(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】ATKが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("atk");
+          Kai.innerHTML="　ATK"+ATK;
+        }else if(Rtakara==3){
+          MP=MP+5*(KAI-1);
+          MAXMP=MAXMP+5*(KAI-1);
+          Thyouji=5*(KAI-1);
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】MPが"+Thyouji+"上がりました！");
+          Kai = document.getElementById("mp");
+          Kai.innerHTML="　MP"+MP;
+          Kai = document.getElementById("maxmp");
+          Kai.innerHTML="/"+MAXMP;
+        }else if(Rtakara==4){
+          if(kyara==0){
+          Start = document.getElementById(now);
+              Start.src="PNG/sword.png";
+              nowpng="PNG/sword.png";
+          }else if(kyara==1){
+              Start = document.getElementById(now);
+              Start.src="PNG/Msword.png";
+              nowpng="PNG/Msword.png";
+          }
+          ATK=ATK+3*KAI;
+          Bhyouji=3*KAI;
+          Bhantei=1;
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】剣を装備しました:攻撃力"+Bhyouji);
+        }else if(Rtakara==5){
+            if(kyara==0){
+          Start = document.getElementById(now);
+              Start.src="PNG/shield.png";
+              nowpng="PNG/shield.png";
+          }else if(kyara==1){
+              Start = document.getElementById(now);
+              Start.src="PNG/Mshield.png";
+              nowpng="PNG/Mshield.png";
+          }
+          Bhyouji=5*(KAI-1);
+          Bhantei=2;
+          swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】盾を装備しました:防御力"+Bhyouji);
+        }else if(Rtakara>=6){
+          Rtakara=Math.floor( Math.random() * 6 ) + 1;
+          if(Rtakara==1){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/tate.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=1;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【縦】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==2){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/yoko.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=2;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【横】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==3){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/hidarinaname.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=3;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【左斜め】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==4){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/miginaname.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=4;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で新スキル【右斜め】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==5){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/juuji.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=5;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】新スキル【十字】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==6){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/nanamejuuji.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=6;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】新スキル【斜め十字】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==7){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/mawari.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=7;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【激レア】新スキル【周り】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }else if(Rtakara==8){
+            window.setTimeout(function(){
+            Kai = document.getElementById("getskil");
+            Kai.src="skil/zennhoui.png";
+            Kai = document.getElementById("no");
+            Kai.src="PNG/no.png";
+            document.getElementById("down").style.display="none";
+            document.getElementById('getskil').style.display = "block";
+            document.getElementById('no').style.display = "block";
+            document.getElementById("sentaku").style.display="block";
+            GETskil=8;
+            GETmode=1;
+            swal ( "レベルアップ！ " ,"全てのステータスが上がり、追加で【超激レア】新スキル【全方位】をゲットしました！入れ替えたいスキルかごみ箱をタップで選択");
+            },510);
+          }
+        }
+      }
+      //次やるとこ
+      function takarafunk(){
+        takara=0;
+        let A=Math.floor( Math.random() * 99999 ) + 1;
+        if(A==0){
+        takaradiamond+=250;
+        takaracoin+=15000;
+        swal ( "宝箱ゲット " ,"【超激レア】250ダイヤと15000コインを獲得しました！");
+    }else if(A==1){
+        if(buki[3]!=1){
+            buki[3]=1;
+            swal ( "宝箱ゲット " ,"【超激レア】SSR武器を獲得しました！");
+        }else{
+          takaradiamond+=500;
+            swal ( "宝箱ゲット " ,"【超激レア】500ダイヤを獲得しました！");
+        }
+    }else if(A==2){
+        if(buki[7]!=1){
+            buki[7]=1;
+            swal ( "宝箱ゲット " ,"【超激レア】SSR防具を獲得しました！");
+        }else{
+          takaradiamond+=500;
+            swal ( "宝箱ゲット " ,"【超激レア】500ダイヤを獲得しました！");
+        }
+    }else if(A==3){
+      takaradiamond+=500;
+        swal ( "宝箱ゲット " ,"【超激レア】500ダイヤを獲得しました！");
+    }else if(A==4){
+      takaracoin+=30000;
+        swal ( "宝箱ゲット " ,"【超激レア】30000コインを獲得しました！");
+    }else if(A>=5&&A<=24){
+        if(buki[2]!=1){
+            buki[2]=1;
+            swal ( "宝箱ゲット " ,"【激レア】SR武器を獲得しました！");
+        }else{
+          takaradiamond+=50;
+            swal ( "宝箱ゲット " ,"【激レア】50ダイヤを獲得しました！");
+        }
+    }else if(A>=25&&A<=44){
+        if(buki[6]!=1){
+            buki[6]=1;
+            swal ( "宝箱ゲット " ,"【激レア】SR防具を獲得しました！");
+        }else{
+          takaradiamond+=50;
+            swal ( "宝箱ゲット " ,"【激レア】50ダイヤを獲得しました！");
+        }
+    }else if(A>=45&&A<=69){
+      takaradiamond+=50;
+        swal ( "宝箱ゲット " ,"【激レア】50ダイヤを獲得しました！");
+    }else if(A>=70&&A<=100){
+      takaracoin+=10000;
+        swal ( "宝箱ゲット " ,"【激レア】10000コインを獲得しました！");
+    }else if(A>=101&&A<=250){
+        if(buki[1]!=1){
+            buki[1]=1;
+            swal ( "宝箱ゲット " ,"【レア】R剣を獲得しました！");
+        }else{
+          takaradiamond+=10;
+            swal ( "宝箱ゲット " ,"【レア】10ダイヤを獲得しました！");
+        }
+    }else if(A>=251&&A<=400){
+        if(buki[5]!=1){
+            buki[5]=1;
+            swal ( "宝箱ゲット " ,"【レア】R防具を獲得しました！");
+        }else{
+          takaradiamond+=5;
+            swal ( "宝箱ゲット " ,"【レア】5ダイヤを獲得しました！");
+        }
+    }else if(A>=401&&A<=700){
+      takaradiamond+=5;
+        swal ( "宝箱ゲット " ,"【レア】5ダイヤを獲得しました！");
+    }else if(A>=701&&A<=1000){
+      takaracoin+=1000;
+        swal ( "宝箱ゲット " ,"【レア】1000コインを獲得しました！");
+    }else if(A>=1001&&A<=2000){
+        if(buki[0]!=1){
+            buki[0]=1;
+            swal ( "宝箱ゲット " ,"nomal剣を獲得しました！");
+        }else{
+          takaracoin+=500;
+            swal ( "宝箱ゲット " ,"500コインを獲得しました！");
+        }
+    }else if(A>=2001&&A<=3000){
+        if(buki[4]!=1){
+            buki[4]=1;
+            Start = document.getElementById("syou"+B);
+            Start.src="gatya/bougu.png";
+            swal ( "宝箱ゲット " ,"nomal防具を獲得しました！");
+        }else{
+          takaracoin+=500;
+            swal ( "宝箱ゲット " ,"500コインを獲得しました！");
+        }
+    }else if(A>=3001&&A<=4000){
+        have[3]+=1;
+        swal ( "宝箱ゲット " ,"HP100%回復ビンを獲得しました！");
+    }else if(A>=4001&&A<=5000){
+        have[4]+=1;
+        swal ( "宝箱ゲット " ,"ATK100%上昇ビンを獲得しました！");
+    }else if(A>=5001&&A<=6000){
+        have[5]+=1;
+        swal ( "宝箱ゲット " ,"HP100%上昇ビンを獲得しました！");
+    }else if(A>=6001&&A<=7000){
+        have[6]+=1;
+        swal ( "宝箱ゲット " ,"雑魚敵全滅ガスを獲得しました！");
+    }else if(A>=7001&&A<=8000){
+        have[7]+=1;
+        swal ( "宝箱ゲット " ,"敵HP半減ガスを獲得しました！");
+    }else if(A>=8001&&A<=9000){
+        have[8]+=1;
+        swal ( "宝箱ゲット " ,"スキル獲得チケットを獲得しました！");
+    }else if(A>=9001&&A<=10000){
+        if(A>=9001&&A>=9333){
+            kyaraLV+=1;
+            swal ( "宝箱ゲット " ,"キャラレベルが１上がりました！");
+        }else if(A>=9334&&A>=9666){
+            nouryoku1LV+=1;
+            swal ( "宝箱ゲット " ,"能力レベルが１上がりました！");
+        }else if(A>=9667&&A>=10000){
+            bukiLV+=1;
+            swal ( "宝箱ゲット " ,"武器レベルが１上がりました！");
+        }
+    }else if(A>=10001&&A<=15000){
+      takaradiamond+=2;
+      swal ( "宝箱ゲット " ,"2ダイヤを獲得しました！");
+    }else if(A>=15001&&A<=20000){
+      takaracoin+=50;
+      swal ( "宝箱ゲット " ,"1ダイヤを獲得しました！");
+    }else if(A>=20001&&A<=50000){
+      takaracoin+=10;
+      swal ( "宝箱ゲット " ,"10コインを獲得しました！");
+    }else{
+      takaracoin+=3;
+      swal ( "宝箱ゲット " ,"3コインを獲得しました！");
+    }
+      }
+      function Dratakarafunk(){
+        Dratakara=0;
+        let A=Math.floor( Math.random() * 10000 ) + 1;
+        if(A==0){
+        takaradiamond+=250;
+        takaracoin+=15000;
+        swal ( "宝箱ゲット " ,"【超激レア】250ダイヤと15000コインを獲得しました！");
+    }else if(A==1){
+        if(buki[3]!=1){
+            buki[3]=1;
+            swal ( "宝箱ゲット " ,"【超激レア】SSR武器を獲得しました！");
+        }else{
+          takaradiamond+=500;
+            swal ( "宝箱ゲット " ,"【超激レア】500ダイヤを獲得しました！");
+        }
+    }else if(A==2){
+        if(buki[7]!=1){
+            buki[7]=1;
+            swal ( "宝箱ゲット " ,"【超激レア】SSR防具を獲得しました！");
+        }else{
+          takaradiamond+=500;
+            swal ( "宝箱ゲット " ,"【超激レア】500ダイヤを獲得しました！");
+        }
+    }else if(A==3){
+      takaradiamond+=500;
+        swal ( "宝箱ゲット " ,"【超激レア】500ダイヤを獲得しました！");
+    }else if(A==4){
+      takaracoin+=30000;
+        swal ( "宝箱ゲット " ,"【超激レア】30000コインを獲得しました！");
+    }else if(A>=5&&A<=24){
+        if(buki[2]!=1){
+            buki[2]=1;
+            swal ( "宝箱ゲット " ,"【激レア】SR武器を獲得しました！");
+        }else{
+          takaradiamond+=50;
+            swal ( "宝箱ゲット " ,"【激レア】50ダイヤを獲得しました！");
+        }
+    }else if(A>=25&&A<=44){
+        if(buki[6]!=1){
+            buki[6]=1;
+            swal ( "宝箱ゲット " ,"【激レア】SR防具を獲得しました！");
+        }else{
+          takaradiamond+=50;
+            swal ( "宝箱ゲット " ,"【激レア】50ダイヤを獲得しました！");
+        }
+    }else if(A>=45&&A<=69){
+      takaradiamond+=50;
+        swal ( "宝箱ゲット " ,"【激レア】50ダイヤを獲得しました！");
+    }else if(A>=70&&A<=100){
+      takaracoin+=10000;
+        swal ( "宝箱ゲット " ,"【激レア】10000コインを獲得しました！");
+    }else if(A>=101&&A<=250){
+        if(buki[1]!=1){
+            buki[1]=1;
+            swal ( "宝箱ゲット " ,"【レア】R剣を獲得しました！");
+        }else{
+          takaradiamond+=10;
+            swal ( "宝箱ゲット " ,"【レア】10ダイヤを獲得しました！");
+        }
+    }else if(A>=251&&A<=400){
+        if(buki[5]!=1){
+            buki[5]=1;
+            swal ( "宝箱ゲット " ,"【レア】R防具を獲得しました！");
+        }else{
+          takaradiamond+=5;
+            swal ( "宝箱ゲット " ,"【レア】5ダイヤを獲得しました！");
+        }
+    }else if(A>=401&&A<=700){
+      takaradiamond+=5;
+        swal ( "宝箱ゲット " ,"【レア】5ダイヤを獲得しました！");
+    }else if(A>=701&&A<=1000){
+      takaracoin+=1000;
+        swal ( "宝箱ゲット " ,"【レア】1000コインを獲得しました！");
+    }else if(A>=1001&&A<=2000){
+        if(buki[0]!=1){
+            buki[0]=1;
+            swal ( "宝箱ゲット " ,"nomal剣を獲得しました！");
+        }else{
+          takaracoin+=500;
+            swal ( "宝箱ゲット " ,"500コインを獲得しました！");
+        }
+    }else if(A>=2001&&A<=3000){
+        if(buki[4]!=1){
+            buki[4]=1;
+            Start = document.getElementById("syou"+B);
+            Start.src="gatya/bougu.png";
+            swal ( "宝箱ゲット " ,"nomal防具を獲得しました！");
+        }else{
+          takaracoin+=500;
+            swal ( "宝箱ゲット " ,"500コインを獲得しました！");
+        }
+    }else if(A>=3001&&A<=4000){
+        have[3]+=1;
+        swal ( "宝箱ゲット " ,"HP100%回復ビンを獲得しました！");
+    }else if(A>=4001&&A<=5000){
+        have[4]+=1;
+        swal ( "宝箱ゲット " ,"ATK100%上昇ビンを獲得しました！");
+    }else if(A>=5001&&A<=6000){
+        have[5]+=1;
+        swal ( "宝箱ゲット " ,"HP100%上昇ビンを獲得しました！");
+    }else if(A>=6001&&A<=7000){
+        have[6]+=1;
+        swal ( "宝箱ゲット " ,"雑魚敵全滅ガスを獲得しました！");
+    }else if(A>=7001&&A<=8000){
+        have[7]+=1;
+        swal ( "宝箱ゲット " ,"敵HP半減ガスを獲得しました！");
+    }else if(A>=8001&&A<=9000){
+        have[8]+=1;
+        swal ( "宝箱ゲット " ,"スキル獲得チケットを獲得しました！");
+    }else if(A>=9001&&A<=10000){
+        if(A>=9001&&A>=9333){
+            kyaraLV+=1;
+            swal ( "宝箱ゲット " ,"キャラレベルが１上がりました！");
+        }else if(A>=9334&&A>=9666){
+            nouryoku1LV+=1;
+            swal ( "宝箱ゲット " ,"能力レベルが１上がりました！");
+        }else if(A>=9667&&A>=10000){
+            bukiLV+=1;
+            swal ( "宝箱ゲット " ,"武器レベルが１上がりました！");
+        }
+    }
+      }
+      function upfunk(){
+        Kai = document.getElementById("log");
+        Kai.innerHTML="上に動きます";
+        if(KAI!=1 && KAI!=mode){
+        hihyoujifunk();
+        }
+        if(MAXMP>MP){
+          MP+=3;
+          if(MAXMP<MP){
+            MP=MAXMP;
+          }
+        }
+        clearfunk();
+        now = now - 10;
+        if(next == now){
+          setfunk();
+        }else{
+        if(now >=10 &&  now != slime[0]&& now != slime[1]&& now != slime[2]&& now != demon[0]&& now != demon[1]&& now != demon[2]&& now != dragon){
+          nextfunk();
+          if(now==takara){
+            takarafunk();
+            movefunk(500);
+          }else if(now==Dratakara){
+            Dratakarafunk();
+            movefunk(500);
+          }else{
+            movefunk(500);
+          }
+        }else{
+          now = now + 10;
+          nextfunk();
+          movefunk(500);
+        }
+        }
+        logfunk();
+        Kai = document.getElementById("mp");
+        Kai.innerHTML=" MP　"+MP;
+      }
+      function downfunk(){
+        Kai = document.getElementById("log");
+        Kai.innerHTML="下に動きます";
+        if(KAI!=1 && KAI!=mode){
+        hihyoujifunk();
+        }
+        if(MAXMP>MP){
+          MP+=3;
+          if(MAXMP<MP){
+            MP=MAXMP;
+          }
+        }
+        clearfunk();
+        now = now + 10;
+        if(next == now){
+          setfunk();
+        }else{
+          if(now <=100 &&  now != slime[0]&& now != slime[1]&& now != slime[2]&& now != demon[0]&& now != demon[1]&& now != demon[2]&& now != dragon){
+            nextfunk();
+            if(now==takara){
+              takarafunk();
+              movefunk(500);
+            }else if(now==Dratakara){
+              Dratakarafunk();
+              movefunk(500);
+            }else{
+              movefunk(500);
+            }
+          }else{
+             now = now - 10;
+             nextfunk();
+             movefunk(500);
+          }
+        }
+        logfunk();
+        Kai = document.getElementById("mp");
+        Kai.innerHTML=" MP　"+MP;
+      }
+      function leftfunk(){
+        Kai = document.getElementById("log");
+        Kai.innerHTML="左に動きます";
+        if(KAI!=1 && KAI!=mode){
+        hihyoujifunk();
+        }
+        if(MAXMP>MP){
+          MP+=3;
+          if(MAXMP<MP){
+            MP=MAXMP;
+          }
+        }
+        clearfunk();
+        now = now - 1;
+        if(next == now){
+          setfunk();
+        }else{
+          if(now%10 > 0 &&  now != slime[0]&& now != slime[1]&& now != slime[2]&& now != demon[0]&& now != demon[1]&& now != demon[2]&& now != dragon){
+            nextfunk();
+            if(now==takara){
+              takarafunk();
+              movefunk(500);
+            }else if(now==Dratakara){
+              Dratakarafunk();
+              movefunk(500);
+            }else{
+              movefunk(500);
+            }
+          }else{
+            now = now+1;
+            nextfunk();
+            movefunk(500);
+          }
+        }
+        logfunk();
+        Kai = document.getElementById("mp");
+        Kai.innerHTML=" MP　"+MP;
+      }
+      function rightfunk(){
+        Kai = document.getElementById("log");
+        Kai.innerHTML="右に動きます";
+        if(KAI!=1 && KAI!=mode){
+        hihyoujifunk();
+        }
+        if(MAXMP>MP){
+          MP+=3;
+          if(MAXMP<MP){
+            MP=MAXMP;
+          }
+        }
+        clearfunk();
+        now = now + 1;
+        if(next == now){
+          setfunk();
+        }else{
+          if(now%10 != 0 &&  now != slime[0]&& now != slime[1]&& now != slime[2]&& now != demon[0]&& now != demon[1]&& now != demon[2]&& now != dragon){
+            nextfunk();
+            if(now==takara){
+              takarafunk();
+              movefunk(500);
+            }else if(now==Dratakara){
+              Dratakarafunk();
+              movefunk(500);
+            }else{
+              movefunk(500);
+            }
+          }else{
+            now = now - 1;
+            nextfunk();
+            movefunk(500);
+          }
+        }
+        logfunk();
+        Kai = document.getElementById("mp");
+        Kai.innerHTML=" MP　"+MP;
+      }
+      function logfunk(){
+        if(KAI!=1 && KAI!=mode){
+        if(slime[0]!=0||slime[1]!=0||slime[2]!=0){
+          if(tarn%3==0){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="敵の攻撃まであと3ターンです";
+          }else if(tarn%3==1){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="敵の攻撃まであと2ターンです";
+          }else if(tarn%3==2){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="<font color='red'>【警告】敵の攻撃が来ます</font>";
+          }
+        }
+        if(KAI>15){
+          if(demon[0]!=0||demon[1]!=0||demon[2]!=0){
+            if(tarn%3==0){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="敵の攻撃まであと3ターンです";
+          }else if(tarn%3==1){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="敵の攻撃まであと2ターンです";
+          }else if(tarn%3==2){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="<font color='red'>【警告】敵の攻撃が来ます</font>";
+          }
+          }
+        }
+        if(dragon!=0){
+        if(KAI%15==0){
+          if(tarn%2==1){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="<font color='red'>【警告】敵の攻撃が来ます</font>";
+          }else if(tarn%2==0){
+            Start = document.getElementById("tekilog");
+            Start.innerHTML="敵の攻撃まであと2ターンです";
+          }
+        }
+        }
+        }
+      }
+      function hihyoujifunk(){
+        document.getElementById('up').style.display= "none";
+        document.getElementById('down').style.display = "none";
+        document.getElementById('left').style.display = "none";
+        document.getElementById('right').style.display = "none";
+        document.getElementById('s1').style.display = "none";
+        document.getElementById('s2').style.display = "none";
+      }
+      function hyoujifunk(){
+        document.getElementById('up').style.display = "block";
+        document.getElementById('down').style.display = "block";
+        document.getElementById('left').style.display = "block";
+        document.getElementById('right').style.display = "block";
+        document.getElementById('s1').style.display = "block";
+        document.getElementById('s2').style.display = "block";
+        document.getElementById('menu').style.display = "block";
+      }
+      function menufunk(){
+        hihyoujifunk();
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('shop').style.display = "block";
+        document.getElementById('node').style.display = "block";
+        document.getElementById('ritaia').style.display = "block";
+        document.getElementById('home').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+      }
+      function tojirufunk(){
+        document.getElementById('ura').style.display = "none";
+        document.getElementById('shop').style.display = "none";
+        document.getElementById('node').style.display = "none";
+        document.getElementById('ritaia').style.display = "none";
+        document.getElementById('home').style.display = "nome";
+        document.getElementById('tojiru').style.display = "none";
+        if(HP<=0){
+        }else{
+          hyoujifunk();
+        }
+      }
+      function ritaiafunk(){
+        HP=0;
+        gameoverfunk();
+      }
+      function homefunk(){
+          SW=1;
+          nandefunk();
+      }
+      function shopfunk(){
+          SW=2;
+          nandefunk();
+      }
+      function itemfunk(){
+          SW=3;
+          nandefunk();
+      }
+      function nandefunk(){
+          if(KAI==1){
+          if(SKAI>1){
+          loadfunk();
+          }else{
+              alert("セーブデータがありません。");
+          }
+        }else if(HP<=0){
+          location.href = 'gameover.html';
+        }else{
+          var PlayerData = ncmb.DataStore("playerdata");
+          PlayerData.equalTo("username",Lname).fetch()
+          .then(function(PlayerData){
+              console.log(now+"成功"+JSON.stringify(PlayerData));
+              PlayerData.set('now',now);
+              PlayerData.set('nowpng',nowpng);
+              PlayerData.set('nowSpng',nowSpng);
+              PlayerData.set('nowDpng',nowDpng);
+              PlayerData.set('nowDrapng',nowDrapng);
+              PlayerData.set('i',i);
+              PlayerData.set('free',free);
+              PlayerData.set('MslimeHP',MslimeHP);
+              PlayerData.set('MdemonHP',MdemonHP);
+              PlayerData.set('MdragonHP',MdragonHP);
+              PlayerData.set('slimeHP0',slimeHP[0]);
+              PlayerData.set('slimeHP1',slimeHP[1]);
+              PlayerData.set('slimeHP2',slimeHP[2]);
+              PlayerData.set('demonHP0',demonHP[0]);
+              PlayerData.set('demonHP1',demonHP[1]);
+              PlayerData.set('demonHP2',demonHP[2]);
+              PlayerData.set('dragonHP',dragonHP);
+              PlayerData.set('box',box);
+              PlayerData.set('next',next);
+              PlayerData.set('KAI',KAI);
+              PlayerData.set('takara',takara);
+              PlayerData.set('slime0',slime[0]);
+              PlayerData.set('slime1',slime[1]);
+              PlayerData.set('slime2',slime[2]);
+              PlayerData.set('demon0',demon[0]);
+              PlayerData.set('demon1',demon[1]);
+              PlayerData.set('demon2',demon[2]);
+              PlayerData.set('dragon',dragon);
+              PlayerData.set('Cslime0',Cslime[0]);
+              PlayerData.set('Cslime1',Cslime[1]);
+              PlayerData.set('Cslime2',Cslime[2]);
+              PlayerData.set('Cdemon0',Cdemon[0]);
+              PlayerData.set('Cdemon1',Cdemon[1]);
+              PlayerData.set('Cdemon2',Cdemon[2]);
+              PlayerData.set('Cdragon',Cdragon);
+              PlayerData.set('HP',HP);
+              PlayerData.set('ATK',ATK);
+              PlayerData.set('MP',MP);
+              PlayerData.set('count',count);
+              PlayerData.set('hozon',hozon);
+              PlayerData.set('tarn',tarn);
+              PlayerData.set('Mwaza',Mwaza);
+              PlayerData.set('clone',clone);
+              PlayerData.set('clone2',clone2);
+              PlayerData.set('move',move);
+              PlayerData.set('skil1',skil1);
+              PlayerData.set('skil2',skil2);
+              PlayerData.set('LV',LV);
+              PlayerData.set('nextLV',nextLV);
+              PlayerData.set('keikenti',keikenti);
+              PlayerData.set('MAXHP',MAXHP);
+              PlayerData.set('MAXMP',MAXMP);
+              PlayerData.set('Rtakara',Rtakara);
+              PlayerData.set('Thyouji',Thyouji);
+              PlayerData.set('Bhyouji',Bhyouji);
+              PlayerData.set('Bhantei',Bhantei);
+              PlayerData.set('kuuhaku',kuuhaku);
+              PlayerData.set('Dratakara',Dratakara);
+              PlayerData.set('GETskil',GETskil);
+              PlayerData.set('GETmode',GETmode);
+              PlayerData.set('mode',mode);
+              PlayerData.set('tokusyu',tokusyu);
+              PlayerData.set('coin',coin);
+              PlayerData.setIncrement('Pcoin',takaracoin);
+              takaracoin=0;
+              PlayerData.setIncrement('Pdiamond',takaradiamond);
+              takaradiamond=0;
+              PlayerData.set('comeKAI',comeKAI);
+              PlayerData.set('shophantei',1);
+              PlayerData.set('savekyara',kyara);
+              PlayerData.set('sumcoin',sumcoin);
+              PlayerData.set('item',have);
+              PlayerData.set('nouryoku1LV',nouryoku1LV);
+              PlayerData.set('kyaraLV',kyaraLV);
+              PlayerData.set('bukiLV',bukiLV);
+              PlayerData.set('buki',buki);
+              return PlayerData.update();                 
+          })
+          .then(function(results){
+            //更新成功時
+            if(SW==0){
+              alert("セーブしました");
+            }else if(SW==1){
+              alert("セーブしました。ホームへ戻ります。")
+              location.href = 'menu.html';
+            }else if(SW==2){
+              location.href = 'shop.html';
+            }else if(SW==3){
+              location.href = 'item.html';
+            }
+          })
+      }
+      }
+    </script>
+</head>
+<body>
+  <div class="info">
+  <div id="I11"><a id="kai">1階</a></div>
+  <div id="I12"><a id="hp">HP　</a><a id="maxhp"></a></div><div id="I22"><a id="atk">ATK　</a></div><div id="I32"><a id="mp">MP　</a><a id="maxmp"></a></div>
+  <div id="I13">ソウル <a id="coin">0</a></div><div id="I23"><a id="lv">LV1</a></div><div id="I33">次のレベルまで<a id="nextlv">2</a></div>
+  <div id="I14">Log:<a id="log">IT~INFINITY TOWER~</a></div>
+  <div id="I15">敵Log:<a id="tekilog">スキルやショップをうまく使って最高階を目指せ！</a></div>
+  </div>
+  <div style="display: flex;justify-content: center;">
+  <img src="PNG/ura.png" width="250" height="570"id="ura" class="ura" style="z-index:9">
+  <img src="PNG/item.png" width="150" height="100"id="node" class="node" style="z-index:11" onclick="itemfunk()">
+  <img src="PNG/ritaia.png" width="200" height="95"id="ritaia" class="ritaia" style="z-index:12" onclick="ritaiafunk()">
+  <img src="PNG/home.png" width="200" height="95"id="home" class="home" style="z-index:12" onclick="homefunk()">
+  <img src="PNG/tojiru.png" width="50" height="50"id="tojiru" class="tojiru" style="z-index:13" onclick="tojirufunk()">
+  </div>
+  <div class="center">
+  <img src="PNG/shop.png" width="160" height="120"id="shop" class="shop" style="z-index:10" onclick="shopfunk()">
+  </div>
+  <div class="banmen">
+    <img src="PNG/sentaku.png" id="sentaku" class="sentaku" style="z-index:10">
+  <div class="s11"><img src="PNG/1.png" width="40" height="40"id="11" ><img src="PNG/HP100.png" class="HPber" id="hp11"></div>
+  <div class="s12"><img src="PNG/1.png" width="40" height="40"id="12"><img src="PNG/HP100.png" class="HPber" id="hp12"></div>
+  <div class="s13"><img src="PNG/1.png" width="40" height="40"id="13"><img src="PNG/HP100.png" class="HPber" id="hp13"></div>
+  <div class="s14"><img src="PNG/1.png" width="40" height="40"id="14"><img src="PNG/HP100.png" class="HPber" id="hp14"></div>
+  <div class="s15"><img src="PNG/1.png" width="40" height="40"id="15"><img src="PNG/HP100.png" class="HPber" id="hp15"></div>
+  <div class="s16"><img src="PNG/1.png" width="40" height="40"id="16"><img src="PNG/HP100.png" class="HPber" id="hp16"></div>
+  <div class="s17"><img src="PNG/1.png" width="40" height="40"id="17"><img src="PNG/HP100.png" class="HPber" id="hp17"></div>
+  <div class="s18"><img src="PNG/1.png" width="40" height="40"id="18"><img src="PNG/HP100.png" class="HPber" id="hp18"></div>
+  <div class="s19"><img src="PNG/1.png" width="40" height="40"id="19"><img src="PNG/HP100.png" class="HPber" id="hp19"></div><br>
+
+  <div class="s21"><img src="PNG/1.png" width="40" height="40"id="21" ><img src="PNG/HP100.png" class="HPber" id="hp21"></div>
+  <div class="s22"><img src="PNG/1.png" width="40" height="40"id="22"><img src="PNG/HP100.png" class="HPber" id="hp22"></div>
+  <div class="s23"><img src="PNG/1.png" width="40" height="40"id="23"><img src="PNG/HP100.png" class="HPber" id="hp23"></div>
+  <div class="s24"><img src="PNG/1.png" width="40" height="40"id="24"><img src="PNG/HP100.png" class="HPber" id="hp24"></div>
+  <div class="s25"><img src="PNG/1.png" width="40" height="40"id="25"><img src="PNG/HP100.png" class="HPber" id="hp25"></div>
+  <div class="s26"><img src="PNG/1.png" width="40" height="40"id="26"><img src="PNG/HP100.png" class="HPber" id="hp26"></div>
+  <div class="s27"><img src="PNG/1.png" width="40" height="40"id="27"><img src="PNG/HP100.png" class="HPber" id="hp27"></div>
+  <div class="s28"><img src="PNG/1.png" width="40" height="40"id="28"><img src="PNG/HP100.png" class="HPber" id="hp28"></div>
+  <div class="s29"><img src="PNG/1.png" width="40" height="40"id="29"><img src="PNG/HP100.png" class="HPber" id="hp29"></div><br>
+
+  <div class="s31"><img src="PNG/1.png" width="40" height="40"id="31"><img src="PNG/HP100.png" class="HPber" id="hp31"></div>
+  <div class="s32"><img src="PNG/1.png" width="40" height="40"id="32"><img src="PNG/HP100.png" class="HPber" id="hp32"></div>
+  <div class="s33"><img src="PNG/1.png" width="40" height="40"id="33"><img src="PNG/HP100.png" class="HPber" id="hp33"></div>
+  <div class="s34"><img src="PNG/1.png" width="40" height="40"id="34"><img src="PNG/HP100.png" class="HPber" id="hp34"></div>
+  <div class="s35"><img src="PNG/1.png" width="40" height="40"id="35"><img src="PNG/HP100.png" class="HPber" id="hp35"></div>
+  <div class="s36"><img src="PNG/1.png" width="40" height="40"id="36"><img src="PNG/HP100.png" class="HPber" id="hp36"></div>
+  <div class="s37"><img src="PNG/1.png" width="40" height="40"id="37"><img src="PNG/HP100.png" class="HPber" id="hp37"></div>
+  <div class="s38"><img src="PNG/1.png" width="40" height="40"id="38"><img src="PNG/HP100.png" class="HPber" id="hp38"></div>
+  <div class="s39"><img src="PNG/1.png" width="40" height="40"id="39"><img src="PNG/HP100.png" class="HPber" id="hp39"></div><br>
+
+  <div class="s41"><img src="PNG/1.png" width="40" height="40"id="41" ><img src="PNG/HP100.png" class="HPber" id="hp41"></div>
+  <div class="s42"><img src="PNG/1.png" width="40" height="40"id="42"><img src="PNG/HP100.png" class="HPber" id="hp42"></div>
+  <div class="s43"><img src="PNG/1.png" width="40" height="40"id="43"><img src="PNG/HP100.png" class="HPber" id="hp43"></div>
+  <div class="s44"><img src="PNG/1.png" width="40" height="40"id="44"><img src="PNG/HP100.png" class="HPber" id="hp44"></div>
+  <div class="s45"><img src="PNG/1.png" width="40" height="40"id="45"><img src="PNG/HP100.png" class="HPber" id="hp45"></div>
+  <div class="s46"><img src="PNG/1.png" width="40" height="40"id="46"><img src="PNG/HP100.png" class="HPber" id="hp46"></div>
+  <div class="s47"><img src="PNG/1.png" width="40" height="40"id="47"><img src="PNG/HP100.png" class="HPber" id="hp47"></div>
+  <div class="s48"><img src="PNG/1.png" width="40" height="40"id="48"><img src="PNG/HP100.png" class="HPber" id="hp48"></div>
+  <div class="s49"><img src="PNG/1.png" width="40" height="40"id="49"><img src="PNG/HP100.png" class="HPber" id="hp49"></div><br>
+
+  <div class="s51"><img src="PNG/1.png" width="40" height="40"id="51" ><img src="PNG/HP100.png" class="HPber" id="hp51"></div>
+  <div class="s52"><img src="PNG/1.png" width="40" height="40"id="52"><img src="PNG/HP100.png" class="HPber" id="hp52"></div>
+  <div class="s53"><img src="PNG/1.png" width="40" height="40"id="53"><img src="PNG/HP100.png" class="HPber" id="hp53"></div>
+  <div class="s54"><img src="PNG/1.png" width="40" height="40"id="54"><img src="PNG/HP100.png" class="HPber" id="hp54"></div>
+  <div class="s55"><img src="PNG/1.png" width="40" height="40"id="55"><img src="PNG/HP100.png" class="HPber" id="hp55"></div>
+  <div class="s56"><img src="PNG/1.png" width="40" height="40"id="56"><img src="PNG/HP100.png" class="HPber" id="hp56"></div>
+  <div class="s57"><img src="PNG/1.png" width="40" height="40"id="57"><img src="PNG/HP100.png" class="HPber" id="hp57"></div>
+  <div class="s58"><img src="PNG/1.png" width="40" height="40"id="58"><img src="PNG/HP100.png" class="HPber" id="hp58"></div>
+  <div class="s59"><img src="PNG/1.png" width="40" height="40"id="59"><img src="PNG/HP100.png" class="HPber" id="hp59"></div><br>
+
+  <div class="s61"><img src="PNG/1.png" width="40" height="40"id="61" ><img src="PNG/HP100.png" class="HPber" id="hp61"></div>
+  <div class="s62"><img src="PNG/1.png" width="40" height="40"id="62"><img src="PNG/HP100.png" class="HPber" id="hp62"></div>
+  <div class="s63"><img src="PNG/1.png" width="40" height="40"id="63"><img src="PNG/HP100.png" class="HPber" id="hp63"></div>
+  <div class="s64"><img src="PNG/1.png" width="40" height="40"id="64"><img src="PNG/HP100.png" class="HPber" id="hp64"></div>
+  <div class="s65"><img src="PNG/1.png" width="40" height="40"id="65"><img src="PNG/HP100.png" class="HPber" id="hp65"></div>
+  <div class="s66"><img src="PNG/1.png" width="40" height="40"id="66"><img src="PNG/HP100.png" class="HPber" id="hp66"></div>
+  <div class="s67"><img src="PNG/1.png" width="40" height="40"id="67"><img src="PNG/HP100.png" class="HPber" id="hp67"></div>
+  <div class="s68"><img src="PNG/1.png" width="40" height="40"id="68"><img src="PNG/HP100.png" class="HPber" id="hp68"></div>
+  <div class="s69"><img src="PNG/1.png" width="40" height="40"id="69"><img src="PNG/HP100.png" class="HPber" id="hp69"></div><br>
+
+  <div class="s71"><img src="PNG/1.png" width="40" height="40"id="71" ><img src="PNG/HP100.png" class="HPber" id="hp71"></div>
+  <div class="s72"><img src="PNG/1.png" width="40" height="40"id="72"><img src="PNG/HP100.png" class="HPber" id="hp72"></div>
+  <div class="s73"><img src="PNG/1.png" width="40" height="40"id="73"><img src="PNG/HP100.png" class="HPber" id="hp73"></div>
+  <div class="s74"><img src="PNG/1.png" width="40" height="40"id="74"><img src="PNG/HP100.png" class="HPber" id="hp74"></div>
+  <div class="s75"><img src="PNG/1.png" width="40" height="40"id="75"><img src="PNG/HP100.png" class="HPber" id="hp75"></div>
+  <div class="s76"><img src="PNG/1.png" width="40" height="40"id="76"><img src="PNG/HP100.png" class="HPber" id="hp76"></div>
+  <div class="s77"><img src="PNG/1.png" width="40" height="40"id="77"><img src="PNG/HP100.png" class="HPber" id="hp77"></div>
+  <div class="s78"><img src="PNG/1.png" width="40" height="40"id="78"><img src="PNG/HP100.png" class="HPber" id="hp78"></div>
+  <div class="s79"><img src="PNG/1.png" width="40" height="40"id="79"><img src="PNG/HP100.png" class="HPber" id="hp79"></div><br>
+
+  <div class="s81"><img src="PNG/1.png" width="40" height="40"id="81" ><img src="PNG/HP100.png" class="HPber" id="hp81"></div>
+  <div class="s82"><img src="PNG/1.png" width="40" height="40"id="82"><img src="PNG/HP100.png" class="HPber" id="hp82"></div>
+  <div class="s83"><img src="PNG/1.png" width="40" height="40"id="83"><img src="PNG/HP100.png" class="HPber" id="hp83"></div>
+  <div class="s84"><img src="PNG/1.png" width="40" height="40"id="84"><img src="PNG/HP100.png" class="HPber" id="hp84"></div>
+  <div class="s85"><img src="PNG/1.png" width="40" height="40"id="85"><img src="PNG/HP100.png" class="HPber" id="hp85"></div>
+  <div class="s86"><img src="PNG/1.png" width="40" height="40"id="86"><img src="PNG/HP100.png" class="HPber" id="hp86"></div>
+  <div class="s87"><img src="PNG/1.png" width="40" height="40"id="87"><img src="PNG/HP100.png" class="HPber" id="hp87"></div>
+  <div class="s88"><img src="PNG/1.png" width="40" height="40"id="88"><img src="PNG/HP100.png" class="HPber" id="hp88"></div>
+  <div class="s89"><img src="PNG/1.png" width="40" height="40"id="89"><img src="PNG/HP100.png" class="HPber" id="hp89"></div><br>
+
+  <div class="s91"><img src="PNG/6.png" width="40" height="40"id="91" ><img src="PNG/HP100.png" class="HPber" id="hp91"></div>
+  <div class="s92"><img src="PNG/1.png" width="40" height="40"id="92"><img src="PNG/HP100.png" class="HPber" id="hp92"></div>
+  <div class="s93"><img src="PNG/1.png" width="40" height="40"id="93"><img src="PNG/HP100.png" class="HPber" id="hp93"></div>
+  <div class="s94"><img src="PNG/1.png" width="40" height="40"id="94"><img src="PNG/HP100.png" class="HPber" id="hp94"></div>
+  <div class="s95"><img src="PNG/1.png" width="40" height="40"id="95"><img src="PNG/HP100.png" class="HPber" id="hp95"></div>
+  <div class="s96"><img src="PNG/1.png" width="40" height="40"id="96"><img src="PNG/HP100.png" class="HPber" id="hp96"></div>
+  <div class="s97"><img src="PNG/1.png" width="40" height="40"id="97"><img src="PNG/HP100.png" class="HPber" id="hp97"></div>
+  <div class="s98"><img src="PNG/1.png" width="40" height="40"id="98"><img src="PNG/HP100.png" class="HPber" id="hp98"></div>
+  <div class="s99"><img src="PNG/1.png" width="40" height="40"id="99"><img src="PNG/HP100.png" class="HPber" id="hp99"></div><br>
+
+  <img src="PNG/up.png" width="60" height="60"id="up" onclick="upfunk()" class="up"><br>
+  <img src="PNG/left.png" width="60" height="60"id="left" onclick="leftfunk()"class="left"><img src="PNG/right.png" width="60" height="60"id="right"onclick="rightfunk()"class="right"><img src="skil/none.png" width="60" height="75"id="s1"onclick="skilfunk()"class="s1"><img src="skil/none.png" width="60" height="75"id="s2"onclick="skilfunk2()"class="s2"><img src="skil/none.png" width="150" height="195"id="getskil" class="get"><img src="skil/none.png" width="60" height="75"id="no" onclick="nofunk()" class="no"><br>
+  <img src="PNG/down.png" width="60" height="60"id="down"onclick="downfunk()"class="down"><img src="PNG/load.png" width="150" height="50"id="save"onclick="nandefunk()"class="save"><img src="PNG/menu.png" width="150" height="50"id="menu"onclick="menufunk()"class="menu">
+  </div>
+  <div style="display: flex;justify-content: center;">
+  <img src="PNG/kekka.png" width="300" height="100"id="kekka"style="z-index:14"onclick="nandefunk()">
+  </div>
+</body>
+</html>

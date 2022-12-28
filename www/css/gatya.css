@@ -1,0 +1,112 @@
+.wrap1{ 
+    position:absolute;
+    display: flex;
+    justify-content: center; 
+    align-items:center;
+    margin-top: 0px; 
+    gap:40px;
+}
+.wrap2{ 
+    position:absolute;
+    display: flex;
+    justify-content: center; 
+    align-items:center;
+    margin-top: 150px; 
+    gap:40px;
+}
+.wrap3{ 
+    position:absolute;
+    display: flex;
+    justify-content: center; 
+    align-items:center;
+    margin-top: 300px; 
+    gap:40px;
+}
+.wrap4{ 
+    position:absolute;
+    display: flex;
+    justify-content: center; 
+    align-items:center;
+    margin-top: 450px; 
+    gap:40px;
+}
+.gatya {
+  position: absolute;
+  top: 230px;
+}
+.ura {
+    position: absolute;
+    top: 200px;
+    display: none;
+}
+.kekkaura {
+    position: absolute;
+    top: 180px;
+}
+#Sname{
+font-size:200%;
+color:white ;
+display: none; width: 100%; /* 追加 */
+position: absolute; top: 300px;
+text-align: center;
+z-index: 17;
+text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+.center{
+     display: flex;
+     justify-content: center;
+}
+.yesno{
+    position: relative;
+    margin-left:auto ;
+    margin-right:auto ;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 100px;
+    top:-150px;
+}
+#tojiru{
+    position: absolute;
+    top: 760px;
+    display:none;
+}
+#yes{
+    display: none;
+}
+#no{
+    display: none;
+}
+#kekkaura{
+    display: none;
+}
+#syou1{
+    display: none;
+}
+#syou2{
+    display: none;
+}
+#syou3{
+    display: none;
+}
+#syou4{
+    display: none;
+}
+#syou5{
+    display: none;
+}
+#syou6{
+    display: none;
+}
+#syou7{
+    display: none;
+}
+#syou8{
+    display: none;
+}
+#syou9{
+    display: none;
+}
+#syou10{
+    display: none;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/kyara.css">
+    <title>キャラ設定</title>
+    <script src="components/loader.js"></script>
+    <script src="js/kyara.js"></script>
+    <script src="js/nouryoku.js"></script>
+    <script>
+        window.onload = function(){
+        document.body.style.backgroundImage = 'url(PNG/tower.png)';
+        document.getElementById('LVgroup').style.display = "none";
+        startfunk();
+        }
+        function kyarachangefunk(){
+            document.getElementById('changegroup').style.display = "block";
+            document.getElementById('yuusyamae').style.display = "block";
+            document.getElementById('mahoutukaimae').style.display = "block";
+            document.getElementById('kyaratati').style.display = "block";
+            document.getElementById('LVgroup').style.display = "none";
+            document.getElementById('kyararap').style.display = "none";
+            document.getElementById('tandokumodoru').style.display = "block";
+        }
+        function LVgroupfunk(){
+            document.getElementById('LVgroup').style.display = "block";
+            document.getElementById('kyararap').style.display = "none";
+            document.getElementById('changegroup').style.display = "none";
+            document.getElementById('tandokumodoru').style.display = "block";
+            document.getElementById('modoru').style.display = "none";
+        }
+        function modorufunk(){
+            document.getElementById('changegroup').style.display = "none";
+            document.getElementById('LVgroup').style.display = "none";
+            document.getElementById('modori').style.display = "block";
+            document.getElementById('kyararap').style.display = "block";
+            document.getElementById('nouryokumodoru').style.display = "none";
+            document.getElementById('nouryoku1usiro').style.display = "none";
+            document.getElementById('No').style.display = "none";
+            document.getElementById('nouryokuusiro').style.display = "none";
+            document.getElementById('nouryokukakutei').style.display = "none";
+            document.getElementById('setumei').style.display = "none";
+            document.getElementById('nouryokubun').style.display = "none";
+            document.getElementById('nouryokumodoru').style.display = "none";
+            document.getElementById('kakuninusiro').style.display = "none";
+            document.getElementById('kakuninmoji').style.display = "none";
+            document.getElementById('kakuninkyouka').style.display = "none";
+            document.getElementById('kyoukayameru').style.display = "none";
+        }
+        function setteimodorufunk(){
+            document.getElementById('changegroup').style.display = "none";
+            document.getElementById('LVgroup').style.display = "none";
+            document.getElementById('kyararap').style.display = "block";
+            document.getElementById('kakuninmoji').style.display = "none";
+            document.getElementById('kakuninkyouka').style.display = "none";
+            document.getElementById('kakuninusiro').style.display = "none";
+            document.getElementById('nouryoku1usiro').style.display = "none";
+            document.getElementById('No').style.display = "none";
+            document.getElementById('nouryokuusiro').style.display = "none";
+            document.getElementById('nouryokukakutei').style.display = "none";
+            document.getElementById('setumei').style.display = "none";
+            document.getElementById('nouryokubun').style.display = "none";
+            document.getElementById('nouryokumodoru').style.display = "none";
+            document.getElementById('soubi').style.display = "none";
+            document.getElementById('bukikakutei').style.display = "none";
+        }
+        function tandokumodorufunk(){
+            document.getElementById('changegroup').style.display = "none";
+            document.getElementById('LVgroup').style.display = "none";
+            document.getElementById('kyararap').style.display = "block";
+            document.getElementById('kakuninmoji').style.display = "none";
+            document.getElementById('kakuninkyouka').style.display = "none";
+            document.getElementById('kakuninusiro').style.display = "none";
+            document.getElementById('nouryoku1usiro').style.display = "none";
+            document.getElementById('No').style.display = "none";
+            document.getElementById('nouryokuusiro').style.display = "none";
+            document.getElementById('nouryokukakutei').style.display = "none";
+            document.getElementById('setumei').style.display = "none";
+            document.getElementById('nouryokubun').style.display = "none";
+            document.getElementById('nouryokumodoru').style.display = "none";
+            document.getElementById('kyoukayameru').style.display = "none";
+            document.getElementById('tandokumodoru').style.display = "none";
+        }
+        function nouryokumodoruifunk(){
+            document.getElementById('changegroup').style.display = "none";
+            document.getElementById('LVgroup').style.display = "none";
+            document.getElementById('kyararap').style.display = "none";
+            document.getElementById('nouryokuusiro').style.display = "none";
+            document.getElementById('nouryokukakutei').style.display = "none";
+            document.getElementById('setumei').style.display = "none";
+            document.getElementById('nouryokubun').style.display = "none";
+            document.getElementById('nouryokumodoru').style.display = "none";
+            document.getElementById('kakuninusiro').style.display = "none";
+            document.getElementById('kakuninmoji').style.display = "none";
+            document.getElementById('kakuninkyouka').style.display = "none";
+            document.getElementById('kyoukayameru').style.display = "none";
+            document.getElementById('bukikakutei').style.display = "none";
+        }
+        function kyoukayamerufunk(){
+            document.getElementById('kakuninusiro').style.display = "none";
+            document.getElementById('kakuninmoji').style.display = "none";
+            document.getElementById('kakuninkyouka').style.display = "none";
+            document.getElementById('kyoukayameru').style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <img src="PNG/modoru.png" width="150" height="80" id="tandokumodoru"style="z-index:17" onclick="tandokumodorufunk()">
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyarasetue.png" width="350" height="170" id="kyaraue">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <div id="moji1" style="z-index:11">
+    <font size="5" color="white" face="sans-serif">LV:<a id="lv"></a>　超越:<a id="tyouetu"></a></font>
+    </div></div>
+    <div style="display: flex;justify-content: center;">
+    <div id="moji2" style="z-index:11">
+    <font size="5" color="white" face="sans-serif">HP:<a id="hp"></a>　ATK:<a id="atk"></a>　MP:<a id="mp"></a></font>
+    </div></div>
+    <div id="kyararap">
+    <img src="PNG/yuusya.png" width="170" height="300" id="kyara"style="z-index:11">
+    <img src="PNG/kyarayoko.png" width="100" height="100" id="nouryoku1"style="z-index:11" onclick="nouryokufunk(1)">
+    <img src="PNG/kyarayoko.png" width="100" height="100" id="skil"style="z-index:11" onclick="skilfunk()">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyarachange.png" width="220" height="100" id="kyarachange"style="z-index:11" onclick="kyarachangefunk()">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyouka.png" width="220" height="100" id="kyouka"style="z-index:11" onclick="LVgroupfunk()">
+    </div>
+    
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyarausiro.png" width="360" height="600" id="kyarausiro"style="z-index:10">
+    </div>
+
+    <div id="changegroup">
+    <div style="display: flex;justify-content: center;">
+    <div id="changemoji" style="z-index:13">
+    <font size="5" color="white" face="sans-serif">初期ステータス<br>
+    HP:<a id="shp"></a>　ATK:<a id="satk"></a>　MP:<a id="smp"></a></font>
+    </div></div>
+    <div id="kyaratati">
+    <img src="PNG/yuusya.png" width="170" height="300" id="yuusyamae"style="z-index:13" onclick="kyarasentakufunk(0)">
+    <img src="PNG/mahoutukai.png" width="170" height="320" id="mahoutukaimae"style="z-index:13" onclick="kyarasentakufunk(1)">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUPusiro.png" width="360" height="600" id="LVUPusiro"style="z-index:12">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyarachange.png" width="250" height="120" id="cchange"style="z-index:13" onclick="changefunk()">
+    <img src="PNG/modoru.png" width="150" height="80" id="modoru"style="z-index:13" onclick="modorufunk()">
+    </div></div>
+
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUPusiro.png" width="360" height="600" id="nouryoku1usiro"style="z-index:14">
+    </div>
+    <div class="No" id="No">
+    <div class="wrap" id="wrap">
+    <img src="PNG/NHP.png" width="100" height="100" style="z-index:15" onclick="Nhenkoufunk(1)">
+    <img src="PNG/NATK.png" width="100" height="100" style="z-index:15"onclick="Nhenkoufunk(2)">
+    <img src="PNG/NMP.png" width="100" height="100" style="z-index:15"onclick="Nhenkoufunk(3)">
+    </div>
+    <div class="wrap" id="wrap">
+    <img src="PNG/Nshop.png" width="100" height="100" style="z-index:15"onclick="Nhenkoufunk(4)">
+    <img src="PNG/Ncoin.png" width="100" height="100" style="z-index:15"onclick="Nhenkoufunk(5)">
+    <img src="PNG/Nkeikenti.png" width="100" height="100" style="z-index:15"onclick="Nhenkoufunk(6)">
+    </div>
+    <div class="wrap" id="wrap">
+    <img src="PNG/Nskip.png" width="100" height="100" style="z-index:15"onclick="Nhenkoufunk(7)">
+    </div>
+    <img src="PNG/modoru.png" width="150" height="80" id="setteimodoru"style="z-index:15" onclick="setteimodorufunk()">
+    </div>
+    <div class="soubi" id="soubi">
+        <div class="soubirap" id="soubirap">
+        <img src="gatya/ken.png" width="100" height="100" style="z-index:15" onclick="Bhenkoufunk(0)">
+        <img src="gatya/rken.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(1)">
+        <img src="gatya/srken.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(2)">
+        </div>
+        <div class="soubirap" id="soubirap">
+        <img src="gatya/ssrken.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(3)">
+        <img src="gatya/bougu.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(4)">
+        <img src="gatya/rbougu.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(5)">
+        </div>
+        <div class="soubirap" id="soubirap">
+        <img src="gatya/srbougu.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(6)">
+        <img src="gatya/ssrbougu.png" width="100" height="100" style="z-index:15"onclick="Bhenkoufunk(7)">
+        </div>
+        <img src="PNG/modoru.png" width="150" height="80" id="setteimodoru"style="z-index:15" onclick="setteimodorufunk()">
+    </div>
+
+
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUPusiro.png" width="360" height="600" id="kakuninusiro"style="z-index:14">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyouka.png" width="220" height="100" id="kakuninkyouka"style="z-index:15" onclick="kakuteifunk()">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <div id="kakuninmoji" style="z-index:15">
+    <font size="8" color="red" face="sans-serif">
+    <a id="syurui"></a><br></font>
+    <font size="5" color="white" face="sans-serif">
+    のレベルを上げますか？<br>現在レベル:<a id="nowlv"></a><br>必要コイン:<a id="kakunincoin"></a><br>所持コイン:<a id="syojicoin"></a></font>
+    </div></div>
+
+
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUPusiro.png" width="360" height="600" id="nouryokuusiro"style="z-index:16">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyarachange.png" width="220" height="100" id="nouryokukakutei"style="z-index:17" onclick="nouryokukakuteifunk()">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/kyarachange.png" width="220" height="100" id="bukikakutei"style="z-index:17" onclick="bukikakuteifunk()">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/yameru.png" width="220" height="100" id="nouryokumodoru"style="z-index:17" onclick="nouryokumodoruifunk()">
+    </div>
+    <font size="5" color="white" face="sans-serif">
+    <a id="setumei"></a></font>
+    <font size="5" color="white" face="sans-serif">
+    <a id="nouryokubun"></a></font>
+
+
+
+
+    <div id="LVgroup">
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUPusiro.png" width="360" height="600" id="LVUPusiro"style="z-index:12">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVkyara.png" width="180" height="80" id="LVkyara"style="z-index:13">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVnouryoku1.png" width="180" height="80" id="LVnouryoku1"style="z-index:13" >
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/soubi.png" width="180" height="80" id="LVskil"style="z-index:13">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUP.png" width="150" height="80" id="LVUP1"style="z-index:13" onclick="LVUPfunk(1)">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUP.png" width="150" height="80" id="LVUP2"style="z-index:13" onclick="LVUPfunk(2)">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/LVUP.png" width="150" height="80" id="LVUP4"style="z-index:13" onclick="LVUPfunk(4)">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <div id="lv1" style="z-index:13">
+    <font size="6" color="white" face="sans-serif"><a id="kyaralv">1</a></font>
+    </div></div>
+    <div style="display: flex;justify-content: center;">
+    <div id="lv2" style="z-index:13">
+    <font size="6" color="white" face="sans-serif"><a id="nouryoku1lv">1</a></font>
+    </div></div>
+    <div style="display: flex;justify-content: center;">
+    <div id="lv4" style="z-index:13">
+    <font size="6" color="white" face="sans-serif"><a id="skillv">1</a></font>
+    </div></div></div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/yameru.png" width="220" height="100" id="kyoukayameru"style="z-index:17" onclick="kyoukayamerufunk()"></div>
+    <a href="menu.html"><img src="PNG/modoru.png" width="150" height="80" id="modori"style="z-index:13"></a>
+
+    
+</body>
+</html>

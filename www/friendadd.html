@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="css/friend.css">
+    <title>フレンド追加</title>
+    <script src="components/loader.js"></script>
+    <script>
+        var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+      var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+      var ncmb = new NCMB(applicationKey,clientKey);
+        var KAI=0;
+        var HP =0;
+        var ATK=0;
+        var MP=0;
+        var LV=0;
+        var Bhantei=0;
+        var skil1=0;
+        var skil2=0;
+        var Name;
+        var lname;
+        var Lname;
+        var MyID;
+        var PLV;
+        window.onload = function(){
+             document.body.style.backgroundImage = 'url(PNG/tower.png)';
+             document.getElementById("sute").style.display="none";
+             document.getElementById("add").style.display="none";
+             document.getElementById("ok").style.display="none";
+             document.getElementById("yes").style.display="none";
+             document.getElementById("noo").style.display="none";
+             Lname=localStorage.getItem("name");
+             MyID=localStorage.getItem("id");
+             MyID=Number(MyID);
+        }
+        function kakuteifunk(){
+            lname=document.getElementById("user").value;
+            window.PD = ncmb.DataStore("playerdata");
+            PD.equalTo('username',lname).fetchAll()
+             .then(function(pd){
+                 KAI=pd[0].wKAI;
+                 HP=pd[0].wHP;
+                 ATK=pd[0].wATK;
+                 MP=pd[0].wMAXMP;
+                 LV=pd[0].wLV;
+                 Bhantei=pd[0].wBhantei;
+                 skil1=pd[0].wskil1;
+                 skil2=pd[0].wskil2;
+                 PLV=pd[0].PLV;
+                 Name=pd[0].username;
+                 if(KAI>=2){
+                    document.getElementById("sute").style.display="block";
+                    document.getElementById("add").style.display="block";
+                    Start = document.getElementById("lv");
+                    Start.innerHTML=LV;
+                    Start = document.getElementById("name");
+                    Start.innerHTML=Name;
+                    Start = document.getElementById("kai");
+                    Start.innerHTML=KAI;
+                    Start = document.getElementById("hp");
+                    Start.innerHTML=HP;
+                    Start = document.getElementById("atk");
+                    Start.innerHTML=ATK;
+                    Start = document.getElementById("mp");
+                    Start.innerHTML=MP;
+                    Start = document.getElementById("rank");
+                    Start.innerHTML=PLV;
+                    if(Bhantei==0){
+                        Start = document.getElementById("buki");
+                        Start.innerHTML="武器無し";
+                    }else if(Bhantei==1){
+                        Start = document.getElementById("buki");
+                        Start.innerHTML="剣";
+                    }else if(Bhantei==2){
+                        Start = document.getElementById("buki");
+                        Start.innerHTML="盾";
+                    }
+                    if(skil1==1){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/tate.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="縦";
+                    }else if(skil1==2){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/yoko.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="横";
+                    }else if(skil1==3){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/hidarinaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="左斜め";
+                    }else if(skil1==4){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="右斜め";
+                    }else if(skil1==5){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="十字";
+                    }
+                    else if(skil1==6){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="斜め十字";
+                    }
+                    if(skil2==1){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/tate.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="縦";
+                    }else if(skil2==2){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/yoko.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="横";
+                    }else if(skil2==3){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/hidarinaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="左斜め";
+                    }else if(skil2==4){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="右斜め";
+                    }else if(skil2==5){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="十字";
+                    }
+                    else if(skil2==6){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="斜め十字";
+                    }
+                }
+             })
+             .catch(function(error){
+                 alert("入力されたユーザーは存在しません。");
+             })
+        }
+        function addfunk(){
+            document.getElementById("ok").style.display="block";
+             document.getElementById("yes").style.display="block";
+             document.getElementById("noo").style.display="block";
+        }
+        function yesfunk(){
+            document.getElementById("ok").style.display="add";
+            var not=0;
+            window.PD = ncmb.DataStore("playerdata");
+            PD.equalTo('username',Name).fetchAll()
+            .then(function(pd){
+                var fnin=pd[0].friendnin;
+                var fmei=pd[0].friendmei;
+                var snin=pd[0].sinseinin;
+                var smei=pd[0].sinseimei;
+                console.log(fnin+" "+JSON.stringify(fmei)+" "+snin+" "+JSON.stringify(smei));
+                if(fnin>=10){
+                    not=2
+                }
+                for(var i=0;i<fnin;i++){
+                    if(fmei[i]==MyID){
+                        not=1;
+                    }
+                }
+                if(Name==Lname){
+                    not=3;
+                }
+                if(not==0){
+                    snin++;
+                    smei[snin-1]=MyID;
+                    console.log(MyID+" "+lname);
+                    PD.equalTo("username",lname).fetch()
+                    .then(function(PD){
+                    PD.set('sinseinin',snin);
+                    PD.set('sinseimei',smei);
+                    return PD.update(); 
+                    })
+                    alert("申請しました。");
+                }else if(not==1){
+                    alert("すでにフレンドです。");
+                }else if(not==2){
+                    alert("相手のフレンド人数が最大です。");
+                }else if(not==3){
+                    alert("自分には申請できません。");
+                }
+                document.getElementById("ok").style.display="none";
+             document.getElementById("yes").style.display="none";
+             document.getElementById("noo").style.display="none";
+             document.getElementById("add").style.display="block";
+            })
+        }
+        function nofunk(){
+            document.getElementById("ok").style.display="none";
+             document.getElementById("yes").style.display="none";
+             document.getElementById("noo").style.display="none";
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/friendaddue.png" width="380" height="150" ><br>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <input type="text" id="user" class="user"size="30" placeholder="ユーザー名"><br>
+    <button onclick="kakuteifunk()" class="button" id="button"><div id="moji">検索</div></button>
+    </div>
+    <div id="sute">
+    <div style="display: flex;justify-content: center;">
+    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+    <font size="5">ユーザー名:<a id="name"></a></font><br>
+    <font size="5">ユーザーランク:<a id="rank"></a></font><br>
+    <font size="4">自己最高記録<br>
+    到達階:<a id="kai"></a>
+    最高LV:<a id="lv"></a>
+    最高HP:<a id="hp"></a><br>
+    最高ATK:<a id="atk"></a>
+    最高MP:<a id="mp"></a><br>
+    所持武器:<a id="buki"></a><br>
+    スキル１:<a id="s1"></a>
+    <img src="skil/none.png" width="50" height="65"id="scr1"><br>
+    スキル２:<a id="s2"></a>
+    <img src="skil/none.png" width="50" height="65"id="scr2"><br></font>
+    </div>
+    <br>
+    </div>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/sinsei.png" width="280" height="100" id="add" onclick="addfunk()">
+    <br>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/friendok.png" width="350" height="500" id="ok" >
+    <img src="PNG/yes.png" width="160" height="100" id="yes" onclick="yesfunk()">
+    <img src="PNG/noo.png" width="160" height="100" id="noo" onclick="nofunk()">
+    <br>
+    </div>
+    <a href="menu.html"><img src="PNG/modoru.png" class="modori" id="modoru" width="125" height="75" ></a>
+</body>
+</html>

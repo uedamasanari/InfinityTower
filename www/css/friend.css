@@ -1,0 +1,72 @@
+.button {
+  position: absolute;
+  width: 10em;
+  height:3em;
+  top:210px;
+  text-align:center;
+}
+body {
+background-attachment: fixed;
+}
+.user {
+  position: absolute;
+  text-align:center;
+  padding: 1em 0.5em;
+  line-height: 2;
+  top:145px;
+}
+.modori{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+#sute {
+  position: absolute;
+  top:370px;
+  left: 40px;
+}
+#add {
+  position: absolute;
+  top:260px;
+  text-align:center;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+.yesno{
+  position: relative;
+    margin-left:auto ;
+    margin-right:auto ;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 0px;
+    top:-150px;
+}
+#ok {
+  position: absolute;
+  top:140px;
+  display: none;
+}
+#yes {
+  position: absolute;
+  top:500px;
+  left: 45px;
+  display: none;
+}
+#noo {
+  position: absolute;
+  top:500px;
+  left: 200px;
+  display: none;
+}
+#friendlist{
+    display: none;
+}
+#friendadd{
+    display: none;
+}
+#friendsyounin{
+    display: none;
+}

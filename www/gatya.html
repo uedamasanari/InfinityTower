@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/gatya.css">
+    <title>ガチャ</title>
+    <script src="components/loader.js"></script>
+    <script src="js/gatya.js"></script>
+    <script>
+        window.onload = function(){
+        document.body.style.backgroundImage = 'url(PNG/tower.png)';
+        yomikomifunk();
+        }
+        function nofunk(){
+            document.getElementById('ura').style.display = "none";
+            document.getElementById('Sname').style.display = "none";
+            document.getElementById('yes').style.display = "none";
+            document.getElementById('no').style.display = "none";
+        }
+        function tojirufunk(){
+            document.getElementById('kekkaura').style.display = "none";
+            document.getElementById('syou1').style.display = "none";
+            document.getElementById('syou2').style.display = "none";
+            document.getElementById('syou3').style.display = "none";
+            document.getElementById('syou4').style.display = "none";
+            document.getElementById('syou5').style.display = "none";
+            document.getElementById('syou6').style.display = "none";
+            document.getElementById('syou7').style.display = "none";
+            document.getElementById('syou8').style.display = "none";
+            document.getElementById('syou9').style.display = "none";
+            document.getElementById('syou10').style.display = "none";
+            document.getElementById('tojiru').style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img id="gatyaue" src="gatya/gatyaue.png" width="300" height="200" ><br>
+    <div style="display: flex;justify-content: center;"><div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; background-color: #FF0000;"><font size="4" color="white" face="sans-serif">コイン:<br><a id="Pcoin"></a><br>ダイヤ:<br><a id="Pdiamond"></a></font></div></div>
+    <img src="PNG/ura.png" width="400" height="450"id="ura" class="ura" style="z-index:10">
+    <img src="PNG/ura.png" width="400" height="600"id="kekkaura" class="kekkaura" style="z-index:14">
+    </div>
+    <div class="center">
+    <div class="wrap1">
+        <img src="shop/HP50.png" width="100" height="100"id="syou1" class="syou1" style="z-index:15">
+        <img src="shop/ATKUP50.png" width="100" height="100"id="syou2" class="syou2" style="z-index:15">
+        <img src="shop/HPUP50.png" width="100" height="100"id="syou3" class="syou3" style="z-index:15">
+    </div>
+    <div class="wrap2">
+        <img src="shop/HP100.png" width="100" height="100"id="syou4" class="syou4" style="z-index:15">
+        <img src="shop/ATKUP100.png" width="100" height="100"id="syou5" class="syou5" style="z-index:15">
+        <img src="shop/HPUP100.png" width="100" height="100"id="syou6" class="syou6" style="z-index:15">
+    </div>
+    <div class="wrap3">
+        <img src="shop/doku100.png" width="100" height="100"id="syou7" class="syou7" style="z-index:15">
+        <img src="shop/doku50.png" width="100" height="100"id="syou8" class="syou8" style="z-index:15">
+        <img src="shop/ticket.png" width="100" height="100"id="syou9" class="syou9" style="z-index:15">
+    </div>
+    <div class="wrap4">
+        <img src="shop/doku100.png" width="100" height="100"id="syou10" class="syou10" style="z-index:15">
+    </div>
+    </div>
+    
+    <div class="center">
+    <img src="gatya/gatya.png" width="200" height="320"id="gatya"style="z-index:5">
+    </div>
+    <div class="center">
+        <img src="gatya/one.png" width="150" height="90"id="one"style="z-index:5" onclick="gatyafunk(0)">
+        <img src="gatya/ten.png" width="150" height="90"id="ten"style="z-index:5" onclick="gatyafunk(1)">
+        <a id="Sname">ガチャを引きますか？</a>
+    </div>
+    <div class="yesno">
+        <img src="PNG/yes.png" width="150" height="90"id="yes"style="z-index:10" onclick="yesfunk()">
+        <img src="PNG/noo.png" width="150" height="90"id="no"style="z-index:10" onclick="nofunk()">
+    </div>
+    <div class="center">
+    <img src="PNG/tojiru.png" width="40" height="40"id="tojiru"style="z-index:15" onclick="tojirufunk()">
+    </div>
+    <a href="menu.html"><img src="PNG/modoru.png" width="150" height="100"id="modoru" class="modoru" style="z-index:13"></a>
+</body>
+</html>

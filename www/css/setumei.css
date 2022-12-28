@@ -1,0 +1,101 @@
+.wrap{ 
+    display: flex;
+    justify-content: center; 
+    align-items:center;
+    margin-top: 50px; 
+    gap:40px;
+}
+.count{
+    position: relative;
+      margin-left:auto ;
+      margin-right:auto ;
+      display: flex;
+      justify-content: center;
+      width: 200px;
+      height: 50px;
+      top:0px;
+      background-color: darkorange;
+      display:none;
+}
+.ura {
+  position: absolute;
+  top: 230px;
+}
+#moji{
+    margin:auto;
+}
+#Sname{
+display: block; width: 100%; /* 追加 */
+position: absolute; top: 250px;
+text-align: center;
+z-index: 17;
+text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#Ssetumei{
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 400px;
+    z-index: 17;
+    text-align: center;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+.center{
+    display: flex;
+    justify-content: center;
+}
+.yajirusi{
+     display: flex;
+     justify-content: center;
+     margin-top: 620px;
+     gap:50px;
+}
+#page{
+    position:absolute;
+    top:70px;
+    display: none;
+}
+#maingame{
+    position:absolute;
+    top:70px;
+    z-index: 15;
+}
+#kyara{
+    position:absolute;
+    top:170px;
+}
+#friend{
+    position:absolute;
+    top:270px;
+}
+#shop{
+    position:absolute;
+    top:370px;
+}
+#gatya{
+    position:absolute;
+    top:470px;
+}
+#kotu{
+    position:absolute;
+    top:570px;
+}
+#modoru{
+    position:absolute;
+    z-index: 4;
+    top:0px;
+    left:0px;
+}
+#setumeimodoru{
+    position:absolute;
+    z-index: 5;
+    top:0px;
+    left:0px;
+    display: none;
+}
+#hidari{
+    display: none;
+}
+#migi{
+    display:none;
+}

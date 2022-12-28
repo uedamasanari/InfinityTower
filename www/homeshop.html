@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/Hshop.css">
+    <title>アイテムショップ</title>
+    <script src="components/loader.js"></script>
+    <script src="js/Hshop.js"></script>
+    <script>
+        window.onload = function(){
+        document.body.style.backgroundImage = 'url(PNG/tennnai.png)';
+        document.getElementById('ura').style.display = "none";
+        document.getElementById('tojiru').style.display = "none";
+        document.getElementById('hyouji').style.display = "none";
+        document.getElementById('Sname').style.display = "none";
+        document.getElementById('kounyuu').style.display = "none";
+        document.getElementById('Ssetumei').style.display = "none";
+        yomikomifunk();
+        }
+        function tojirufunk(){
+            document.getElementById('ura').style.display = "none";
+            document.getElementById('tojiru').style.display = "none";
+            document.getElementById('Sname').style.display = "none";
+            document.getElementById('kounyuu').style.display = "none";
+            document.getElementById('Ssetumei').style.display = "none";
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img id="kannbann" src="PNG/kannbann.png" width="300" height="200" ><br>
+    <img src="PNG/ura.png" width="400" height="450"id="ura" class="ura" style="z-index:9">
+    </div>
+    <div class="wrap">
+    <img src="shop/HP50.png" width="100" height="100"id="syou1" class="syou1" style="z-index:5" onclick="syouhinfunk(0)">
+    <img src="shop/ATKUP50.png" width="100" height="100"id="syou2" class="syou2" style="z-index:5" onclick="syouhinfunk(1)">
+    <img src="shop/HPUP50.png" width="100" height="100"id="syou3" class="syou3" style="z-index:5" onclick="syouhinfunk(2)">
+    </div>
+    <div class="wrap">
+    <img src="shop/HP100.png" width="100" height="100"id="syou4" class="syou4" style="z-index:5" onclick="syouhinfunk(3)">
+    <img src="shop/ATKUP100.png" width="100" height="100"id="syou5" class="syou5" style="z-index:5" onclick="syouhinfunk(4)">
+    <img src="shop/HPUP100.png" width="100" height="100"id="syou6" class="syou6" style="z-index:5" onclick="syouhinfunk(5)">
+    </div>
+    <div class="wrap">
+    <img src="shop/doku100.png" width="100" height="100"id="syou7" class="syou7" style="z-index:5" onclick="syouhinfunk(6)">
+    <img src="shop/doku50.png" width="100" height="100"id="syou8" class="syou8" style="z-index:5" onclick="syouhinfunk(7)">
+    <img src="shop/ticket.png" width="100" height="100"id="syou9" class="syou9" style="z-index:5" onclick="syouhinfunk(8)">
+    </div>
+    <a href="menu.html"><img src="PNG/modoru.png" width="150" height="100"id="modoru" class="modoru" style="z-index:13"></a>
+
+    <img src="PNG/syou1.png" width="100" height="100"id="hyouji" class="hyouji" style="z-index:13">
+    <font size="5" color="white" face="sans-serif">
+    <a id="Sname"></a></font>
+    <font size="5" color="white" face="sans-serif">
+    <a id="Ssetumei"></a></font>
+    <div class="center">
+    <img src="PNG/tojiru.png" width="50" height="50"id="tojiru" class="tojiru" style="z-index:13" onclick="tojirufunk()">
+    <img src="PNG/kounyuu.png" width="240" height="100"id="kounyuu" class="kounyuu" style="z-index:13" onclick="kounyuufunk()">
+    </div>
+</body>
+</html>

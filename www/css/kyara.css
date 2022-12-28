@@ -1,0 +1,285 @@
+.wrap{ 
+    display: flex;
+    justify-content: center; 
+    align-items:center; 
+    gap:20px;
+    margin-top:30px;
+}
+.soubirap{ 
+    display: flex;
+    justify-content: center; 
+    align-items:center; 
+    gap:20px;
+    margin-top:30px;
+}
+#kyararap{ position: relative; /* 追加 */
+margin: 0px auto 0; width:360px; height:600px;
+}
+#kyara{
+position: absolute;
+left: 40px; /* 修正 */
+top: 75px; /* 修正 */
+}
+#nouryoku1{
+position: absolute;
+left: 220px; /* 修正 */
+top: 75px; /* 修正 */
+}
+#skil{
+position: absolute;
+left: 220px; /* 修正 */
+top: 175px; /* 修正 */
+}
+.No{
+    display: none;
+}
+.soubi{
+    display: none;
+}
+#kyarausiro{
+    position: absolute;
+    top: 170px;
+    margin-left: 0%;
+}
+#kakuninusiro{
+    position: absolute;
+    top: 170px;
+    margin-left: 0%;
+    display: none;
+}
+#kyaramae{
+    position: absolute;
+    top: 170px;
+    margin-left: 0%;
+}
+#yuusyamae{
+    position: absolute;
+    top: 50px;
+    left:20px;
+}
+#mahoutukaimae{
+    position: absolute;
+    top: 50px;
+    left:180px;
+}
+#kyouka{
+    position: absolute;
+    top: 560px;
+}
+#kyarachange{
+    position: absolute;
+    top: 660px;
+}
+#kakuninkyouka{
+    position: absolute;
+    top: 560px;
+    display: none;
+}
+#moji1{
+    position: absolute;
+    top: 190px;
+  text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#moji2{
+    position: absolute;
+    top: 220px;
+  text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#changemoji{
+    position: absolute;
+    top: 540px;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#setumei{
+display: block; width: 100%; /* 追加 */
+position: absolute; top: 250px;
+text-align: center;
+z-index: 17;
+text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+display: none;
+}
+#nouryokubun{
+    width: 100%;
+    position: absolute;
+    top: 400px;
+    z-index: 17;
+    text-align: center;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+    display: none;
+}
+#kakuninmoji{
+    position: absolute;
+    top: 300px;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+    display: none;
+}
+#kyaratati{ position: relative; /* 追加 */
+    margin-top:-10px; 
+    margin:auto;
+    width:360px; 
+    height:0px;
+    display: none;
+    }
+#LVgroup{ position: relative; /* 追加 */
+    margin-top:-10px; 
+    margin:auto;
+    width:360px; 
+    height:0px;
+    display: none;
+    }
+#LVkyara{
+    position: absolute;
+    top: 50px;
+    left:20px;
+}
+#LVnouryoku1{
+    position: absolute;
+    top: 150px;
+    left:20px;
+}
+#LVskil{
+    position: absolute;
+    top: 250px;
+    left:20px;
+}
+#LVUP1{
+    position: absolute;
+    top: 50px;
+    left:200px;
+}
+#LVUP2{
+    position: absolute;
+    top: 150px;
+    left:200px;
+}
+
+#LVUP4{
+    position: absolute;
+    top: 250px;
+    left:200px;
+}
+#lv1{
+    position: absolute;
+    top: 65px;
+    left:140px;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#lv2{
+    position: absolute;
+    top: 165px;
+    left:140px;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#lv4{
+    position: absolute;
+    top: 265px;
+    left:140px;
+    text-shadow:1px 0 0 #fff,0 1px 0 #fff,-1px 0 0 #fff,0 -1px 0 #fff;
+}
+#modoru{
+  position: absolute;
+  top: 750px;
+  left: 0px;
+}
+#modori{
+  position: absolute;
+  top: 750px;
+  left: 0px;
+}
+#setteimodoru{
+  position: absolute;
+  top: 750px;
+  left: 0px;
+}
+#tandokumodoru{
+  position: absolute;
+  top: 750px;
+  left: 0px;
+  display:none;
+}
+#kakuninmodori{
+  position: absolute;
+  top: 750px;
+  left: 0px;
+}
+#changegroup{
+     display: none;
+}
+#kyara{
+     display: none;
+}
+#cchange{
+    position: absolute;
+    top: 620px;
+}
+#nouryoku1usiro{
+    position: absolute;
+    top: 170px;
+    margin-left: 0%;
+    display: none;
+}
+#nouryokuusiro{
+    position: absolute;
+    top: 170px;
+    margin-left: 0%;
+    display: none;
+}
+#nouryokukakutei{
+    position: absolute;
+    top: 550px;
+    display: none;
+}
+#bukikakutei{
+    position: absolute;
+    top: 550px;
+    display: none;
+}
+#nouryokumodoru{
+    position: absolute;
+    top: 650px;
+    display: none;
+}
+#kyoukayameru{
+    position: absolute;
+    top: 650px;
+    display: none;
+}
+#NHP{
+    position: absolute;
+    top: 250px;
+    margin-left: -30%;
+    display: none;
+}
+#NATK{
+    position: absolute;
+    top: 250px;
+    display: none;
+}
+#NMP{
+    position: absolute;
+    top: 250px;
+    margin-left: 30%;
+    display: none;
+}
+#Nshop{
+    position: absolute;
+    top: 360px;
+    margin-left: -30%;
+    display: none;
+}
+#Ncoin{
+    position: absolute;
+    top: 360px;
+    display: none;
+}
+#Nkeikenti{
+    position: absolute;
+    top: 360px;
+    margin-left: 30%;
+    display: none;
+}
+#Nskip{
+    position: absolute;
+    top: 470px;
+    display: none;
+}

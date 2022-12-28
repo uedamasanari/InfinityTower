@@ -1,0 +1,743 @@
+/**/
+.start {
+  position: absolute;
+  top: 600px;
+}
+body {
+background-attachment: fixed;
+}
+.info {
+  position: relative;
+  margin:auto;
+ width: 90%; /* ボックス幅 */
+ border-style: solid;
+ border-color: #82ca9c; /* 枠の色 */
+ border-width: 5px 1px 1px;
+ background-color: #f7f7f7; /* 背景色 */
+ color: #666; /* テキスト色 */
+ box-shadow: 1px 1px 3px #ccc; /* 影 */
+ display:grid;
+  grid-template-rows:15px 15px 15px 15px 15px 15px 5px;
+  grid-template-columns:30% 30% 40%;
+}
+#I11{
+  grid-row: 1 / 2;
+  grid-column: 1 / 4;
+  margin:auto;
+}
+#I12{
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  margin:auto;
+}
+#I22{
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+  margin:auto;
+}
+#I32{
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+  margin:auto;
+}
+#I13{
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  margin:auto;
+}
+#I23{
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
+  margin:auto;
+}
+#I33{
+  grid-row: 3 / 4;
+  grid-column: 3 / 4;
+  margin:auto;
+}
+#I14{
+  grid-row: 4 / 5;
+  grid-column: 1 / 4;
+}
+#I15{
+  grid-row: 5 / 7;
+  grid-column: 1 / 4;
+}
+#I16{
+  grid-row: 7 / 8;
+  grid-column: 1 / 4;
+}
+.button {
+  position: absolute;
+  width: 10em;
+  height:3em;
+  top:218px;
+  left:185px;
+}
+#endless{
+    top: 300px;
+    display: none;
+}
+#skipstart{
+  top: 500px;
+  display: none;
+}
+#kekka{
+    position: absolute;
+    top: 600px;
+}
+.toroku {
+  position: absolute;
+  top: 480px;
+}
+.mypro {
+  position: absolute;
+  top: 420px;
+  left: 180px;
+}
+.modori{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+.name {
+  position: absolute;
+  top: 480px;
+  text-align:center;
+  padding: 1em 0.5em;
+  line-height: 2;
+}
+.pass {
+  position: absolute;
+  top: 560px;
+  text-align:center;
+  padding: 1em 0.5em;
+  line-height: 2;
+}
+.center{
+  display: flex;
+  justify-content: center;
+}
+.banmen{
+  position: relative;
+    margin-left:auto ;
+    margin-right:auto ;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    height: 0px;
+    top:-190px;
+}
+#sentaku{
+  position: absolute;
+  top:200px;
+  display:none;
+  margin-left:-35px;
+  margin-top:12px;
+  width:320px;
+  height:320px;
+}
+.user {
+  position: absolute;
+  text-align:center;
+  padding: 1em 0.5em;
+  line-height: 2;
+  top:162px;
+  left:155px;
+}
+.go {
+  position: absolute;
+  top: 650px;
+  text-align:center;
+}
+.tower {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100vh;
+}
+.it{
+  position: absolute;
+  top: 160px;
+}
+.ura {
+  position: absolute;
+  top: 150px;
+  display: none;
+}
+.shop {
+  position: absolute;
+  top: 190px;
+  display: none;
+}
+.node {
+  position: absolute;
+  top: 330px;
+  display: none;
+}
+.ritaia {
+  position: absolute;
+  top: 450px;
+  display: none;
+}
+.home {
+  position: absolute;
+  top: 570px;
+  display: none;
+}
+.tojiru {
+  position: absolute;
+  top: 695px;
+  display: none;
+}
+.hyouji {
+  position: absolute;
+  top: 250px;
+}
+.kouka {
+  position: absolute;
+  top: 400px;
+}
+.price {
+  position: absolute;
+  top: 420px;
+}
+.coin {
+  position: absolute;
+  top: 440px;
+}
+.okaiage {
+  position: absolute;
+  top: 300px;
+  left: 70px;
+}
+.kounyuu {
+  position: absolute;
+  top: 550px;
+}
+.up {
+  position: absolute;
+  top: 570px;
+  left: 65px;
+}
+#down {
+  position: absolute;
+  top: 670px;
+  left: 65px;
+}
+.right {
+  position: absolute;
+  top: 620px;
+  left: 110px;
+}
+.left {
+  position: absolute;
+  top: 620px;
+  left: 20px;
+}
+.migi {
+  position: absolute;
+  top: 620px;
+  left: 110px;
+}
+.hidari {
+  position: absolute;
+  top: 620px;
+  left: 20px;
+}
+.save {
+  position: absolute;
+  top: 710px;
+  left: 180px;
+}
+.menu {
+  position: absolute;
+  top: 655px;
+  left: 180px;
+}
+.s1 {
+  position: absolute;
+  top: 570px;
+  left: 180px;
+}
+.s2 {
+  position: absolute;
+  top: 570px;
+  left: 238px;
+}
+.get {
+  position: absolute;
+  top: 570px;
+  left: 20px;
+}
+.no {
+  position: absolute;
+  top: 570px;
+  left: 296px;
+}
+.syou1 {
+  position: absolute;
+  top: 250px;
+  left: 15px;
+}
+.syou2 {
+  position: absolute;
+  top: 250px;
+  left: 140px;
+}
+.syou3 {
+  position: absolute;
+  top: 250px;
+  left: 265px;
+}
+.syou4 {
+  position: absolute;
+  top: 375px;
+  left: 15px;
+}
+.syou5 {
+  position: absolute;
+  top: 375px;
+  left: 140px;
+}
+.syou6 {
+  position: absolute;
+  top: 375px;
+  left: 265px;
+}
+.syou7 {
+  position: absolute;
+  top: 500px;
+  left: 15px;
+}
+.syou8 {
+  position: absolute;
+  top: 500px;
+  left: 140px;
+}
+.syou9 {
+  position: absolute;
+  top: 500px;
+  left: 265px;
+}
+.modoru {
+  position: absolute;
+  top: 650px;
+  left: 10px;
+}
+.HPber{
+  position:absolute;
+  width:30px;
+  margin-top:5px;
+  margin-left:-35px;
+  display: none;
+}
+.s11{
+  position: absolute;
+  top: 200px;
+  left: 8px;
+  width:auto;
+  height:auto;
+}
+.s12{
+  position: absolute;
+  top: 200px;
+  left: 46px;
+  width:auto;
+  height:auto;
+}
+.s13{
+  position: absolute;
+  top: 200px;
+  left: 84px;
+}
+.s14{
+  position: absolute;
+  top: 200px;
+  left: 122px;
+}
+.s15{
+  position: absolute;
+  top: 200px;
+  left: 160px;
+}
+.s16{
+  position: absolute;
+  top: 200px;
+  left: 198px;
+}
+.s17{
+  position: absolute;
+  top: 200px;
+  left: 236px;
+}
+.s18{
+  position: absolute;
+  top: 200px;
+  left: 274px;
+}
+.s19{
+  position: absolute;
+  top: 200px;
+  left: 312px;
+}
+.s21{
+  position: absolute;
+  top: 238px;
+  left: 8px;
+}
+.s22 {
+  position: absolute;
+  top: 238px;
+  left: 46px;
+}
+.s23 {
+  position: absolute;
+  top: 238px;
+  left: 84px;
+}
+.s24 {
+  position: absolute;
+  top: 238px;
+  left: 122px;
+}
+.s25 {
+  position: absolute;
+  top: 238px;
+  left: 160px;
+}
+.s26 {
+  position: absolute;
+  top: 238px;
+  left: 198px;
+}
+.s27 {
+  position: absolute;
+  top: 238px;
+  left: 236px;
+}
+.s28 {
+  position: absolute;
+  top: 238px;
+  left: 274px;
+}
+.s29 {
+  position: absolute;
+  top: 238px;
+  left: 312px;
+}
+.s31{
+  position: absolute;
+  top: 276px;
+  left: 8px;
+}
+.s32{
+  position: absolute;
+  top: 276px;
+  left: 46px;
+}
+.s33{
+  position: absolute;
+  top: 276px;
+  left: 84px;
+}
+.s34{
+  position: absolute;
+  top: 276px;
+  left: 122px;
+}
+.s35{
+  position: absolute;
+  top: 276px;
+  left: 160px;
+}
+.s36{
+  position: absolute;
+  top: 276px;
+  left: 198px;
+}
+.s37{
+  position: absolute;
+  top: 276px;
+  left: 236px;
+}
+.s38{
+  position: absolute;
+  top: 276px;
+  left: 274px;
+}
+.s39{
+  position: absolute;
+  top: 276px;
+  left: 312px;
+}
+.s41{
+  position: absolute;
+  top: 314px;
+  left: 8px;
+}
+.s42{
+  position: absolute;
+  top: 314px;
+  left: 46px;
+}
+.s43{
+  position: absolute;
+  top: 314px;
+  left: 84px;
+}
+.s44{
+  position: absolute;
+  top: 314px;
+  left: 122px;
+}
+.s45{
+  position: absolute;
+  top: 314px;
+  left: 160px;
+}
+.s46{
+  position: absolute;
+  top: 314px;
+  left: 198px;
+}
+.s47{
+  position: absolute;
+  top: 314px;
+  left: 236px;
+}
+.s48{
+  position: absolute;
+  top: 314px;
+  left: 274px;
+}
+.s49{
+  position: absolute;
+  top: 314px;
+  left: 312px;
+}
+.s51{
+  position: absolute;
+  top: 352px;
+  left: 8px;
+}
+.s52{
+  position: absolute;
+  top: 352px;
+  left: 46px;
+}
+.s53{
+  position: absolute;
+  top: 352px;
+  left: 84px;
+}
+.s54{
+  position: absolute;
+  top: 352px;
+  left: 122px;
+}
+.s55{
+  position: absolute;
+  top: 352px;
+  left: 160px;
+}
+.s56{
+  position: absolute;
+  top: 352px;
+  left: 198px;
+}
+.s57{
+  position: absolute;
+  top: 352px;
+  left: 236px;
+}
+.s58{
+  position: absolute;
+  top: 352px;
+  left: 274px;
+}
+.s59{
+  position: absolute;
+  top: 352px;
+  left: 312px;
+}
+.s61{
+  position: absolute;
+  top: 390px;
+  left: 8px;
+}
+.s62{
+  position: absolute;
+  top: 390px;
+  left: 46px;
+}
+.s63{
+  position: absolute;
+  top: 390px;
+  left: 84px;
+}
+.s64{
+  position: absolute;
+  top: 390px;
+  left: 122px;
+}
+.s65{
+  position: absolute;
+  top: 390px;
+  left: 160px;
+}
+.s66{
+  position: absolute;
+  top: 390px;
+  left: 198px;
+}
+.s67{
+  position: absolute;
+  top: 390px;
+  left: 236px;
+}
+.s68{
+  position: absolute;
+  top: 390px;
+  left: 274px;
+}
+.s69{
+  position: absolute;
+  top: 390px;
+  left: 312px;
+}
+.s71{
+  position: absolute;
+  top: 428px;
+  left: 8px;
+}
+.s72{
+  position: absolute;
+  top: 428px;
+  left: 46px;
+}
+.s73{
+  position: absolute;
+  top: 428px;
+  left: 84px;
+}
+.s74{
+  position: absolute;
+  top: 428px;
+  left: 122px;
+}
+.s75{
+  position: absolute;
+  top: 428px;
+  left: 160px;
+}
+.s76{
+  position: absolute;
+  top: 428px;
+  left: 198px;
+}
+.s77{
+  position: absolute;
+  top: 428px;
+  left: 236px;
+}
+.s78{
+  position: absolute;
+  top: 428px;
+  left: 274px;
+}
+.s79{
+  position: absolute;
+  top: 428px;
+  left: 312px;
+}
+.s81{
+  position: absolute;
+  top: 466px;
+  left: 8px;
+}
+.s82{
+  position: absolute;
+  top: 466px;
+  left: 46px;
+}
+.s83{
+  position: absolute;
+  top: 466px;
+  left: 84px;
+}
+.s84{
+  position: absolute;
+  top: 466px;
+  left: 122px;
+}
+.s85{
+  position: absolute;
+  top: 466px;
+  left: 160px;
+}
+.s86{
+  position: absolute;
+  top: 466px;
+  left: 198px;
+}
+.s87{
+  position: absolute;
+  top: 466px;
+  left: 236px;
+}
+.s88{
+  position: absolute;
+  top: 466px;
+  left: 274px;
+}
+.s89{
+  position: absolute;
+  top: 466px;
+  left: 312px;
+}
+.s91{
+  position: absolute;
+  top: 504px;
+  left: 8px;
+}
+.s92{
+  position: absolute;
+  top: 504px;
+  left: 46px;
+}
+.s93{
+  position: absolute;
+  top: 504px;
+  left: 84px;
+}
+.s94{
+  position: absolute;
+  top: 504px;
+  left: 122px;
+}
+.s95{
+  position: absolute;
+  top: 504px;
+  left: 160px;
+}
+.s96{
+  position: absolute;
+  top: 504px;
+  left: 198px;
+}
+.s97{
+  position: absolute;
+  top: 504px;
+  left: 236px;
+}
+.s98{
+  position: absolute;
+  top: 504px;
+  left: 274px;
+}
+.s99{
+  position: absolute;
+  top: 504px;
+  left: 312px;
+}

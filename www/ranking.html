@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <title>ランキング</title>
+    <script src="components/loader.js"></script>
+    <script>
+        var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+        var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+         window.ncmb = new NCMB(applicationKey,clientKey);
+         var KAI= new Array();
+        var HP = new Array();
+        var ATK= new Array();
+        var MP= new Array();
+        var LV= new Array();
+        var Bhantei= new Array();
+        var skil1= new Array();
+        var skil2= new Array();
+        var Name=new Array();
+         window.onload = function(){
+             document.body.style.backgroundImage = 'url(PNG/tower.png)';
+             window.Lname;
+             Lname=localStorage.getItem('name');
+             window.Ranking = ncmb.DataStore("ranking");
+             Ranking.order('rank').fetchAll()
+             .then(function(ranking){
+             for(var q=0;q<ranking.length;q++){
+                 KAI[q]=ranking[q].KAI;
+                HP[q]=ranking[q].HP;
+                ATK[q]=ranking[q].ATK;
+                MP[q]=ranking[q].MP;
+                LV[q]=ranking[q].LV;
+                Bhantei[q]=ranking[q].Bhantei;
+                skil1[q]=ranking[q].skil1;
+                skil2[q]=ranking[q].skil2;
+                Name[q]=ranking[q].name;
+             }
+             window.PD = ncmb.DataStore("playerdata");
+             PD.equalTo('username',Lname).fetchAll()
+             .then(function(pd){
+                 KAI[3]=pd[0].wKAI;
+                HP[3]=pd[0].wHP;
+                ATK[3]=pd[0].wATK;
+                MP[3]=pd[0].wMAXMP;
+                LV[3]=pd[0].wLV;
+                Bhantei[3]=pd[0].wBhantei;
+                skil1[3]=pd[0].wskil1;
+                skil2[3]=pd[0].wskil2;
+                Name[3]=pd[0].username;
+             
+             for(var Q=0;Q<=3;Q++){
+                 var q=Q+1;
+                 q=q.toString()
+                if(KAI[Q]>=2){
+                    Start = document.getElementById("lv"+q);
+                    Start.innerHTML=LV[Q];
+                    Start = document.getElementById("name"+q);
+                    Start.innerHTML=Name[Q];
+                    Start = document.getElementById("kai"+q);
+                    Start.innerHTML=KAI[Q];
+                    Start = document.getElementById("hp"+q);
+                    Start.innerHTML=HP[Q];
+                    Start = document.getElementById("atk"+q);
+                    Start.innerHTML=ATK[Q];
+                    Start = document.getElementById("mp"+q);
+                    Start.innerHTML=MP[Q];
+                    if(Bhantei[Q]==0){
+                        Start = document.getElementById("buki"+q);
+                        Start.innerHTML="武器無し";
+                    }else if(Bhantei[Q]==1){
+                        Start = document.getElementById("buki"+q);
+                        Start.innerHTML="剣";
+                    }else if(Bhantei[Q]==2){
+                        Start = document.getElementById("buki"+q);
+                        Start.innerHTML="盾";
+                    }
+                    if(skil1[Q]==1){
+                        Start = document.getElementById("s1"+q);
+                        Start.innerHTML="縦";
+                    }else if(skil1[Q]==2){
+                        Start = document.getElementById("s1"+q);
+                        Start.innerHTML="横";
+                    }else if(skil1[Q]==3){
+                        Start = document.getElementById("s1"+q);
+                        Start.innerHTML="左斜め";
+                    }else if(skil1[Q]==4){
+                        Start = document.getElementById("s1"+q);
+                        Start.innerHTML="右斜め";
+                    }else if(skil1[Q]==5){
+                        Start = document.getElementById("s1"+q);
+                        Start.innerHTML="十字";
+                    }else if(skil1[Q]==6){
+                        Start = document.getElementById("s1"+q);
+                        Start.innerHTML="斜め十字";
+                    }
+                    if(skil2[Q]==1){
+                        Start = document.getElementById("s2"+q);
+                        Start.innerHTML="縦";
+                    }else if(skil2[Q]==2){
+                        Start = document.getElementById("s2"+q);
+                        Start.innerHTML="横";
+                    }else if(skil2[Q]==3){
+                        Start = document.getElementById("s2"+q);
+                        Start.innerHTML="左斜め";
+                    }else if(skil2[Q]==4){
+                        Start = document.getElementById("s2"+q);
+                        Start.innerHTML="右斜め";
+                    }else if(skil2[Q]==5){
+                        Start = document.getElementById("s2"+q);
+                        Start.innerHTML="十字";
+                    }else if(skil2[Q]==6){
+                        Start = document.getElementById("s2"+q);
+                        Start.innerHTML="斜め十字";
+                    }
+                }
+             }
+             })
+             })
+         }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/rankingue.png" width="380" height="150" ><br>
+    </div>
+    <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+    1位　<a id="name1"></a><br>
+    到達階:<a id="kai1"></a>
+    最高LV:<a id="lv1"></a>
+    最高HP:<a id="hp1"></a><br>
+    最高ATK:<a id="atk1"></a>
+    最高MP:<a id="mp1"></a>
+    所持武器:<a id="buki1"></a><br>
+    スキル１:<a id="s11"></a>
+    スキル２:<a id="s21"></a><br>
+    </div>
+    <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+    2位　<a id="name2"></a><br>
+    到達階:<a id="kai2"></a>
+    最高LV:<a id="lv2"></a>
+    最高HP:<a id="hp2"></a><br>
+    最高ATK:<a id="atk2"></a>
+    最高MP:<a id="mp2"></a>
+    所持武器:<a id="buki2"></a><br>
+    スキル１:<a id="s12"></a>
+    スキル２:<a id="s22"></a><br>
+    </div>
+    <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+    3位　<a id="name3"></a><br>
+    到達階:<a id="kai3"></a>
+    最高LV:<a id="lv3"></a>
+    最高HP:<a id="hp3"></a><br>
+    最高ATK:<a id="atk3"></a>
+    最高MP:<a id="mp3"></a>
+    所持武器:<a id="buki3"></a><br>
+    スキル１:<a id="s13"></a>
+    スキル２:<a id="s23"></a><br>
+    </div>
+    <div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+    自己最高記録　<a id="name4"></a><br>
+    到達階:<a id="kai4"></a>
+    最高LV:<a id="lv4"></a>
+    最高HP:<a id="hp4"></a><br>
+    最高ATK:<a id="atk4"></a>
+    最高MP:<a id="mp4"></a>
+    所持武器:<a id="buki4"></a><br>
+    スキル１:<a id="s14"></a>
+    スキル２:<a id="s24"></a><br>
+    </div>
+    <a href="menu.html"><img src="PNG/modoru.png" class="modo" id="modoru" width="125" height="75" ></a>
+</body>
+</html>

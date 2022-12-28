@@ -1,0 +1,629 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <title>塔内ショップ</title>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      var i;
+      var comeKAI;
+      var nowKAI;
+      var syou=new Array();
+      syou[1]=0;
+      syou[2]=0;
+      syou[3]=0;
+      syou[4]=0;
+      syou[5]=0;
+      syou[6]=0;
+      syou[7]=0;
+      syou[8]=0;
+      syou[9]=0;
+      var types=new Array();
+      types[1]=0;
+      types[2]=0;
+      types[3]=0;
+      types[4]=0;
+      types[5]=0;
+      types[6]=0;
+      types[7]=0;
+      types[8]=0;
+      types[9]=0;
+      var price=new Array();
+      price[1]=0;
+      price[2]=0;
+      price[3]=0;
+      price[4]=0;
+      price[5]=0;
+      price[6]=0;
+      price[7]=0;
+      price[8]=0;
+      price[9]=0;
+      var ATK;
+      var HP;
+      var MP;
+      var lv;
+      var node;
+      var tokusyu;
+      var buy;
+      var S;
+      var T;
+      var coin;
+      var SY1;
+      var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+      var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+      var ncmb = new NCMB(applicationKey,clientKey);
+      window.Lname;
+      //typeは１HP、２ATK、３MP、４経験値、５回復
+      window.onload = function(){
+        document.body.style.backgroundImage = 'url(PNG/tennnai.png)';
+        document.getElementById('ura').style.display = "none";
+        document.getElementById('tojiru').style.display = "none";
+        document.getElementById('hyouji').style.display = "none";
+        document.getElementById('kouka').style.display = "none";
+        document.getElementById('kounyuu').style.display = "none";
+        document.getElementById('price').style.display = "none";
+        document.getElementById('okaiage').style.display = "none";
+        document.getElementById('coin').style.display = "none";
+        Lname=localStorage.getItem("name");
+        window.SampleData = ncmb.DataStore("playerdata");
+        SampleData.equalTo("username",Lname).fetchAll()
+          .then(function(results){
+              nowKAI=results[0].KAI;
+              ATK=results[0].ATK;
+              HP=results[0].HP;
+              MAXMP=results[0].MAXMP;
+              lv=results[0].LV;
+              MAXHP=results[0].MAXHP;
+              coin=results[0].coin;
+              SY1=results[0].syou1;
+              nouryoku1=results[0].nouryoku1;
+              nouryoku1LV=results[0].nouryoku1LV;
+              comeKAI=results[0].comeKAI;
+              if(nouryoku1LV>50){
+                nouryoku1LV=50;
+              }
+        console.log(nowKAI+" "+comeKAI);
+        if(nowKAI-comeKAI>=5||SY1==99){
+          for(i=1;i<=6;i++){
+            types[i]=Math.floor( Math.random() * 89 ) + 1;
+          }
+          for(i=7;i<=9;i++){
+            types[i]=Math.floor( Math.random() * 90 ) + 1;
+          }
+          for(i=1;i<=9;i++){
+            if(types[i]<=10){
+              syou[i]=Math.floor( Math.random() * 9 ) + 1;
+              if(syou[i]==10){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  50) + 50;
+                price[i]=syou[i]*1;
+              }else if(syou[i]>=7){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  20) + 10;
+                price[i]=syou[i]*3;
+              }else{
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  10) + 1;
+                price[i]=syou[i]*5;
+              }
+              if(nouryoku1==4){
+                  price[i]=Math.round(price[i]*(1-nouryoku1LV*0.01));
+              }
+              types[i]=1;
+            }else if(types[i]<=20){
+              syou[i]=Math.floor( Math.random() * 9 ) + 1;
+              if(syou[i]==10){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  20) + 30;
+                price[i]=syou[i]*1;
+              }else if(syou[i]>=7){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  15) + 5;
+                price[i]=syou[i]*3;
+              }else{
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  4) + 1;
+                price[i]=syou[i]*5;
+              }
+              if(nouryoku1==4){
+                  price[i]=Math.round(price[i]*(1-nouryoku1LV*0.01));
+              }
+              types[i]=2;
+            }else if(types[i]<=30){
+              syou[i]=Math.floor( Math.random() * 9 ) + 1;
+              if(syou[i]==10){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  50) + 50;
+                price[i]=syou[i]*1;
+              }else if(syou[i]>=7){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  20) + 10;
+                price[i]=syou[i]*2;
+              }else{
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  10) + 1;
+                price[i]=syou[i]*2;
+              }
+              if(nouryoku1==4){
+                  price[i]=Math.round(price[i]*(1-nouryoku1LV*0.01));
+              }
+              types[i]=3;
+            }else if(types[i]<=40){
+              syou[i]=Math.floor( Math.random() * 9 ) + 1;
+              if(syou[i]==10){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  50) + 50;
+                price[i]=syou[i]*1;
+              }else if(syou[i]>=7){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  20) + 10;
+                price[i]=syou[i]*3;
+              }else{
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  10) + 1;
+                price[i]=syou[i]*5;
+              }
+              if(nouryoku1==4){
+                  price[i]=Math.round(price[i]*(1-nouryoku1LV*0.01));
+              }
+              types[i]=4;
+            }else if(types[i]<=91){
+              if(syou[i]==10){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  100) + 100;
+                price[i]=Math.round(syou[i]/3);
+              }else if(syou[i]>=7){
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  20) + 10;
+                price[i]=Math.round(syou[i]/2);
+              }else{
+                syou[i]=(Math.floor(nowKAI/30)+1)*Math.floor( Math.random() *  10) + 1;
+                price[i]=syou[i];
+              }
+              if(nouryoku1==4){
+                  price[i]=Math.round(price[i]*(1-nouryoku1LV*0.01));
+              }
+              types[i]=5;
+            }
+          }
+          Start = document.getElementById("syou1");
+          Start.src="PNG/type"+types[1]+".png";
+          Start = document.getElementById("syou2");
+          Start.src="PNG/type"+types[2]+".png";
+          Start = document.getElementById("syou3");
+          Start.src="PNG/type"+types[3]+".png";
+          Start = document.getElementById("syou4");
+          Start.src="PNG/type"+types[4]+".png";
+          Start = document.getElementById("syou5");
+          Start.src="PNG/type"+types[5]+".png";
+          Start = document.getElementById("syou6");
+          Start.src="PNG/type"+types[6]+".png";
+          Start = document.getElementById("syou7");
+          Start.src="PNG/type"+types[7]+".png";
+          Start = document.getElementById("syou8");
+          Start.src="PNG/type"+types[8]+".png";
+          Start = document.getElementById("syou9");
+          Start.src="PNG/type"+types[9]+".png";
+        }else{
+            window.SampleData = ncmb.DataStore("playerdata");
+            SampleData.equalTo("username",Lname).fetchAll()
+          .then(function(results){
+              syou[1]=results[0].syou1;
+              syou[2]=results[0].syou2;
+              syou[3]=results[0].syou3;
+              syou[4]=results[0].syou4;
+              syou[5]=results[0].syou5;
+              syou[6]=results[0].syou6;
+              syou[7]=results[0].syou7;
+              syou[8]=results[0].syou8;
+              syou[9]=results[0].syou9;
+              types[1]=results[0].types1;
+              types[2]=results[0].types2;
+              types[3]=results[0].types3;
+              types[4]=results[0].types4;
+              types[5]=results[0].types5;
+              types[6]=results[0].types6;
+              types[7]=results[0].types7;
+              types[8]=results[0].types8;
+              types[9]=results[0].types9;
+              price[1]=results[0].price1;
+              price[2]=results[0].price2;
+              price[3]=results[0].price3;
+              price[4]=results[0].price4;
+              price[5]=results[0].price5;
+              price[6]=results[0].price6;
+              price[7]=results[0].price7;
+              price[8]=results[0].price8;
+              price[9]=results[0].price9;
+          console.log(types[1]+" "+price[1]);
+          Start = document.getElementById("syou1");
+          Start.src="PNG/type"+types[1]+".png";
+          Start = document.getElementById("syou2");
+          Start.src="PNG/type"+types[2]+".png";
+          Start = document.getElementById("syou3");
+          Start.src="PNG/type"+types[3]+".png";
+          Start = document.getElementById("syou4");
+          Start.src="PNG/type"+types[4]+".png";
+          Start = document.getElementById("syou5");
+          Start.src="PNG/type"+types[5]+".png";
+          Start = document.getElementById("syou6");
+          Start.src="PNG/type"+types[6]+".png";
+          Start = document.getElementById("syou7");
+          Start.src="PNG/type"+types[7]+".png";
+          Start = document.getElementById("syou8");
+          Start.src="PNG/type"+types[8]+".png";
+          Start = document.getElementById("syou9");
+          Start.src="PNG/type"+types[9]+".png";
+          })
+        }
+        })
+      }
+      function syou1funk(){
+        buy=1;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[1]+".png";
+        setumeifunk(types[1],syou[1],buy);
+      }
+      function syou2funk(){
+        buy=2;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[2]+".png";
+        setumeifunk(types[2],syou[2],buy);
+      }
+      function syou3funk(){
+        buy=3;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[3]+".png";
+        setumeifunk(types[3],syou[3],buy);
+      }
+      function syou4funk(){
+        buy=4;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[4]+".png";
+        setumeifunk(types[4],syou[4],buy);
+      }
+      function syou5funk(){
+        buy=5;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[5]+".png";
+        setumeifunk(types[5],syou[5],buy);
+      }
+      function syou6funk(){
+        buy=6;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[6]+".png";
+        setumeifunk(types[6],syou[6],buy);
+      }
+      function syou7funk(){
+        buy=7;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[7]+".png";
+        setumeifunk(types[7],syou[7],buy);
+      }
+      function syou8funk(){
+        buy=8;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[8]+".png";
+        setumeifunk(types[8],syou[8],buy);
+      }
+      function syou9funk(){
+        buy=9;
+        document.getElementById('ura').style.display = "block";
+        document.getElementById('tojiru').style.display = "block";
+        document.getElementById('hyouji').style.display = "block";
+        document.getElementById('kouka').style.display = "block";
+        document.getElementById('kounyuu').style.display = "block";
+        document.getElementById('price').style.display = "block";
+        document.getElementById('coin').style.display = "block";
+        Start = document.getElementById("hyouji");
+        Start.src="PNG/type"+types[9]+".png";
+        setumeifunk(types[9],syou[9],buy);
+      }
+      function setumeifunk(T,S,B){
+        if(T==1){
+          Start = document.getElementById("kouka");
+          Start.innerHTML="最大HPが"+S+"アップします";
+          Start = document.getElementById("price");
+          Start.innerHTML="価格:"+price[B]+"ソウル";
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+        }else if(T==2){
+          Start = document.getElementById("kouka");
+          Start.innerHTML="最大ATKが"+S+"アップします";
+          Start = document.getElementById("price");
+          Start.innerHTML="価格:"+price[B]+"ソウル";
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+        }else if(T==3){
+          Start = document.getElementById("kouka");
+          Start.innerHTML="最大MPが"+S+"アップします";
+          Start = document.getElementById("price");
+          Start.innerHTML="価格:"+price[B]+"ソウル";
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+        }else if(T==4){
+          Start = document.getElementById("kouka");
+          Start.innerHTML="経験値を"+S+"獲得します";
+          Start = document.getElementById("price");
+          Start.innerHTML="価格:"+price[B]+"ソウル";
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+        }else if(T==5){
+          Start = document.getElementById("kouka");
+          Start.innerHTML="HPが"+S+"回復します";
+          Start = document.getElementById("price");
+          Start.innerHTML="価格:"+price[B]+"ソウル";
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+        }
+      }
+      function kounyuufunk(){
+        if(buy==1){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==2){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==3){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==4){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==5){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==6){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==7){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==8){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }else if(buy==9){
+          if(price[buy]<=coin){
+          coin-=price[buy];
+          Start = document.getElementById("coin");
+          Start.innerHTML="残高:"+coin+"ソウル";
+          dainyuufunk(buy,types[buy]);
+          document.getElementById('okaiage').style.display = "block";
+          window.setTimeout(function(){
+          document.getElementById('okaiage').style.display = "none";
+          },1000);
+          }else{
+              alert("ソウルが足りません");
+          }
+        }
+      }
+      function dainyuufunk(H,T){
+        if(T==1){
+          MAXHP+=syou[H];
+        }else if(T==2){
+          ATK+=syou[H];
+        }else if(T==3){
+          MAXMP+=syou[H];
+        }else if(T==4){
+          lv+=syou[H];
+        }else if(T==5){
+          if(HP+syou[H]>MAXHP){
+              HP=MAXHP;
+          }else{
+          HP+=syou[H];
+          }
+        }
+      }
+      function modorufunk(){
+          var SampleData = ncmb.DataStore("playerdata");
+          SampleData.equalTo("username",Lname).fetch()
+          .then(function(SampleData){
+              console.log("成功"+JSON.stringify(SampleData));
+              SampleData.set('syou1',syou[1]);
+              SampleData.set('syou2',syou[2]);
+                SampleData.set('syou3',syou[3]);
+                SampleData.set('syou4',syou[4]);
+                SampleData.set('syou5',syou[5]);
+                SampleData.set('syou6',syou[6]);
+                SampleData.set('syou7',syou[7]);
+                SampleData.set('syou8',syou[8]);
+                SampleData.set('syou9',syou[9]);
+                SampleData.set('types1',types[1]);
+                SampleData.set('types2',types[2]);
+                SampleData.set('types3',types[3]);
+                SampleData.set('types4',types[4]);
+                SampleData.set('types5',types[5]);
+                SampleData.set('types6',types[6]);
+                SampleData.set('types7',types[7]);
+                SampleData.set('types8',types[8]);
+                SampleData.set('types9',types[9]);
+                SampleData.set('price1',price[1]);
+                SampleData.set('price2',price[2]);
+                SampleData.set('price3',price[3]);
+                SampleData.set('price4',price[4]);
+                SampleData.set('price5',price[5]);
+                SampleData.set('price6',price[6]);
+                SampleData.set('price7',price[7]);
+                SampleData.set('price8',price[8]);
+                SampleData.set('price9',price[9]);
+                SampleData.set('ATK',ATK);
+                SampleData.set('HP',HP);
+                SampleData.set('MAXMP',MAXMP);
+                SampleData.set('LV',lv);
+                SampleData.set('MAXHP',MAXHP);
+                SampleData.set('coin',coin);
+                SampleData.set('shophantei',1);
+                SampleData.set('comeKAI',comeKAI);
+              return SampleData.update();
+               
+          })
+          .then(function(results){
+              console.log("成功"+JSON.stringify(results));
+              location.href = 'gamemain.html';
+          })
+         
+      }
+      function tojirufunk(){
+        document.getElementById('ura').style.display = "none";
+        document.getElementById('kouka').style.display = "none";
+        document.getElementById('hyouji').style.display = "none";
+        document.getElementById('kounyuu').style.display = "none";
+        document.getElementById('tojiru').style.display = "none";
+        document.getElementById('price').style.display = "none";
+        document.getElementById('coin').style.display = "none";
+      }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img id="kannbann" src="PNG/kannbann.png" width="300" height="200" ><br>
+    <img src="PNG/ura.png" width="250" height="450"id="ura" class="ura" style="z-index:9">
+    </div>
+    <img src="PNG/syou1.png" width="100" height="100"id="syou1" class="syou1" style="z-index:5" onclick="syou1funk()">
+    <img src="PNG/syou1.png" width="100" height="100"id="syou2" class="syou2" style="z-index:5" onclick="syou2funk()">
+    <img src="PNG/syou1.png" width="100" height="100"id="syou3" class="syou3" style="z-index:5" onclick="syou3funk()">
+    <img src="PNG/syou4.png" width="100" height="100"id="syou4" class="syou4" style="z-index:5" onclick="syou4funk()">
+    <img src="PNG/syou5.png" width="100" height="100"id="syou5" class="syou5" style="z-index:5" onclick="syou5funk()">
+    <img src="PNG/syou1.png" width="100" height="100"id="syou6" class="syou6" style="z-index:5" onclick="syou6funk()">
+    <img src="PNG/syou7.png" width="100" height="100"id="syou7" class="syou7" style="z-index:5" onclick="syou7funk()">
+    <img src="PNG/syou8.png" width="100" height="100"id="syou8" class="syou8" style="z-index:5" onclick="syou8funk()">
+    <img src="PNG/syou9.png" width="100" height="100"id="syou9" class="syou9" style="z-index:5" onclick="syou9funk()">
+    <img src="PNG/modoru.png" width="150" height="100"id="modoru" class="modoru" style="z-index:13" onclick="modorufunk()">
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/syou1.png" width="100" height="100"id="hyouji" class="hyouji" style="z-index:13">
+    <p id="kouka" class="kouka"style="z-index:13">商品説明</p>
+    <p id="price" class="price"style="z-index:13">値段</p>
+    <p id="coin" class="coin"style="z-index:13">残高</p>
+    <img src="PNG/tojiru.png" width="50" height="50"id="tojiru" class="tojiru" style="z-index:13" onclick="tojirufunk()">
+    <img src="PNG/kounyuu.png" width="120" height="50"id="kounyuu" class="kounyuu" style="z-index:13" onclick="kounyuufunk()">
+    </div>
+    <img src="PNG/okaiage.png" width="300" height="200"id="okaiage" class="okaiage" style="z-index:14">
+    
+</body>
+</html>

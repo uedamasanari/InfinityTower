@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/setumei.css">
+    <title>説明</title>
+    <script src="components/loader.js"></script>
+    <script>
+        let i=1;
+        let name=["setumei/gamemain","setumei/kyara","setumei/friend","setumei/shop","setumei/gatya","setumei/kotu"];
+        let page=[8,5,4,1,2,1];
+        let now;
+        window.onload = function(){
+            document.body.style.backgroundImage = 'url(PNG/tower.png)';
+        }
+        function startfunk(A){
+            document.getElementById("maingame").style.display="none";
+            document.getElementById("kyara").style.display="none";
+            document.getElementById("friend").style.display="none";
+            document.getElementById("shop").style.display="none";
+            document.getElementById("gatya").style.display="none";
+            document.getElementById("kotu").style.display="none";
+            document.getElementById("hidari").style.display="block";
+            document.getElementById("migi").style.display="block";
+            document.getElementById("setumeimodoru").style.display="block";
+            document.getElementById("modoru").style.display="none";
+            Start = document.getElementById("page");
+            Start.src=name[A]+"1"+".png";
+            document.getElementById("page").style.display="block";
+            Start = document.getElementById("moji");
+            Start.innerHTML="ページ　1/"+page[A];
+            document.getElementById("count").style.display="block";
+            now=A;
+            i=1;
+        }
+        function modorufunk(){
+            document.getElementById("maingame").style.display="block";
+            document.getElementById("kyara").style.display="block";
+            document.getElementById("friend").style.display="block";
+            document.getElementById("shop").style.display="block";
+            document.getElementById("gatya").style.display="block";
+            document.getElementById("kotu").style.display="block";
+            document.getElementById("hidari").style.display="none";
+            document.getElementById("migi").style.display="none";
+            document.getElementById("page").style.display="none";
+            document.getElementById("count").style.display="none";
+            document.getElementById("setumeimodoru").style.display="none";
+            document.getElementById("modoru").style.display="block";
+        }
+        function leftfunk(){
+            if(i>1){
+                i--;
+                Start = document.getElementById("page");
+                Start.src=name[now]+i+".png";
+                document.getElementById("page").style.display="block";
+                Start = document.getElementById("moji");
+                Start.innerHTML="ページ　"+i+"/"+page[now];
+                document.getElementById("count").style.display="block";
+            }
+        }
+        function rightfunk(){
+            if(i<page[now]){
+                i++;
+                Start = document.getElementById("page");
+                Start.src=name[now]+i+".png";
+                document.getElementById("page").style.display="block";
+                Start = document.getElementById("moji");
+                Start.innerHTML="ページ　"+i+"/"+page[now];
+                document.getElementById("count").style.display="block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="count" id="count">
+        <a id="moji">ページ　1/8</a>
+    </div>
+    <a href="menu.html"><img src="PNG/modoru.png" width="100" height="60"id="modoru"></a>
+    <img src="PNG/modoru.png" width="100" height="60"id="setumeimodoru"onclick="modorufunk()">
+    <div class="center">
+    <img src="setumei/gamemain1.png" width="350" height="600"id="page">
+    </div>
+    <div class="center">
+        <img src="setumei/maingame.png" width="300" height="100"id="maingame" onclick="startfunk(0)">
+        <img src="setumei/kyara.png" width="300" height="100"id="kyara"onclick="startfunk(1)">
+        <img src="setumei/friend.png" width="300" height="100"id="friend" onclick="startfunk(2)">
+        <img src="setumei/shop.png" width="300" height="100"id="shop" onclick="startfunk(3)">
+        <img src="setumei/gatya.png" width="300" height="100"id="gatya" onclick="startfunk(4)">
+        <img src="setumei/kotu.png" width="300" height="100"id="kotu" onclick="startfunk(5)">
+    </div>
+    <div class="yajirusi">
+    <img src="PNG/left.png" width="60" height="60"id="hidari" onclick="leftfunk()"class="hidari">
+    <img src="PNG/right.png" width="60" height="60"id="migi"onclick="rightfunk()"class="migi">
+    </div>
+</body>
+</html>

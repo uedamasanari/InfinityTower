@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <title>メニュー</title>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/friend.css">
+    <script>
+      var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+      var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+      var ncmb = new NCMB(applicationKey,clientKey);
+      var MyID;
+      var PLV;
+      var Name;
+      var Pcoin;
+      var Pdiamond;
+      window.onload = function(){
+        document.body.style.backgroundImage = 'url(PNG/tower.png)';
+        document.getElementById("endless").style.display="none";
+        document.getElementById("modoru").style.display="none";
+        document.getElementById("ok").style.display="none";
+        document.getElementById("yes").style.display="none";
+        document.getElementById("noo").style.display="none";
+        MyID=localStorage.getItem("id");
+        MyID=Number(MyID);
+        window.PD = ncmb.DataStore("playerdata");
+            PD.equalTo('id',MyID).fetchAll()
+             .then(function(pd){
+                 PLV=pd[0].PLV;
+                 Name=pd[0].username;
+                 Pcoin=pd[0].Pcoin;
+                 Pdiamond=pd[0].Pdiamond;
+                 Start = document.getElementById("name");
+                 Start.innerHTML=Name;
+                 Start = document.getElementById("rank");
+                 Start.innerHTML=PLV;
+                 Start = document.getElementById("coin");
+                 Start.innerHTML=Pcoin;
+                 Start = document.getElementById("diamond");
+                 Start.innerHTML=Pdiamond;
+             })
+      }
+      function maingamefunk(){
+          document.getElementById("profile").style.display="none";
+          document.getElementById("kuesuto").style.display="none";
+          document.getElementById("rg").style.display="none";
+          document.getElementById("maingame").style.display="none";
+          document.getElementById("setu").style.display="none";
+          document.getElementById("friend").style.display="none";
+          document.getElementById("friendsyounin").style.display="none";
+          document.getElementById("logout").style.display="none";
+          document.getElementById("kyaraset").style.display="none";
+          document.getElementById("Hshop").style.display="none";
+          document.getElementById("gatya").style.display="none";
+          document.getElementById("endless").style.display="block";
+          document.getElementById("skipstart").style.display="block";
+          document.getElementById("modoru").style.display="block";
+      }
+      function friendfunk(){
+          document.getElementById("profile").style.display="none";
+          document.getElementById("kuesuto").style.display="none";
+          document.getElementById("rg").style.display="none";
+          document.getElementById("skipstart").style.display="none";
+          document.getElementById("maingame").style.display="none";
+          document.getElementById("setu").style.display="none";
+          document.getElementById("friend").style.display="none";
+          document.getElementById("logout").style.display="none";
+          document.getElementById("kyaraset").style.display="none";
+          document.getElementById("Hshop").style.display="none";
+          document.getElementById("gatya").style.display="none";
+          document.getElementById("friendlist").style.display="block";
+          document.getElementById("friendadd").style.display="block";
+          document.getElementById("friendsyounin").style.display="block";
+          document.getElementById("modoru").style.display="block";
+      }
+      function modorufunk(){
+          document.getElementById("friendlist").style.display="none";
+          document.getElementById("kuesuto").style.display="block";
+          document.getElementById("friendadd").style.display="none";
+          document.getElementById("friendsyounin").style.display="none";
+          document.getElementById("endless").style.display="none";
+          document.getElementById("modoru").style.display="none";
+          document.getElementById("profile").style.display="block";
+          document.getElementById("rg").style.display="block";
+          document.getElementById("maingame").style.display="block";
+          document.getElementById("setu").style.display="block";
+          document.getElementById("friend").style.display="block";
+          document.getElementById("logout").style.display="block";
+          document.getElementById("kyaraset").style.display="block";
+          document.getElementById("Hshop").style.display="block";
+          document.getElementById("gatya").style.display="block";
+          document.getElementById("skipstart").style.display="none";
+      }
+      function logoutfunk(){
+        document.getElementById("ok").style.display="block";
+        document.getElementById("yes").style.display="block";
+        document.getElementById("noo").style.display="block";
+      }
+      function yesfunk(){
+          location.href = 'index.html';
+      }
+      function nofunk(){
+          document.getElementById("ok").style.display="none";
+        document.getElementById("yes").style.display="none";
+        document.getElementById("noo").style.display="none";
+      }
+      function endlessfunk(){
+            let PD = ncmb.DataStore("playerdata");
+            PD.equalTo('id',MyID).fetch()
+            .then(function(pd){
+                pd.set('mode',0);
+                return pd.update();
+            })
+            .then(function(results){
+                location.href = 'gamemain.html';
+            })
+      }
+      function skipstartfunk(){
+            let PD = ncmb.DataStore("playerdata");
+            PD.equalTo('id',MyID).fetch()
+            .then(function(pd){
+                pd.set('mode',1);
+                return pd.update();
+            })
+            .then(function(results){
+                location.href = 'gamemain.html';
+            })
+      }
+    </script>
+</head>
+<body>
+    
+    <div id="bg"></div>
+    <div style="display: flex;justify-content: center;"><div style="padding: 10px; margin-bottom: 10px; border: 5px double #333333; background-color: #FF0000;"><font size="4" color="white" face="sans-serif">ユーザー名:<a id="name"></a>　ランク:<a id="rank"></a><br>コイン:<a id="coin"></a>　ダイヤ:<a id="diamond"></a></font></div></div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/IT.png" width="400" height="170" class="ueueue">
+    </div>
+    
+    <div style="display: flex;justify-content: center;">
+    <a href="profile.html"><img src="PNG/profile.png" width="280" height="100" id="profile"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="setumei.html"><img src="PNG/gamesetumei.png" width="280" height="100" id="setu"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/maingame.png" width="280" height="100" onclick="maingamefunk()" id="maingame">
+    </div>
+    <div style="display: flex;justify-content: center;">
+        <a href="ranking.html"><img src="PNG/ranking.png" width="280" height="100" id="rg"></a>
+        </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="kuesuto.html"><img src="PNG/kuesuto.png" width="280" height="100"id="kuesuto"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="kyara.html"><img src="PNG/kyaraset.png" width="280" height="100" id="kyaraset"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="homeshop.html"><img src="PNG/Hshop.png" width="280" height="100" id="Hshop"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+        <a href="gatya.html"><img src="PNG/gatya.png" width="280" height="100" id="gatya"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+        <img src="PNG/friend.png" width="280" height="100" onclick="friendfunk()" id="friend">
+        </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/logout.png" width="280" height="100" id="logout" onclick="logoutfunk()">
+    </div>
+    <div class="center">
+    <img src="PNG/endless.png" width="280" height="100" id="endless" onclick="endlessfunk()">
+    </div>
+    <div class="center">
+        <img src="PNG/skipstart.png" width="280" height="100" id="skipstart" onclick="skipstartfunk()">
+    </div>
+    <img src="PNG/modoru.png" class="modori" id="modoru" width="75" height="50" onclick="modorufunk()">
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/logoutok.png" width="350" height="500" id="ok" >
+    <img src="PNG/yes.png" width="160" height="100" id="yes" onclick="yesfunk()">
+    <img src="PNG/noo.png" width="160" height="100" id="noo" onclick="nofunk()">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="friendlist.html"><img src="PNG/friendlist.png" width="280" height="100" id="friendlist"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="friendadd.html"><img src="PNG/friendadd.png" width="280" height="100" id="friendadd"></a>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <a href="friendsyounin.html"><img src="PNG/friendsyonin.png" width="280" height="100" id="friendsyounin"></a>
+    </div>
+</body>
+</html>

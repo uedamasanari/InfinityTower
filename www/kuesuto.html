@@ -1,0 +1,527 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/kuesuto.css">
+    <title>クエスト</title>
+    <script src="components/loader.js"></script>
+    <script>
+        var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+        var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+        var ncmb = new NCMB(applicationKey,clientKey);
+        var Lname;
+        var MyID;
+        let wKAI=0;
+        var kuesuto=new Array();
+        let housyuKAI=[5,10,20,30,31,40,50,60,61,70,80,90,91,100,110,121,130,140,151,160,170,181,190,200,211,220,230,241,250,260,271,280,290,301,331,361,391,421,451,481,511,541,571,601,631,661,691,721,751,781,811,841,871,901,931,961,991,1000];
+           let syurui=[1,1,1,1,2,1,1,1,3,1,1,1,2,1,1,4,1,1,2,1,1,2,1,1,2,1,1,2,1,1,2,1,1,5,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,6];
+       let housyukazu=[100,100,100,200,5,300,300,300,1,500,500,500,20,700,700,1,1000,1000,30,1500,1500,40,2000,2000,50,2500,2500,60,3000,3000,70,3500,3500,1,5000,80,6000,90,6000,100,7000,110,8000,120,9000,130,10000,140,11000,150,12000,160,13000,170,14000,180,15000,1];
+        //1はコイン2はダイヤ、3は剣、4はR剣、5はSR剣、6はSSR剣
+        window.onload = function(){
+            console.log(housyuKAI.length+" "+syurui.length+" "+housyukazu.length);
+             document.body.style.backgroundImage = 'url(PNG/tower.png)';
+             Lname=localStorage.getItem("name");
+             MyID=localStorage.getItem("id");
+             MyID=Number(MyID);
+             window.PD = ncmb.DataStore("playerdata");
+            PD.equalTo('username',Lname).fetchAll()
+             .then(function(aaa){
+             kuesuto=aaa[0].kuesuto;
+             kuesutosum=aaa[0].kuesutosum;
+             buki=aaa[0].buki;
+             coin=aaa[0].Pcoin;
+             diamond=aaa[0].Pdiamond;
+             wKAI=aaa[0].wKAI;
+             for(var j=0;j<kuesutosum;j++){
+             Start = document.getElementById("maxkai"+j);
+             Start.innerHTML=wKAI;
+             }
+             for(var j=0;j<kuesutosum;j++){
+                if(kuesuto[j]==1){
+                }else if(housyuKAI[j]<=wKAI){
+                    document.getElementById('kakusu'+housyuKAI[j]).style.display = "block";
+                    Start = document.getElementById("tassei"+housyuKAI[j]);
+                    Start.src="PNG/tassei.png";
+                }else{
+                    document.getElementById('kakusu'+housyuKAI[j]).style.display = "block";
+                }
+             }
+             })
+        }
+        function tasseifunk(i){
+            if(housyuKAI[i]<=wKAI){
+                kuesuto[i]=1;
+                kuesutosum--;
+                document.getElementById('kakusu'+housyuKAI[i]).style.display = "none";
+                if(syurui[i]==1){
+                    coin+=housyukazu[i];
+                    alert("コインを"+housyukazu[i]+"ゲットしました");
+                }else if(syurui[i]==2){
+                    diamond+=housyukazu[i];
+                    alert("ダイヤを"+housyukazu[i]+"ゲットしました");
+                }else if(syurui[i]==3){
+                    if(buki[0]==0){
+                        buki[0]=1;
+                        alert("N剣をゲットしました");
+                    }else{
+                        diamond+=10;
+                        alert("ダイヤを"+housyukazu[i]+"ゲットしました");
+                    }
+                }else if(syurui[i]==4){
+                    if(buki[1]==0){
+                        buki[1]=1;
+                        alert("R剣をゲットしました");
+                    }else{
+                        diamond+=30;
+                        alert("ダイヤを"+housyukazu[i]+"ゲットしました");
+                    }
+                }else if(syurui[i]==5){
+                    if(buki[2]==0){
+                        buki[2]=1;
+                        alert("SR剣をゲットしました");
+                    }else{
+                        diamond+=50;
+                        alert("ダイヤを"+housyukazu[i]+"ゲットしました");
+                    }
+                }else if(syurui[i]==6){
+                    if(buki[2]==0){
+                        buki[2]=1;
+                        alert("SSR剣をゲットしました");
+                    }else{
+                        diamond+=300;
+                        alert("ダイヤを"+housyukazu[i]+"ゲットしました");
+                    }
+                }
+            }else{
+                alert("クエストを達成してません");
+            }
+            var PlayerData = ncmb.DataStore("playerdata");
+          PlayerData.equalTo("username",Lname).fetch()
+          .then(function(PlayerData){
+              PlayerData.set('kuesuto',kuesuto);
+              PlayerData.set('kuesutosum',kuesutosum);
+              PlayerData.set('buki',buki);
+              PlayerData.set('Pcoin',coin);
+              PlayerData.set('Pdiamond',diamond);
+              return PlayerData.update();          
+          })
+        }
+    </script>
+</head>
+<body>
+    <div class="center"id="center">
+    <img src="PNG/friendlistue.png" width="380" height="150" >
+    </div>
+    <a href="menu.html"><img src="PNG/modoru.png" class="modori" id="modoru" width="125" height="75" ></a>
+    <div id="kakusu999">
+    <div id="kakusu5">
+    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+        <font size="6">クエスト名:５階まで到達せよ</font><br>
+        <font size="5">報酬：コイン１００</font><br>
+        <font size="5">最高到達階：<a id="maxkai0"></a></font><br>
+        <img src="PNG/mitassei.png" width="150" height="50"id="tassei5" onclick="tasseifunk(0)"><br>
+    </div></div>
+    <div id="kakusu10">
+        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+            <font size="6">クエスト名:１０階まで到達せよ</font><br>
+            <font size="5">報酬：コイン１００</font><br>
+            <font size="5">最高到達階：<a id="maxkai1"></a></font><br>
+            <img src="PNG/mitassei.png" width="150" height="50"id="tassei10" onclick="tasseifunk(1)"><br>
+    </div></div>
+    <div id="kakusu20">
+    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+        <font size="6">クエスト名:２０階まで到達せよ</font><br>
+        <font size="5">報酬：コイン１００</font><br>
+        <font size="5">最高到達階：<a id="maxkai2"></a></font><br>
+        <img src="PNG/mitassei.png" width="150" height="50"id="tassei20" onclick="tasseifunk(2)"><br>
+    </div></div>
+    <div id="kakusu30">
+        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+            <font size="6">クエスト名:３０階まで到達せよ</font><br>
+            <font size="5">報酬：コイン２００</font><br>
+            <font size="5">最高到達階：<a id="maxkai3"></a></font><br>
+            <img src="PNG/mitassei.png" width="150" height="50"id="tassei30" onclick="tasseifunk(3)"><br>
+        </div></div>
+        <div id="kakusu31">
+            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                <font size="6">クエスト名:３１階まで到達せよ</font><br>
+                <font size="5">報酬：ダイヤ５</font><br>
+                <font size="5">最高到達階：<a id="maxkai4"></a></font><br>
+                <img src="PNG/mitassei.png" width="150" height="50"id="tassei31" onclick="tasseifunk(4)"><br>
+            </div></div>
+            <div id="kakusu40">
+                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                    <font size="6">クエスト名:４０階まで到達せよ</font><br>
+                    <font size="5">報酬：コイン３００</font><br>
+                    <font size="5">最高到達階：<a id="maxkai5"></a></font><br>
+                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei40" onclick="tasseifunk(5)"><br>
+                </div></div>
+                <div id="kakusu50">
+                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                        <font size="6">クエスト名:５０階まで到達せよ</font><br>
+                        <font size="5">報酬：コイン３００</font><br>
+                        <font size="5">最高到達階：<a id="maxkai6"></a></font><br>
+                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei50" onclick="tasseifunk(6)"><br>
+                    </div></div>
+                    <div id="kakusu60">
+                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                            <font size="6">クエスト名:６０階まで到達せよ</font><br>
+                            <font size="5">報酬：コイン３００</font><br>
+                            <font size="5">最高到達階：<a id="maxkai7"></a></font><br>
+                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei60" onclick="tasseifunk(7)"><br>
+                        </div></div>
+                        <div id="kakusu61">
+                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                <font size="6">クエスト名:６１階まで到達せよ</font><br>
+                                <font size="5">N剣(獲得済みの場合ダイヤ１０)</font><br>
+                                <font size="5">最高到達階：<a id="maxkai8"></a></font><br>
+                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei61" onclick="tasseifunk(8)"><br>
+                            </div></div>
+                            <div id="kakusu70">
+                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                    <font size="6">クエスト名:７０階まで到達せよ</font><br>
+                                    <font size="5">報酬：コイン５００</font><br>
+                                    <font size="5">最高到達階：<a id="maxkai9"></a></font><br>
+                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei70" onclick="tasseifunk(9)"><br>
+                                </div></div>
+                                <div id="kakusu80">
+                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                        <font size="6">クエスト名:８０階まで到達せよ</font><br>
+                                        <font size="5">報酬：コイン５００</font><br>
+                                        <font size="5">最高到達階：<a id="maxkai10"></a></font><br>
+                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei80" onclick="tasseifunk(10)"><br>
+                                    </div></div>
+                                    <div id="kakusu90">
+                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                            <font size="6">クエスト名:９０階まで到達せよ</font><br>
+                                            <font size="5">報酬：コイン５００</font><br>
+                                            <font size="5">最高到達階：<a id="maxkai11"></a></font><br>
+                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei90" onclick="tasseifunk(11)"><br>
+                                        </div></div>
+                                        <div id="kakusu91">
+                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                <font size="6">クエスト名:９１階まで到達せよ</font><br>
+                                                <font size="5">報酬：ダイヤ２０</font><br>
+                                                <font size="5">最高到達階：<a id="maxkai12"></a></font><br>
+                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei91" onclick="tasseifunk(12)"><br>
+                                            </div></div>
+                                            <div id="kakusu100">
+                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                    <font size="6">クエスト名:１００階まで到達せよ</font><br>
+                                                    <font size="5">報酬：コイン７００</font><br>
+                                                    <font size="5">最高到達階：<a id="maxkai13"></a></font><br>
+                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei100" onclick="tasseifunk(13)"><br>
+                                                </div></div>
+                                                <div id="kakusu110">
+                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                        <font size="6">クエスト名:１１０階まで到達せよ</font><br>
+                                                        <font size="5">報酬：コイン７００</font><br>
+                                                        <font size="5">最高到達階：<a id="maxkai14"></a></font><br>
+                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei110" onclick="tasseifunk(14)"><br>
+                                                    </div></div>
+                                                    <div id="kakusu121">
+                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                            <font size="6">クエスト名:１２１階まで到達せよ</font><br>
+                                                            <font size="5">報酬：R剣(獲得済みの場合ダイヤ３０)</font><br>
+                                                            <font size="5">最高到達階：<a id="maxkai15"></a></font><br>
+                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei121" onclick="tasseifunk(15)"><br>
+                                                        </div></div>
+                                                        <div id="kakusu130">
+                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                <font size="6">クエスト名:１３０階まで到達せよ</font><br>
+                                                                <font size="5">報酬：コイン１０００</font><br>
+                                                                <font size="5">最高到達階：<a id="maxkai16"></a></font><br>
+                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei130" onclick="tasseifunk(16)"><br>
+                                                            </div></div>
+                                                            <div id="kakusu140">
+                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                    <font size="6">クエスト名:１４０階まで到達せよ</font><br>
+                                                                    <font size="5">報酬：コイン１０００</font><br>
+                                                                    <font size="5">最高到達階：<a id="maxkai17"></a></font><br>
+                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei140" onclick="tasseifunk(17)"><br>
+                                                                </div></div>
+                                                                <div id="kakusu151">
+                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                        <font size="6">クエスト名:１５１階まで到達せよ</font><br>
+                                                                        <font size="5">報酬：ダイヤ３０</font><br>
+                                                                        <font size="5">最高到達階：<a id="maxkai18"></a></font><br>
+                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei151" onclick="tasseifunk(18)"><br>
+                                                                    </div></div>
+                                                                    <div id="kakusu160">
+                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                            <font size="6">クエスト名:１６０階まで到達せよ</font><br>
+                                                                            <font size="5">報酬：コイン１５００</font><br>
+                                                                            <font size="5">最高到達階：<a id="maxkai19"></a></font><br>
+                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei160" onclick="tasseifunk(19)"><br>
+                                                                        </div></div>
+                                                                        <div id="kakusu170">
+                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                <font size="6">クエスト名:１７０階まで到達せよ</font><br>
+                                                                                <font size="5">報酬：コイン１５００</font><br>
+                                                                                <font size="5">最高到達階：<a id="maxkai20"></a></font><br>
+                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei170" onclick="tasseifunk(20)"><br>
+                                                                            </div></div>
+                                                                            <div id="kakusu181">
+                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                    <font size="6">クエスト名:１８１階まで到達せよ</font><br>
+                                                                                    <font size="5">報酬：ダイヤ４０</font><br>
+                                                                                    <font size="5">最高到達階：<a id="maxkai21"></a></font><br>
+                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei181" onclick="tasseifunk(21)"><br>
+                                                                                </div></div>
+                                                                                <div id="kakusu190">
+                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                        <font size="6">クエスト名:１９０階まで到達せよ</font><br>
+                                                                                        <font size="5">報酬：コイン２０００</font><br>
+                                                                                        <font size="5">最高到達階：<a id="maxkai22"></a></font><br>
+                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei190" onclick="tasseifunk(22)"><br>
+                                                                                    </div></div>
+                                                                                    <div id="kakusu200">
+                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                            <font size="6">クエスト名:２００階まで到達せよ</font><br>
+                                                                                            <font size="5">報酬：コイン２０００</font><br>
+                                                                                            <font size="5">最高到達階：<a id="maxkai23"></a></font><br>
+                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei200" onclick="tasseifunk(23)"><br>
+                                                                                        </div></div>
+                                                                                        <div id="kakusu211">
+                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                <font size="6">クエスト名:２１１階まで到達せよ</font><br>
+                                                                                                <font size="5">報酬：ダイヤ５０</font><br>
+                                                                                                <font size="5">最高到達階：<a id="maxkai24"></a></font><br>
+                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei211" onclick="tasseifunk(24)"><br>
+                                                                                            </div></div>
+                                                                                            <div id="kakusu220">
+                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                    <font size="6">クエスト名:２２０階まで到達せよ</font><br>
+                                                                                                    <font size="5">報酬：コイン２５００</font><br>
+                                                                                                    <font size="5">最高到達階：<a id="maxkai25"></a></font><br>
+                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei220" onclick="tasseifunk(25)"><br>
+                                                                                                </div></div>
+                                                                                                <div id="kakusu230">
+                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                        <font size="6">クエスト名:２３０階まで到達せよ</font><br>
+                                                                                                        <font size="5">報酬：コイン２５００</font><br>
+                                                                                                        <font size="5">最高到達階：<a id="maxkai26"></a></font><br>
+                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei230" onclick="tasseifunk(26)"><br>
+                                                                                                    </div></div>
+                                                                                                    <div id="kakusu241">
+                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                            <font size="6">クエスト名:２４１階まで到達せよ</font><br>
+                                                                                                            <font size="5">報酬：６０ダイヤ</font><br>
+                                                                                                            <font size="5">最高到達階：<a id="maxkai27"></a></font><br>
+                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei241" onclick="tasseifunk(27)"><br>
+                                                                                                        </div></div>
+                                                                                                        <div id="kakusu250">
+                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                <font size="6">クエスト名:２５０階まで到達せよ</font><br>
+                                                                                                                <font size="5">報酬：コイン３０００</font><br>
+                                                                                                                <font size="5">最高到達階：<a id="maxkai28"></a></font><br>
+                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei250" onclick="tasseifunk(28)"><br>
+                                                                                                            </div></div>
+                                                                                                            <div id="kakusu260">
+                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                    <font size="6">クエスト名:２６０階まで到達せよ</font><br>
+                                                                                                                    <font size="5">報酬：コイン３０００</font><br>
+                                                                                                                    <font size="5">最高到達階：<a id="maxkai29"></a></font><br>
+                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei260" onclick="tasseifunk(29)"><br>
+                                                                                                                </div></div>
+                                                                                                                <div id="kakusu271">
+                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                        <font size="6">クエスト名:２７１階まで到達せよ</font><br>
+                                                                                                                        <font size="5">報酬：ダイヤ７０</font><br>
+                                                                                                                        <font size="5">最高到達階：<a id="maxkai30"></a></font><br>
+                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei271" onclick="tasseifunk(30)"><br>
+                                                                                                                    </div></div>
+                                                                                                                    <div id="kakusu280">
+                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                            <font size="6">クエスト名:２８０階まで到達せよ</font><br>
+                                                                                                                            <font size="5">最高到達階：<a id="maxkai31"></a></font><br>
+                                                                                                                            <font size="5">報酬：コイン３５００</font><br>
+                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei280" onclick="tasseifunk(31)"><br>
+                                                                                                                        </div></div>
+                                                                                                                        <div id="kakusu290">
+                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                <font size="6">クエスト名:２９０階まで到達せよ</font><br>
+                                                                                                                                <font size="5">報酬：コイン３５００</font><br>
+                                                                                                                                <font size="5">最高到達階：<a id="maxkai32"></a></font><br>
+                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei290" onclick="tasseifunk(32)"><br>
+                                                                                                                            </div></div>
+                                                                                                                            <div id="kakusu301">
+                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                    <font size="6">クエスト名:３０１階まで到達せよ</font><br>
+                                                                                                                                    <font size="5">報酬：SR剣(獲得済みの場合ダイヤ５０)</font><br>
+                                                                                                                                    <font size="5">最高到達階：<a id="maxkai33"></a></font><br>
+                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei301" onclick="tasseifunk(33)"><br>
+                                                                                                                                </div></div>
+                                                                                                                                <div id="kakusu331">
+                                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                        <font size="6">クエスト名:３３１階まで到達せよ</font><br>
+                                                                                                                                        <font size="5">報酬：コイン５０００</font><br>
+                                                                                                                                        <font size="5">最高到達階：<a id="maxkai34"></a></font><br>
+                                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei331" onclick="tasseifunk(34)"><br>
+                                                                                                                                    </div></div>
+                                                                                                                                    <div id="kakusu361">
+                                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                            <font size="6">クエスト名:３６１階まで到達せよ</font><br>
+                                                                                                                                            <font size="5">報酬：ダイヤ８０</font><br>
+                                                                                                                                            <font size="5">最高到達階：<a id="maxkai35"></a></font><br>
+                                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei361" onclick="tasseifunk(35)"><br>
+                                                                                                                                        </div></div>
+                                                                                                                                        <div id="kakusu391">
+                                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                <font size="6">クエスト名:３９１階まで到達せよ</font><br>
+                                                                                                                                                <font size="5">報酬：コイン６０００</font><br>
+                                                                                                                                                <font size="5">最高到達階：<a id="maxkai36"></a></font><br>
+                                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei391" onclick="tasseifunk(36)"><br>
+                                                                                                                                            </div></div>
+                                                                                                                                            <div id="kakusu421">
+                                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                    <font size="6">クエスト名:４２１階まで到達せよ</font><br>
+                                                                                                                                                    <font size="5">報酬：９０ダイヤ</font><br>
+                                                                                                                                                    <font size="5">最高到達階：<a id="maxkai37"></a></font><br>
+                                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei421" onclick="tasseifunk(37)"><br>
+                                                                                                                                                </div></div>
+                                                                                                                                                <div id="kakusu451">
+                                                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                        <font size="6">クエスト名:４５１階まで到達せよ</font><br>
+                                                                                                                                                        <font size="5">報酬：コイン６０００</font><br>
+                                                                                                                                                        <font size="5">最高到達階：<a id="maxkai38"></a></font><br>
+                                                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei451" onclick="tasseifunk(38)"><br>
+                                                                                                                                                    </div></div>
+                                                                                                                                                    <div id="kakusu481">
+                                                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                            <font size="6">クエスト名:４８１階まで到達せよ</font><br>
+                                                                                                                                                            <font size="5">報酬：ダイヤ１００</font><br>
+                                                                                                                                                            <font size="5">最高到達階：<a id="maxkai39"></a></font><br>
+                                                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei481" onclick="tasseifunk(39)"><br>
+                                                                                                                                                        </div></div>
+                                                                                                                                                        <div id="kakusu511">
+                                                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                <font size="6">クエスト名:５１１階まで到達せよ</font><br>
+                                                                                                                                                                <font size="5">報酬：コイン７０００</font><br>
+                                                                                                                                                                <font size="5">最高到達階：<a id="maxkai40"></a></font><br>
+                                                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei511" onclick="tasseifunk(40)"><br>
+                                                                                                                                                            </div></div>
+                                                                                                                                                            <div id="kakusu541">
+                                                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                    <font size="6">クエスト名:５４１階まで到達せよ</font><br>
+                                                                                                                                                                    <font size="5">報酬：ダイヤ１１０</font><br>
+                                                                                                                                                                    <font size="5">最高到達階：<a id="maxkai41"></a></font><br>
+                                                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei541" onclick="tasseifunk(41)"><br>
+                                                                                                                                                                </div></div>
+                                                                                                                                                                <div id="kakusu571">
+                                                                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                        <font size="6">クエスト名:５７１階まで到達せよ</font><br>
+                                                                                                                                                                        <font size="5">報酬：コイン８０００</font><br>
+                                                                                                                                                                        <font size="5">最高到達階：<a id="maxkai42"></a></font><br>
+                                                                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei571" onclick="tasseifunk(42)"><br>
+                                                                                                                                                                    </div></div>
+                                                                                                                                                                    <div id="kakusu601">
+                                                                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                            <font size="6">クエスト名:６０１階まで到達せよ</font><br>
+                                                                                                                                                                            <font size="5">報酬：ダイヤ１２０</font><br>
+                                                                                                                                                                            <font size="5">最高到達階：<a id="maxkai43"></a></font><br>
+                                                                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei601" onclick="tasseifunk(43)"><br>
+                                                                                                                                                                        </div></div>
+                                                                                                                                                                        <div id="kakusu631">
+                                                                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                <font size="6">クエスト名:６３１階まで到達せよ</font><br>
+                                                                                                                                                                                <font size="5">報酬：コイン９０００</font><br>
+                                                                                                                                                                                <font size="5">最高到達階：<a id="maxkai44"></a></font><br>
+                                                                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei631" onclick="tasseifunk(44)"><br>
+                                                                                                                                                                            </div></div>
+                                                                                                                                                                            <div id="kakusu661">
+                                                                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                    <font size="6">クエスト名:６６１階まで到達せよ</font><br>
+                                                                                                                                                                                    <font size="5">報酬：ダイヤ１３０</font><br>
+                                                                                                                                                                                    <font size="5">最高到達階：<a id="maxkai45"></a></font><br>
+                                                                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei661" onclick="tasseifunk(45)"><br>
+                                                                                                                                                                                </div></div>
+                                                                                                                                                                                <div id="kakusu691">
+                                                                                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                        <font size="6">クエスト名:６９１階まで到達せよ</font><br>
+                                                                                                                                                                                        <font size="5">報酬：コイン１００００</font><br>
+                                                                                                                                                                                        <font size="5">最高到達階：<a id="maxkai46"></a></font><br>
+                                                                                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei691" onclick="tasseifunk(46)"><br>
+                                                                                                                                                                                    </div></div>
+                                                                                                                                                                                    <div id="kakusu721">
+                                                                                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                            <font size="6">クエスト名:７２１階まで到達せよ</font><br>
+                                                                                                                                                                                            <font size="5">報酬：ダイヤ１４０</font><br>
+                                                                                                                                                                                            <font size="5">最高到達階：<a id="maxkai47"></a></font><br>
+                                                                                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei721" onclick="tasseifunk(47)"><br>
+                                                                                                                                                                                        </div></div>
+                                                                                                                                                                                        <div id="kakusu751">
+                                                                                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                <font size="6">クエスト名:７５１階まで到達せよ</font><br>
+                                                                                                                                                                                                <font size="5">報酬：コイン１１０００</font><br>
+                                                                                                                                                                                                <font size="5">最高到達階：<a id="maxkai48"></a></font><br>
+                                                                                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei751" onclick="tasseifunk(48)"><br>
+                                                                                                                                                                                            </div></div>
+                                                                                                                                                                                            <div id="kakusu781">
+                                                                                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                    <font size="6">クエスト名:７８１階まで到達せよ</font><br>
+                                                                                                                                                                                                    <font size="5">報酬：ダイヤ１５０</font><br>
+                                                                                                                                                                                                    <font size="5">最高到達階：<a id="maxkai49"></a></font><br>
+                                                                                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei781" onclick="tasseifunk(49)"><br>
+                                                                                                                                                                                                </div></div>
+                                                                                                                                                                                                <div id="kakusu811">
+                                                                                                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                        <font size="6">クエスト名:８１１階まで到達せよ</font><br>
+                                                                                                                                                                                                        <font size="5">報酬：コイン１２０００</font><br>
+                                                                                                                                                                                                        <font size="5">最高到達階：<a id="maxkai50"></a></font><br>
+                                                                                                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei811" onclick="tasseifunk(50)"><br>
+                                                                                                                                                                                                    </div></div>
+                                                                                                                                                                                                    <div id="kakusu841">
+                                                                                                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                            <font size="6">クエスト名:８４１階まで到達せよ</font><br>
+                                                                                                                                                                                                            <font size="5">報酬：ダイヤ１６０</font><br>
+                                                                                                                                                                                                            <font size="5">最高到達階：<a id="maxkai51"></a></font><br>
+                                                                                                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei841" onclick="tasseifunk(51)"><br>
+                                                                                                                                                                                                        </div></div>
+                                                                                                                                                                                                        <div id="kakusu871">
+                                                                                                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                                <font size="6">クエスト名:８７１階まで到達せよ</font><br>
+                                                                                                                                                                                                                <font size="5">報酬：コイン１３０００</font><br>
+                                                                                                                                                                                                                <font size="5">最高到達階：<a id="maxkai52"></a></font><br>
+                                                                                                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei871" onclick="tasseifunk(52)"><br>
+                                                                                                                                                                                                            </div></div>
+                                                                                                                                                                                                            <div id="kakusu901">
+                                                                                                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                                    <font size="6">クエスト名:９０１階まで到達せよ</font><br>
+                                                                                                                                                                                                                    <font size="5">報酬：ダイヤ１７０</font><br>
+                                                                                                                                                                                                                    <font size="5">最高到達階：<a id="maxkai53"></a></font><br>
+                                                                                                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei901" onclick="tasseifunk(53)"><br>
+                                                                                                                                                                                                                </div></div>
+                                                                                                                                                                                                                <div id="kakusu931">
+                                                                                                                                                                                                                    <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                                        <font size="6">クエスト名:９３１階まで到達せよ</font><br>
+                                                                                                                                                                                                                        <font size="5">報酬：コイン１４０００</font><br>
+                                                                                                                                                                                                                        <font size="5">最高到達階：<a id="maxkai54"></a></font><br>
+                                                                                                                                                                                                                        <img src="PNG/mitassei.png" width="150" height="50"id="tassei931" onclick="tasseifunk(54)"><br>
+                                                                                                                                                                                                                    </div></div>
+                                                                                                                                                                                                                    <div id="kakusu961">
+                                                                                                                                                                                                                        <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                                            <font size="6">クエスト名:９６１階まで到達せよ</font><br>
+                                                                                                                                                                                                                            <font size="5">報酬：ダイヤ１８０</font><br>
+                                                                                                                                                                                                                            <font size="5">最高到達階：<a id="maxkai55"></a></font><br>
+                                                                                                                                                                                                                            <img src="PNG/mitassei.png" width="150" height="50"id="tassei961" onclick="tasseifunk(55)"><br>
+                                                                                                                                                                                                                        </div></div>
+                                                                                                                                                                                                                        <div id="kakusu991">
+                                                                                                                                                                                                                            <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                                                <font size="6">クエスト名:９９１階まで到達せよ</font><br>
+                                                                                                                                                                                                                                <font size="5">報酬：コイン１５０００</font><br>
+                                                                                                                                                                                                                                <font size="5">最高到達階：<a id="maxkai56"></a></font><br>
+                                                                                                                                                                                                                                <img src="PNG/mitassei.png" width="150" height="50"id="tassei991" onclick="tasseifunk(56)"><br>
+                                                                                                                                                                                                                            </div></div>
+                                                                                                                                                                                                                            <div id="kakusu1000">
+                                                                                                                                                                                                                                <div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;">
+                                                                                                                                                                                                                                    <font size="6">クエスト名:１０００階まで到達せよ</font><br>
+                                                                                                                                                                                                                                    <font size="5">報酬：SSR剣(獲得済みの場合ダイヤ３００)</font><br>
+                                                                                                                                                                                                                                    <font size="5">最高到達階：<a id="maxkai57"></a></font><br>
+                                                                                                                                                                                                                                    <img src="PNG/mitassei.png" width="150" height="50"id="tassei1000" onclick="tasseifunk(57)"><br>
+                                                                                                                                                                                                                                </div></div></div>
+</body>
+</html>

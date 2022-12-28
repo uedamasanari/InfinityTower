@@ -1,0 +1,271 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <title>フレンド承認</title>
+    <script src="components/loader.js"></script>
+    <script>
+        var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+        var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+        var ncmb = new NCMB(applicationKey,clientKey);
+        var KAI=0;
+        var HP =0;
+        var ATK=0;
+        var MP=0;
+        var LV=0;
+        var Bhantei=0;
+        var skil1=0;
+        var skil2=0;
+        var Name;
+        var Lname;
+        var sfriend;
+        var snin;
+        var MyID;
+        window.onload = function(){
+             document.body.style.backgroundImage = 'url(PNG/tower.png)';
+             Lname=localStorage.getItem("name");
+             window.PD = ncmb.DataStore("playerdata");
+            PD.equalTo('username',Lname).fetchAll()
+             .then(function(pd){
+             sfriend=pd[0].sinseimei;
+             sfriend=sfriend.map(Number);
+             snin=pd[0].sinseinin;
+             MyID=pd[0].id;
+             if(snin>0){
+             for(var i=0;i<snin;i++){
+                 PD.equalTo('id',sfriend[i]).fetchAll()
+                 .then(function(pd){
+                    const p = document.createElement("fre");
+                    p.innerHTML = '<div id="kakusu"><div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;"><font size="5">ユーザー名:<a id="name"></a></font><br><font size="5">ユーザーランク:<a id="rank"></a></font><br><font size="4">自己最高記録<br>到達階:<a id="kai"></a>最高LV:<a id="lv"></a>最高HP:<a id="hp"></a><br>最高ATK:<a id="atk"></a>最高MP:<a id="mp"></a><br>所持武器:<a id="buki"></a><br>スキル１:<a id="s1"></a><img src="skil/none.png" width="50" height="65"id="scr1"><br>スキル２:<a id="s2"></a><img src="skil/none.png" width="50" height="65"id="scr2"><br></font><div style="display: flex;justify-content: center;"><img src="PNG/syounin.png" width="150" height="90" onclick="syouninfunk('+i+')"><img src="PNG/kyohi.png" width="150" height="90"onclick="kyohifunk('+i+')"></div></div></div></div>';
+                    document.body.appendChild(p);
+                    KAI=pd[0].wKAI;
+                    HP=pd[0].wHP;
+                    ATK=pd[0].wATK;
+                    MP=pd[0].wMAXMP;
+                    LV=pd[0].wLV;
+                    PLV=pd[0].PLV;
+                    Bhantei=pd[0].wBhantei;
+                    skil1=pd[0].wskil1;
+                    skil2=pd[0].wskil2;
+                    Name=pd[0].username;
+                    Start = document.getElementById("lv");
+                    Start.innerHTML=LV;
+                    Start = document.getElementById("name");
+                    Start.innerHTML=Name;
+                    Start = document.getElementById("kai");
+                    Start.innerHTML=KAI;
+                    Start = document.getElementById("hp");
+                    Start.innerHTML=HP;
+                    Start = document.getElementById("atk");
+                    Start.innerHTML=ATK;
+                    Start = document.getElementById("mp");
+                    Start.innerHTML=MP;
+                    Start = document.getElementById("rank");
+                    Start.innerHTML=PLV;
+                    if(Bhantei==0){
+                        Start = document.getElementById("buki");
+                        Start.innerHTML="武器無し";
+                    }else if(Bhantei==1){
+                        Start = document.getElementById("buki");
+                        Start.innerHTML="剣";
+                    }else if(Bhantei==2){
+                        Start = document.getElementById("buki");
+                        Start.innerHTML="盾";
+                    }
+                    if(skil1==1){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/tate.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="縦";
+                    }else if(skil1==2){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/yoko.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="横";
+                    }else if(skil1==3){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/hidarinaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="左斜め";
+                    }else if(skil1==4){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="右斜め";
+                    }else if(skil1==5){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="十字";
+                    }
+                    else if(skil1==6){
+                        Start = document.getElementById("scr1");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s1");
+                        Start.innerHTML="斜め十字";
+                    }
+                    if(skil2==1){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/tate.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="縦";
+                    }else if(skil2==2){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/yoko.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="横";
+                    }else if(skil2==3){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/hidarinaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="左斜め";
+                    }else if(skil2==4){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="右斜め";
+                    }else if(skil2==5){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="十字";
+                    }
+                    else if(skil2==6){
+                        Start = document.getElementById("scr2");
+                        Start.src="skil/miginaname.png";
+                        Start = document.getElementById("s2");
+                        Start.innerHTML="斜め十字";
+                    }
+                 })
+             }
+             const p = document.createElement("fre");
+             p.innerHTML ='</div><a href="menu.html"><img src="PNG/modoru.png" class="modori" id="modoru" width="125" height="75" ></a></div>';
+             document.body.appendChild(p);
+             }else{
+                 const p = document.createElement("fre");
+                    p.innerHTML ='<div style="display: flex;justify-content: center;"><div style="padding: 25px; margin-bottom: 10px; border: 5px double #333333; background-color: #ffff99;"><font size="5">フレンド申請がありません。</font><br><font size="5">申請してみましょう！</font><div style="display: flex;justify-content: center;"><a href="friendadd.html"><img src="PNG/friendadd.png" width="280" height="100" id=friendadd></a><br></div><a href="menu.html"><img src="PNG/modoru.png" class="modori" id="modoru" width="125" height="75" ></a></div>';
+                    document.body.appendChild(p);
+             }
+             })
+        }
+        var I;
+        var free;
+        function syouninfunk(I){
+            I--;
+          var PlayerData = ncmb.DataStore("playerdata");
+          PlayerData.equalTo("id",sfriend[I]).fetchAll()
+          .then(function(PlayerData){
+              var syutokufmei=PlayerData[0].friendmei;
+              var syutokusmei=PlayerData[0].sinseimei;
+              syutokufmei[syutokufmei.length]=MyID;
+              var idx = syutokusmei.indexOf(MyID);
+              if(idx >= 0){
+              syutokusmei.splice(idx, 1); 
+              free=1;
+              }else{
+                  free=0
+              }
+              console.log(JSON.stringify(syutokusmei));
+               var PlayerData = ncmb.DataStore("playerdata");
+              PlayerData.equalTo("id",sfriend[I]).fetch()
+              .then(function(PlayerData){
+              PlayerData.setIncrement('friendnin',1);
+              if(free==1){
+                  PlayerData.setIncrement('sinseinin',-1);
+              }
+              PlayerData.set('friendmei',syutokufmei);
+              PlayerData.set('sinseimei',syutokusmei);
+              return PlayerData.update();
+              console.log(JSON.stringify(PlayerData));
+              
+          })
+          jibunfunk(I);
+          })
+          
+          
+          
+        }
+        function jibunfunk(I){
+            var PD = ncmb.DataStore("playerdata");
+              PD.equalTo("username",Lname).fetchAll()
+            .then(function(PD){
+                console.log(JSON.stringify(PD));
+              var syutokufmei=PD[0].friendmei;
+              var syutokusmei=PD[0].sinseimei;
+              var syutokunin=PD[0].sinseinin;
+              var idx = syutokusmei.indexOf(sfriend[I]);
+              if(idx >= 0){
+              syutokusmei.splice(idx, 1); 
+              }
+              console.log(JSON.stringify(syutokusmei));
+              syutokufmei[syutokufmei.length]=sfriend[I];
+              console.log(JSON.stringify(syutokufmei));
+               var PD = ncmb.DataStore("playerdata");
+              PD.equalTo("username",Lname).fetch()
+              .then(function(PD){
+              PD.setIncrement('friendnin',1);
+              PD.setIncrement('sinseinin',-1);
+              PD.set('sinseimei',syutokusmei);
+              PD.set('friendmei',syutokufmei);
+              return PD.update();          
+          }) 
+          alert("フレンド申請を承認しました。");  
+          document.getElementById("kakusu").style.display="none";      
+          })
+        }
+        function kyohifunk(I){
+            I--;
+          var PlayerData = ncmb.DataStore("playerdata");
+          PlayerData.equalTo("id",sfriend[I]).fetchAll()
+          .then(function(PlayerData){
+              var syutokusmei=PlayerData[0].sinseimei;
+              var idx = syutokusmei.indexOf(MyID);
+              if(idx >= 0){
+              syutokusmei.splice(idx, 1); 
+              free=1;
+              }else{
+                  free=0
+              }
+               var PlayerData = ncmb.DataStore("playerdata");
+              PlayerData.equalTo("id",sfriend[I]).fetch()
+              .then(function(PlayerData){
+              PlayerData.setIncrement('sinseinin',-1);
+              PlayerData.set('sinseimei',syutokusmei);
+              return PlayerData.update();          
+          })
+          jibun2funk(I);
+          })
+        }
+        function jibun2funk(I){
+            var PD = ncmb.DataStore("playerdata");
+              PD.equalTo("username",Lname).fetchAll()
+            .then(function(PD){
+              var syutokusmei=PD[0].sinseimei;
+              var idx = syutokusmei.indexOf(sfriend[I]);
+              if(idx >= 0){
+              syutokusmei.splice(idx, 1); 
+              }
+               var PD = ncmb.DataStore("playerdata");
+              PD.equalTo("username",Lname).fetch()
+              .then(function(PD){
+              PD.setIncrement('sinseinin',-1);
+              PD.set('sinseimei',syutokusmei);
+              return PD.update();          
+          }) 
+          alert("フレンド申請を拒否しました。");  
+          document.getElementById("kakusu").style.display="none";      
+          })
+        }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/friendlistue.png" width="380" height="150" ><br>
+    </div>
+    <div id="fre">
+    </div>
+</body>
+</html>

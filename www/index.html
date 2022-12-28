@@ -1,0 +1,264 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>IT~infinitytower~ インフィニティタワー</title>
+    <script src="user.js"></script>
+    <script>
+      var applicationKey="c4c973d149eb7f703b8dc11532c2fb3e3bb2a7efcbd08a6f365e6b985e850f28";
+      var clientKey="202e48eb74bebfc63486928f9388cd363f0636806e35cefa57472e8045a9f7c1";
+      window.ncmb = new NCMB(applicationKey,clientKey);
+      var MyID;
+      window.onload = function(){
+      document.body.style.backgroundImage = 'url(PNG/tower.png)';
+      document.getElementById("start").style.display="none";
+      document.getElementById("newtoroku").style.display="none";
+      document.getElementById("it").style.display="none";
+      document.getElementById("name").style.display="none";
+      document.getElementById("pass").style.display="none";
+      document.getElementById("go").style.display="none";
+      document.getElementById("toroku").style.display="none";
+      document.getElementById("modoru").style.display="none";
+      window.setTimeout(function(){
+        document.getElementById("start").style.display="block";
+        document.getElementById("newtoroku").style.display="block";
+        document.getElementById("it").style.display="block";
+      },500);
+      }
+      function loginfunk(){
+          document.getElementById("start").style.display="none";
+          document.getElementById("newtoroku").style.display="none";
+          document.getElementById("name").style.display="block";
+          document.getElementById("pass").style.display="block";
+          document.getElementById("go").style.display="block";
+          try{
+              var nowname=localStorage.getItem('name');
+              document.getElementById("name").value = nowname;
+          }catch(error){
+          }
+      }
+      function newtorokufunk(){
+          try{
+              var aaa=JSON.parse(localStorage.getItem('sw'));
+              if(aaa>=3){
+              alert("一つの端末で登録できるアカウントは3つまでです。");
+              }else{
+              document.getElementById("start").style.display="none";
+              document.getElementById("newtoroku").style.display="none";
+              document.getElementById("name").style.display="block";
+              document.getElementById("pass").style.display="block";
+              document.getElementById("toroku").style.display="block";
+              document.getElementById("modoru").style.display="block";
+              }
+          }catch(error){
+              document.getElementById("start").style.display="none";
+              document.getElementById("newtoroku").style.display="none";
+              document.getElementById("name").style.display="block";
+              document.getElementById("pass").style.display="block";
+              document.getElementById("toroku").style.display="block";
+              document.getElementById("modoru").style.display="block";
+          }
+      }
+      window.Lname;
+      window.Lpass;
+      window.SampleData = ncmb.DataStore("playerdata");
+      window.PD=new SampleData();
+      function torokufunk(){
+          Lname=document.getElementById("name").value;
+          Lpass=document.getElementById("pass").value;
+          
+          SampleData.equalTo("username",Lname).fetchAll()
+          .then(function(results){
+          if(Lname==results[0].username){
+          alert("入力された名前は既に登録されています。"); 
+          }
+          })
+          .catch(function(error){
+          SampleData.order('id',true).limit(1).fetchAll()
+          .then(function(results){
+          var TYU=results[0].id;
+          TYU++;
+          PD.set("username", Lname)
+          .set("password", Lpass)
+          .set("now",1)
+          .set("nowpng","1")
+          .set("nowSpng",[])
+          .set("nowDpng",[])
+          .set("nowDrapng","1")
+          .set("i",1)
+          .set("free",1)
+          .set("MslimeHP",[])
+          .set("MdemonHP",[])
+          .set("MdragonHP")
+          .set("slimeHP0",1)
+          .set("slimeHP1",1)
+          .set("slimeHP2",1)
+          .set("demonHP0",1)
+          .set("demonHP1",1)
+          .set("demonHP2",1)
+          .set("dragonHP",1)
+          .set("box",1)
+          .set("next",1)
+          .set("KAI",0)
+          .set("takara",1)
+          .set("slime0",1)
+          .set("slime1",1)
+          .set("slime2",1)
+          .set("demon0",1)
+          .set("demon1",1)
+          .set("demon2",1)
+          .set("dragon",1)
+          .set("Cslime0",1)
+          .set("Cslime1",1)
+          .set("Cslime2",1)
+          .set("Cdemon0",1)
+          .set("Cdemon1",1)
+          .set("Cdemon2",1)
+          .set("Cdragon",1)
+          .set("HP",1)
+          .set("ATK",1)
+          .set("MP",1)
+          .set("wMP",1)
+          .set("MAXMP",1)
+          .set("count",1)
+          .set("hozon",1)
+          .set("tarn",1)
+          .set("Mwaza",1)
+          .set("clone",1)
+          .set("clone2",1)
+          .set("move",1)
+          .set("skil1",1)
+          .set("skil2",1)
+          .set("LV",1)
+          .set("nextLV",1)
+          .set("keikenti","1")
+          .set("MAXHP",1)
+          .set("Rtakara",1)
+          .set("Thyouji",1)
+          .set("Bhyouji",1)
+          .set("Bhantei",1)
+          .set("kuuhaku",1)
+          .set("Dratakara",1)
+          .set("GETskil",1)
+          .set("GETmode",1)
+          .set("tokusyu",1)
+          .set("coin",1)
+          .set("sumcoin",0)
+          .set("comeKAI",1)
+          .set("shophantei",0)
+          .set("wKAI",0)
+          .set("wHP",0)
+          .set("wATK",0)
+          .set("wMAXMP",0)
+          .set("wLV",0)
+          .set("wBhantei",0)
+          .set("wskil1",0)
+          .set("wskil2",0)
+          .set("wtyousen",0)
+          .set("wkuria",0)
+          .set("syou1",99)
+          .set("id",TYU)
+          .set("friendmei",[])
+          .set("friendnin",0)
+          .set("sinseimei",[])
+          .set("Nactive",[0,0,0,0,0,0,0])
+          .set("sinseinin",0)
+          .set("PLV",1)
+          .set("Pkeikenti",0)
+          .set("Pcoin",0)
+          .set("kyaraLV",1)
+          .set("nouryoku1LV",1)
+          .set("nouryoku2LV",1)
+          .set("skilLV",1)
+          .set("kyara",0)
+          .set("Pdiamond",0)
+          .set("nouryoku1",0)
+          .set("nouryoku2",0)
+          .set("item",[0,0,0,0,0,0,0,0,0])
+          .set("buki",[0,0,0,0,0,0,0,0])
+          .set("kuesuto",[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+          .set("kuesutosum",58)
+          .set("itemnokori",[1,1,1,1,1,1,1,1,1])
+          .set("kyarabuki",0)
+          .save()
+          localStorage.setItem('name',Lname);
+          try{
+          var aaaa=JSON.parse(localStorage.getItem('sw'));
+          localStorage.setItem('sw',++aaaa);
+          }catch(error){
+              localStorage.setItem('sw',1);
+          }
+          alert("登録しました");
+          document.getElementById("start").style.display="block";
+          document.getElementById("newtoroku").style.display="block";
+          document.getElementById("name").style.display="none";
+          document.getElementById("pass").style.display="none";
+          document.getElementById("toroku").style.display="none";
+          document.getElementById("modoru").style.display="none";
+          });
+          })
+      }
+      
+      function gofunk(){
+          Lname=document.getElementById("name").value;
+          Lpass=document.getElementById("pass").value;
+          var SampleData = ncmb.DataStore("playerdata");
+          SampleData.equalTo("username",Lname).equalTo("password",Lpass).fetchAll()
+          .then(function(results){
+          console.log("Successfully retrieved " + results.length + " scores.");
+          MyID=results[0].id;
+          if(Lname==results[0].username && Lpass==results[0].password){
+              location.href = 'menu.html'; 
+              localStorage.setItem('name',Lname);
+              localStorage.setItem('id',MyID);
+          }  
+          })
+          .catch(function(error){
+              alert("入力されたアカウントが登録されていないか、入力された情報が間違っています。");
+          });
+      }
+      function modorufunk(){
+          document.getElementById("start").style.display="none";
+          document.getElementById("newtoroku").style.display="none";
+          document.getElementById("it").style.display="none";
+          document.getElementById("name").style.display="none";
+          document.getElementById("pass").style.display="none";
+          document.getElementById("go").style.display="none";
+          document.getElementById("toroku").style.display="none";
+          document.getElementById("modoru").style.display="none";
+          document.getElementById("start").style.display="block";
+          document.getElementById("newtoroku").style.display="block";
+          document.getElementById("it").style.display="block";
+      }
+    </script>
+</head>
+<body>
+    <div style="display: flex;justify-content: center;">
+    <img id="it" class="it" src="PNG/IT.png" width="300" height="200" style="z-index:9"><br>
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/newtoroku.png" onclick="newtorokufunk()" class="toroku" id="newtoroku" width="300" height="100" >
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/toroku.png" onclick="torokufunk()" class="go" id="toroku" width="200" height="66" >
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/login.png" onclick="loginfunk()" class="start" id="start" width="300" height="100" >
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <input type="text" id="name" class="name"size="30" placeholder="ユーザー名(10文字以内)">
+    <input type="text" id="pass" class="pass"size="30" placeholder="パスワード" autocomplete="off">
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/login.png" onclick="gofunk()" class="go" id="go" width="200" height="66" >
+    </div>
+    <div style="display: flex;justify-content: center;">
+    <img src="PNG/modoru.png" onclick="modorufunk()" class="modori" id="modoru" width="125" height="75" >
+    </div>
+</body>
+</html>
